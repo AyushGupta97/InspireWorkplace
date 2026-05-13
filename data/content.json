@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-12T00:00:00.000Z",
+  "blogs": [
+    {
+      "id": "coworking-productivity-wfh",
+      "title": "Why Coworking Spaces Make You More Productive Than WFH",
+      "category": "Productivity",
+      "date": "2025-05-28",
+      "readTime": "6 min read",
+      "excerpt": "Working from home sounds ideal until the walls start closing in. Here is why a dedicated workspace changes your output.",
+      "imageUrl": "",
+      "imageKey": "g",
+      "body": "",
+      "published": true,
+      "featured": false
+    },
+    {
+      "id": "traditional-office-lease-cost",
+      "title": "The Real Cost of a Traditional Office Lease for Early-Stage Startups",
+      "category": "Startup growth",
+      "date": "2025-05-19",
+      "readTime": "8 min read",
+      "excerpt": "Security deposits, fit-out costs, long-term lock-ins, and setup time can burn through runway faster than expected.",
+      "imageUrl": "",
+      "imageKey": "c",
+      "body": "",
+      "published": true,
+      "featured": false
+    },
+    {
+      "id": "work-environment-mental-health",
+      "title": "How Your Work Environment Affects Your Mental Health",
+      "category": "Wellness at work",
+      "date": "2025-05-12",
+      "readTime": "5 min read",
+      "excerpt": "Lighting, noise, greenery, and the ability to take a proper break compound over weeks into real differences in wellbeing.",
+      "imageUrl": "",
+      "imageKey": "d",
+      "body": "",
+      "published": true,
+      "featured": false
+    }
+  ],
+  "events": [
+    {
+      "id": "founder-breakfast-bangalore",
+      "title": "Founder Breakfast: Build & Scale in Bangalore",
+      "date": "2025-06-14",
+      "time": "10:00 AM",
+      "badge": "Free",
+      "price": "",
+      "location": "Inspire Workplace, Marathahalli ORR",
+      "description": "An informal morning for early-stage founders to connect, share challenges, and find collaborators. Limited to 20 seats.",
+      "gradient": "linear-gradient(135deg,#2D6A4F,#1B4332)",
+      "registrationUrl": "",
+      "published": true,
+      "featured": false
+    },
+    {
+      "id": "notion-solopreneurs-workshop",
+      "title": "Workshop: Notion for Solopreneurs",
+      "date": "2025-06-21",
+      "time": "2:00 PM",
+      "badge": "INR 499",
+      "price": "499",
+      "location": "Inspire Workplace, Marathahalli ORR",
+      "description": "A hands-on workshop on building a business OS in Notion for client management, projects, and CRM.",
+      "gradient": "linear-gradient(135deg,#1d3557,#457b9d)",
+      "registrationUrl": "",
+      "published": true,
+      "featured": false
+    },
+    {
+      "id": "rooftop-yoga-mindful-morning",
+      "title": "Rooftop Yoga & Mindful Morning",
+      "date": "2025-06-28",
+      "time": "8:30 AM",
+      "badge": "Free for members",
+      "price": "",
+      "location": "Inspire Workplace rooftop",
+      "description": "A 60-minute yoga session on the rooftop, followed by chai and open networking.",
+      "gradient": "linear-gradient(135deg,#6b2737,#c9184a)",
+      "registrationUrl": "",
+      "published": true,
+      "featured": false
+    }
+  ]
+}
