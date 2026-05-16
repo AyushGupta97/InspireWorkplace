@@ -518,6 +518,11 @@ input:focus, select:focus, textarea:focus {
 }
 
 @media (max-width: 560px) {
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { -webkit-text-size-adjust: 100%; }
+  input, select, textarea { font-size: 16px; }
+
   .wrap { width: min(100% - 28px, 1180px); }
   .nav { height: 66px; }
   .brand span { font-size: 1.1rem; }
