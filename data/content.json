@@ -1,0 +1,233 @@
+{
+  "home": {
+    "hero": {
+      "eyebrow": "Marathahalli ORR, Bengaluru",
+      "headingPrefix": "Coworking spaces designed for ",
+      "headingEmphasis": "focus and growth.",
+      "lead": "Inspire Workplace gives freelancers, startups and growing teams a professional workspace with hot desks, dedicated desks, private cabins, managed offices, virtual office support and a rooftop cafeteria.",
+      "cta1Text": "Book a free tour",
+      "cta1Url": "html/contact.html",
+      "cta2Text": "View spaces and pricing",
+      "cta2Url": "html/spaces.html",
+      "point1": "Plans from ₹6,000/month",
+      "point2": "ORR address for GST",
+      "point3": "Private cabins and managed offices",
+      "metricTitle": "8 AM - 8 PM",
+      "metricSub": "Open Monday to Saturday with staffed support and building amenities."
+    },
+    "spacesSection": {
+      "eyebrow": "Our spaces",
+      "heading": "Choose the right workspace for today, then scale without moving.",
+      "lead": "A workspace stack for individuals, founders, distributed teams and companies that need a managed office in Bangalore without traditional lease overhead.",
+      "items": [
+        {"num": "01", "title": "Hot Desk", "desc": "Any available desk on the open floor. Walk in, plug in and work with high-speed internet, common areas and cafeteria access.", "price": "₹6,000", "per": "/ month"},
+        {"num": "02", "title": "Dedicated Desk", "desc": "Your fixed desk, personal locker, priority meeting room access and mail handling for everyday professionals.", "price": "₹8,000", "per": "/ month"},
+        {"num": "03", "title": "Private Cabin", "desc": "Enclosed glass cabins for 4 to 10 seats, customised on longer contracts with branding and layout support.", "price": "₹40K+", "per": "/ month"},
+        {"num": "04", "title": "Managed Office", "desc": "A complete zone or floor built to spec for 15 to 50 person teams with furniture, cabling and branding ready before move-in.", "price": "₹10K+", "per": "/ seat"},
+        {"num": "05", "title": "Virtual Office", "desc": "ORR business address for GST registration, mail handling and meeting room hours without a full-time desk.", "price": "₹2,000", "per": "/ month"}
+      ]
+    },
+    "amenitiesSection": {
+      "eyebrow": "Amenities",
+      "heading": "Seamless work support, not just seats.",
+      "lead": "The essentials are included so teams can stay focused on work instead of office operations.",
+      "items": [
+        {"title": "High-speed internet", "desc": "Reliable leased-line connectivity for daily work."},
+        {"title": "Power backup", "desc": "Work through local interruptions with less downtime."},
+        {"title": "Meeting rooms", "desc": "Professional rooms for client calls, interviews and reviews."},
+        {"title": "Rooftop cafeteria", "desc": "Meals, breaks and informal catchups without leaving the building."},
+        {"title": "Car parking", "desc": "Dedicated premises parking for members and teams."},
+        {"title": "Recreation room", "desc": "TT, foosball, carrom and chess for genuine pauses."},
+        {"title": "GST address", "desc": "Virtual office support for business registration."},
+        {"title": "Custom interiors", "desc": "Branding and layout support for cabins and managed offices."}
+      ]
+    },
+    "whySection": {
+      "eyebrow": "Why Inspire",
+      "heading": "A Bangalore coworking space built around real workdays.",
+      "lead": "Most offices are rigid, expensive or forgettable. Inspire Workplace combines a practical ORR location with warm interiors, natural light, team privacy and flexible plans that fit how businesses grow.",
+      "checks": [
+        "Near Marathahalli, ITPL, Bagmane and Prestige Tech Park commute corridors.",
+        "Move from hot desk to dedicated desk, private cabin or managed office in one address.",
+        "Transparent pricing with common amenities built into the workspace experience."
+      ]
+    },
+    "rooftopSection": {
+      "eyebrow": "Rooftop included",
+      "heading": "Space to pause, meet and reset between focused work blocks.",
+      "body": "At this price point, a rooftop cafeteria is rare. It gives members an open-air break area, city views and a natural place for informal conversations.",
+      "stats": [
+        {"value": "6", "suffix": "+", "label": "workspace formats"},
+        {"value": "40", "suffix": "", "label": "training room seats"},
+        {"value": "2", "suffix": "", "label": "phone lines for enquiries"}
+      ]
+    },
+    "reviewsSection": {
+      "eyebrow": "Reviews",
+      "heading": "Trusted by operators, founders and teams.",
+      "lead": "The strongest signal is simple: members stay when the workspace helps them do better work.",
+      "quotes": [
+        {"text": "Mid-size IT building on the ORR, connectivity at its best. Cafeteria, car park, recreation room and space you can customise.", "cite": "Yogesh Pawde, Head India Ops, Unikorn Inc", "featured": true},
+        {"text": "A practical place for founders who need focus, meetings and a professional address without office headaches.", "cite": "Startup member", "featured": false},
+        {"text": "The rooftop and natural light make long workdays easier. It feels professional without feeling cold.", "cite": "Dedicated desk member", "featured": false}
+      ]
+    },
+    "faqSection": {
+      "eyebrowLabel": "Frequently asked questions",
+      "heading": "Coworking questions, answered.",
+      "items": [
+        {"q": "What types of coworking plans do you offer?", "a": "Inspire Workplace offers hot desks, dedicated desks, private cabins, managed offices, virtual office plans and training room bookings."},
+        {"q": "Can I book a tour before signing up?", "a": "Yes. You can book a free tour to see the workspace, rooftop cafeteria, cabins and available seating before choosing a plan."},
+        {"q": "Do you provide a GST registration address?", "a": "Yes. The virtual office plan includes an ORR business address for GST registration, mail handling and meeting room hours."},
+        {"q": "Is Inspire Workplace suitable for teams?", "a": "Yes. Private cabins support 4 to 10 seats, while managed office plans can be customised for larger teams of around 15 to 50 seats."}
+      ]
+    },
+    "ctaSection": {
+      "heading": "Ready to see Inspire Workplace?",
+      "body": "Visit the space, compare plans and choose the coworking setup that fits your workday.",
+      "cta1Text": "Book a free tour",
+      "cta1Url": "html/contact.html",
+      "cta2Text": "Call +91 78998 30610",
+      "cta2Url": "tel:+917899830610"
+    }
+  },
+  "spaces": {
+    "header": {
+      "eyebrow": "Spaces and pricing",
+      "heading": "Coworking plans for individuals, startups and growing teams.",
+      "lead": "All plans include internet, common areas, staffed support and access to a workspace designed for productive workdays near Marathahalli ORR."
+    },
+    "cards": [
+      {"id": "hot-desk", "title": "Hot Desk", "desc": "Flexible open-floor seating for freelancers, consultants and remote workers. Day passes from ₹350.", "price": "₹6,000", "per": "/ month", "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg"},
+      {"id": "dedicated-desk", "title": "Dedicated Desk", "desc": "Your fixed desk, personal locker, mail handling and priority meeting room access.", "price": "₹8,000", "per": "/ month", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"},
+      {"id": "private-cabin", "title": "Private Cabin", "desc": "Glass-partitioned office cabins for 4 to 10 seats with layout and branding options.", "price": "₹40K+", "per": "/ month", "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg"},
+      {"id": "managed-office", "title": "Managed Office", "desc": "Complete zone or floor for 15 to 50 person teams, built to spec with furniture, cabling and branding.", "price": "₹10K+", "per": "/ seat / month", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"},
+      {"id": "virtual-office", "title": "Virtual Office", "desc": "ORR address for GST, mail handling and 4 meeting room hours monthly without a full-time desk.", "price": "₹2,000", "per": "/ month", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"},
+      {"id": "training-room", "title": "Training Room", "desc": "40-person venue with projector, screen, whiteboard and catering options for workshops and training.", "price": "₹8,000", "per": "/ day", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"}
+    ],
+    "amenitiesSection": {
+      "heading": "Amenities that make the workday smoother.",
+      "checks": [
+        "High-speed internet and power backup",
+        "Meeting rooms, reception area and mail handling",
+        "Rooftop cafeteria and recreation room",
+        "Car parking in building premises",
+        "Custom interiors for managed office requirements"
+      ]
+    },
+    "ctaSection": {
+      "heading": "Need help choosing a plan?",
+      "body": "Tell us your team size, timeline and privacy needs. We will recommend the most practical setup.",
+      "cta1Text": "Enquire now",
+      "cta1Url": "contact.html",
+      "cta2Text": "Call sales",
+      "cta2Url": "tel:+917899830610"
+    }
+  },
+  "about": {
+    "storySection": {
+      "eyebrow": "Our story",
+      "heading": "A workspace built around how people actually work.",
+      "lead": "Inspire Workplace started from a simple observation: many offices in Bangalore are either too expensive, too rigid or too lifeless. We built a flexible workspace with reliable amenities, warm interiors and pricing that makes sense for modern teams.",
+      "checks": [
+        "Flexible plans for changing team sizes",
+        "Community without forced networking",
+        "Transparent pricing and practical amenities"
+      ]
+    },
+    "valuesSection": {
+      "eyebrow": "Values",
+      "heading": "Three things we never compromise on.",
+      "items": [
+        {"title": "Flexibility first", "desc": "Contracts and workspace options designed around growth, not lock-ins."},
+        {"title": "Useful community", "desc": "Members share ideas, referrals and collaborators in a calm professional environment."},
+        {"title": "Honest operations", "desc": "Internet, power, cafeteria, parking and meeting support handled clearly from day one."}
+      ]
+    },
+    "gallerySection": {
+      "eyebrow": "The workspace",
+      "heading": "Built for focus, designed for humans.",
+      "lead": "Natural light, greenery views, proper chairs, private space when needed and a rooftop that feels like a real break."
+    },
+    "ctaSection": {
+      "heading": "See the space in person.",
+      "body": "A short visit will tell you more than a page ever can.",
+      "cta1Text": "Book a tour",
+      "cta1Url": "contact.html",
+      "cta2Text": "Explore spaces",
+      "cta2Url": "spaces.html"
+    }
+  },
+  "events": {
+    "header": {
+      "eyebrow": "Events",
+      "heading": "Community events and training room rentals in Bangalore.",
+      "lead": "Use Inspire Workplace for focused workshops, founder meetups, team training, demo nights and professional sessions near Marathahalli ORR."
+    },
+    "venues": [
+      {"title": "Training Room", "desc": "Seats up to 40 people with projector, screen, whiteboard and catering options.", "price": "₹8,000", "per": "/ day", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"},
+      {"title": "Rooftop Sessions", "desc": "Open-air setting for member mixers, wellness mornings and informal community events.", "price": "Custom", "per": "quote", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg"},
+      {"title": "Founder Meetups", "desc": "Professional venue for talks, product demos, networking breakfasts and small-group sessions.", "price": "From ₹299", "per": "/ attendee", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"}
+    ],
+    "upcomingSection": {
+      "eyebrow": "Upcoming events",
+      "heading": "Events that support builders and teams.",
+      "lead": "Upcoming events are managed from the Events section in the admin panel."
+    },
+    "ctaSection": {
+      "heading": "Planning an event?",
+      "body": "Share your date, audience size and setup needs. We will confirm availability and pricing.",
+      "cta1Text": "Check availability",
+      "cta1Url": "contact.html",
+      "cta2Text": "Call the team",
+      "cta2Url": "tel:+917899830610"
+    }
+  },
+  "blog": {
+    "header": {
+      "eyebrow": "Inspire Journal",
+      "heading": "Ideas on work, space and building teams in Bangalore.",
+      "lead": "Practical articles on coworking, startup growth, productivity, virtual offices and managed office planning from Inspire Workplace Bangalore."
+    },
+    "ctaSection": {
+      "heading": "Want workplace advice tailored to your team?",
+      "body": "Book a tour and talk through your team size, hiring plans and workspace needs.",
+      "cta1Text": "Book a tour",
+      "cta1Url": "contact.html",
+      "cta2Text": "Compare plans",
+      "cta2Url": "spaces.html"
+    }
+  },
+  "contact": {
+    "header": {
+      "eyebrow": "Contact",
+      "heading": "Book a tour or ask about workspace availability.",
+      "lead": "Tell us what you need and our team will help you choose between hot desks, dedicated desks, cabins, managed offices, virtual office or training room options."
+    },
+    "details": {
+      "addressLine1": "Outer Ring Road, Marathahalli",
+      "addressLine2": "Bengaluru, Karnataka 560037",
+      "phone1": "+917899830610",
+      "phone1Display": "+91 78998 30610",
+      "phone2": "+919916130610",
+      "phone2Display": "+91 99161 30610",
+      "email": "admin@inspireworkplace.com",
+      "hours": "Monday to Saturday, 8 AM to 8 PM"
+    },
+    "locationSection": {
+      "eyebrow": "Location",
+      "heading": "Easy access from key East Bengaluru work corridors.",
+      "lead": "The workspace is positioned on Outer Ring Road near Marathahalli, with practical access from ITPL, Bagmane, Whitefield, Bellandur and nearby tech parks.",
+      "checks": [
+        "Open Monday to Saturday, 8 AM to 8 PM",
+        "Car parking within building premises",
+        "Meeting rooms and rooftop cafeteria available"
+      ]
+    }
+  },
+  "settings": {
+    "web3formsKey": "",
+    "contactEmail": "ayushgupta79@gmail.com",
+    "formSubject": "New Tour Booking — Inspire Workplace"
+  }
+}

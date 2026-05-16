@@ -1,0 +1,1287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin · Inspire Workplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:#10100f;--body:#3b3a36;--muted:#74716a;--line:#e7e1d7;
+      --paper:#f6f1e8;--cream:#fbf8f1;--olive:#405e42;--olive2:#6f8f5f;
+      --orange:#ef5a24;--red:#c0392b;--blue:#1f6d8f;--white:#fff;
+      --r:8px;--shadow:0 4px 20px rgba(16,16,15,.08);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,sans-serif;background:var(--cream);color:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+    h1,h2,h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;color:var(--ink)}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    code{font-family:monospace;background:var(--paper);padding:.1em .35em;border-radius:4px;font-size:.85em}
+
+    /* ── Login ── */
+    #login-screen{min-height:100svh;display:flex;align-items:center;justify-content:center;
+      background:radial-gradient(circle at 30% 40%,rgba(111,143,95,.18),transparent 40%),
+                 radial-gradient(circle at 80% 20%,rgba(31,109,143,.1),transparent 35%),var(--cream)}
+    .login-box{width:min(420px,calc(100% - 32px));padding:2.5rem 2rem;background:var(--white);
+      border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 60px rgba(16,16,15,.10)}
+    .login-brand{display:flex;align-items:center;gap:.6rem;margin-bottom:1.8rem}
+    .login-brand span{font-family:"Instrument Serif",Georgia,serif;font-size:1.3rem;color:var(--ink)}
+    .badge{font-family:Inter,sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.12em;
+      text-transform:uppercase;background:var(--olive);color:var(--white);padding:.15rem .45rem;border-radius:999px}
+    .login-box h1{font-size:1.7rem;margin-bottom:.4rem}
+    .login-box>p{color:var(--muted);font-size:.9rem;margin-bottom:1.8rem}
+    #login-error{margin-top:.9rem;padding:.7rem .9rem;background:#fff0ee;border:1px solid #ffd0c8;
+      border-radius:var(--r);color:var(--red);font-size:.85rem;display:none}
+
+    /* ── Fields ── */
+    .field{display:grid;gap:.4rem;margin-bottom:.85rem}
+    .field label,.field>span{font-size:.82rem;font-weight:700;color:var(--ink)}
+    .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:var(--r);
+      background:var(--cream);color:var(--ink);font:inherit;font-size:.92rem;padding:.72rem .9rem;
+      transition:border-color .2s,outline .2s}
+    .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--olive);outline-offset:1px;border-color:var(--olive)}
+    .field textarea{min-height:90px;resize:vertical}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+    .field-row.trio{grid-template-columns:1fr 1fr 1fr}
+    @media(max-width:540px){.field-row,.field-row.trio{grid-template-columns:1fr}}
+
+    /* ── Buttons ── */
+    .btn{display:inline-flex;align-items:center;gap:.45rem;padding:.72rem 1.2rem;border-radius:999px;
+      border:1px solid transparent;font:inherit;font-size:.88rem;font-weight:700;cursor:pointer;
+      transition:transform .2s,box-shadow .2s,background .2s,border-color .2s}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(16,16,15,.12)}
+    .btn:active{transform:none;box-shadow:none}
+    .btn-olive{background:var(--olive);color:var(--white);border-color:var(--olive);width:100%;justify-content:center}
+    .btn-dark{background:var(--ink);color:var(--white)}
+    .btn-outline{background:transparent;border-color:var(--line);color:var(--ink)}
+    .btn-outline:hover{border-color:var(--olive);color:var(--olive)}
+    .btn-red{background:var(--red);color:var(--white);border-color:var(--red)}
+    .btn-ghost{background:transparent;border-color:transparent;color:var(--muted);padding:.4rem .6rem}
+    .btn-ghost:hover{color:var(--ink);background:var(--paper)}
+    .btn-sm{padding:.38rem .8rem;font-size:.8rem}
+    .btn-xs{padding:.25rem .6rem;font-size:.75rem}
+
+    /* ── App shell ── */
+    #app{display:none;min-height:100svh}
+    .topbar{position:sticky;top:0;z-index:50;height:62px;display:flex;align-items:center;
+      justify-content:space-between;gap:1rem;padding:0 1.5rem;
+      background:rgba(251,248,241,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
+    .topbar-brand{display:flex;align-items:center;gap:.6rem}
+    .topbar-brand span{font-family:"Instrument Serif",Georgia,serif;font-size:1.2rem;color:var(--ink)}
+    .topbar-user{display:flex;align-items:center;gap:.8rem;color:var(--muted);font-size:.84rem}
+    .topbar-user strong{color:var(--ink)}
+
+    .app-body{display:flex;min-height:calc(100svh - 62px)}
+    .sidebar{width:220px;flex-shrink:0;padding:1rem;border-right:1px solid var(--line);background:var(--white);
+      display:flex;flex-direction:column;gap:.2rem;overflow-y:auto}
+    .sidebar-label{font-size:.66rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--muted);padding:.6rem .65rem .2rem}
+    .nav-item{display:flex;align-items:center;gap:.6rem;padding:.55rem .8rem;border-radius:var(--r);
+      font-size:.875rem;font-weight:500;color:var(--muted);cursor:pointer;transition:background .15s,color .15s}
+    .nav-item:hover{background:var(--paper);color:var(--ink)}
+    .nav-item.active{background:var(--olive);color:var(--white);font-weight:700}
+    .nav-item .icon{font-size:.95rem;width:18px;text-align:center}
+
+    .main-content{flex:1;padding:2rem;overflow-y:auto;max-width:900px}
+    .page{display:none}
+    .page.active{display:block}
+
+    /* ── Page header ── */
+    .page-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.8rem;flex-wrap:wrap}
+    .page-header h2{font-size:2rem}
+    .page-header p{color:var(--muted);font-size:.9rem;margin-top:.25rem}
+
+    /* ── Section cards ── */
+    .section-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);margin-bottom:1rem;overflow:hidden}
+    .section-card-header{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;
+      cursor:pointer;user-select:none;gap:1rem}
+    .section-card-header:hover{background:var(--paper)}
+    .section-card-title{display:flex;align-items:center;gap:.65rem;font-size:.95rem;font-weight:700;color:var(--ink)}
+    .section-card-title .icon{font-size:1.05rem}
+    .section-card-chevron{color:var(--muted);font-size:.8rem;transition:transform .25s}
+    .section-card.open .section-card-chevron{transform:rotate(180deg)}
+    .section-card-body{display:none;padding:1.1rem;border-top:1px solid var(--line)}
+    .section-card.open .section-card-body{display:block}
+
+    /* ── List editor ── */
+    .list-editor{display:grid;gap:.6rem;margin-bottom:.8rem}
+    .list-item-row{display:flex;align-items:center;gap:.6rem;padding:.65rem .9rem;
+      background:var(--paper);border:1px solid var(--line);border-radius:var(--r)}
+    .list-item-row .item-label{flex:1;font-size:.88rem;color:var(--ink);overflow:hidden;
+      text-overflow:ellipsis;white-space:nowrap}
+    .list-item-row .item-actions{display:flex;gap:.35rem;flex-shrink:0}
+    .list-add-row{margin-top:.3rem}
+
+    /* ── Item modal (for list editing) ── */
+    .modal-overlay{position:fixed;inset:0;background:rgba(16,16,15,.45);z-index:100;
+      display:flex;align-items:center;justify-content:center;padding:1rem;
+      opacity:0;pointer-events:none;transition:opacity .25s}
+    .modal-overlay.open{opacity:1;pointer-events:all}
+    .modal{background:var(--white);border-radius:14px;width:min(660px,100%);max-height:90svh;
+      overflow-y:auto;box-shadow:0 24px 72px rgba(16,16,15,.18);
+      transform:translateY(20px) scale(.98);transition:transform .25s cubic-bezier(.22,1,.36,1)}
+    .modal-overlay.open .modal{transform:none}
+    .modal-header{position:sticky;top:0;background:var(--white);border-bottom:1px solid var(--line);
+      padding:1rem 1.4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;z-index:1}
+    .modal-header h3{font-size:1.2rem}
+    .modal-close{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--muted);
+      line-height:1;padding:.2rem .4rem;border-radius:4px}
+    .modal-close:hover{color:var(--ink);background:var(--paper)}
+    .modal-body{padding:1.4rem}
+    .modal-footer{padding:1rem 1.4rem;border-top:1px solid var(--line);display:flex;gap:.75rem;justify-content:flex-end}
+
+    /* ── Image picker ── */
+    .img-picker-wrap{border:1px solid var(--line);border-radius:var(--r);background:var(--paper);
+      padding:.6rem;max-height:220px;overflow-y:auto;display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:.4rem}
+    .img-pick-item{position:relative;cursor:pointer;border-radius:6px;overflow:hidden;
+      border:2px solid transparent;transition:border-color .15s;aspect-ratio:4/3}
+    .img-pick-item img{width:100%;height:100%;object-fit:cover}
+    .img-pick-item:hover{border-color:var(--olive2)}
+    .img-pick-item.selected{border-color:var(--olive);box-shadow:0 0 0 2px var(--olive)}
+    .img-pick-item .check{position:absolute;inset:0;background:rgba(64,94,66,.5);display:flex;
+      align-items:center;justify-content:center;opacity:0;font-size:1.3rem;color:var(--white);transition:opacity .15s}
+    .img-pick-item.selected .check{opacity:1}
+    .img-preview-box{width:100%;aspect-ratio:16/9;border-radius:var(--r);object-fit:cover;
+      border:1px solid var(--line);background:var(--paper);display:none;margin-bottom:.5rem}
+    .img-preview-box.visible{display:block}
+
+    /* ── Items grid for Images page ── */
+    .images-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.75rem}
+    .img-tile{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--white);
+      position:relative;aspect-ratio:4/3}
+    .img-tile img{width:100%;height:100%;object-fit:cover}
+    .img-tile-overlay{position:absolute;inset:0;background:rgba(16,16,15,.55);opacity:0;display:flex;
+      flex-direction:column;align-items:center;justify-content:center;gap:.4rem;transition:opacity .2s}
+    .img-tile:hover .img-tile-overlay{opacity:1}
+    .img-tile-name{position:absolute;bottom:0;inset-inline:0;background:rgba(16,16,15,.6);color:var(--white);
+      font-size:.65rem;padding:.25rem .4rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    /* ── Blogs / Events list ── */
+    .items-grid{display:grid;gap:.85rem}
+    .item-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.2rem;
+      display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;transition:box-shadow .2s}
+    .item-card:hover{box-shadow:var(--shadow)}
+    .item-thumb{width:68px;height:52px;border-radius:6px;object-fit:cover;background:var(--line);flex-shrink:0}
+    .item-thumb-placeholder{width:68px;height:52px;border-radius:6px;background:var(--paper);
+      border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;
+      color:var(--muted);font-size:1.2rem}
+    .item-info h3{font-family:Inter,sans-serif;font-size:.92rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+    .item-meta{font-size:.78rem;color:var(--muted)}
+    .item-actions{display:flex;gap:.4rem;flex-shrink:0}
+
+    /* ── Settings ── */
+    .settings-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);
+      padding:1.4rem;margin-bottom:1rem}
+    .settings-card h3{font-size:1.1rem;margin-bottom:.3rem}
+    .settings-card>p{color:var(--muted);font-size:.88rem;margin-bottom:1rem}
+    .info-box{padding:.8rem 1rem;background:rgba(64,94,66,.07);border:1px solid rgba(64,94,66,.2);
+      border-radius:var(--r);color:var(--ink);font-size:.84rem;line-height:1.55}
+    .info-box a{color:var(--olive);font-weight:700}
+
+    /* ── Empty / status ── */
+    .empty-state{text-align:center;padding:3rem 1rem;color:var(--muted)}
+    .empty-state .icon{font-size:2.5rem;margin-bottom:.75rem}
+    .empty-state p{font-size:.9rem}
+    .status-bar{padding:.65rem 1rem;border-radius:var(--r);font-size:.85rem;font-weight:600;margin-bottom:1rem;display:none}
+    .status-bar.info{background:rgba(31,109,143,.1);color:var(--blue);border:1px solid rgba(31,109,143,.2)}
+    .status-bar.success{background:rgba(64,94,66,.1);color:var(--olive);border:1px solid rgba(64,94,66,.2)}
+    .status-bar.error{background:#fff0ee;color:var(--red);border:1px solid #ffd0c8}
+    .status-bar.show{display:block}
+
+    /* ── Toast ── */
+    #toast{position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;padding:.75rem 1.1rem;border-radius:var(--r);
+      font-size:.88rem;font-weight:700;color:var(--white);background:var(--ink);
+      box-shadow:0 8px 24px rgba(16,16,15,.18);transform:translateY(10px);opacity:0;
+      transition:opacity .25s,transform .25s;pointer-events:none;max-width:320px}
+    #toast.show{opacity:1;transform:none}
+    #toast.success{background:var(--olive)}
+    #toast.error{background:var(--red)}
+
+    /* ── Spinner ── */
+    .spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--white);
+      border-radius:50%;animation:spin .7s linear infinite;display:none}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ── Confirm ── */
+    #confirm-overlay{position:fixed;inset:0;background:rgba(16,16,15,.45);z-index:200;
+      display:flex;align-items:center;justify-content:center;padding:1rem;
+      opacity:0;pointer-events:none;transition:opacity .2s}
+    #confirm-overlay.open{opacity:1;pointer-events:all}
+    .confirm-box{background:var(--white);border-radius:14px;padding:1.8rem 1.6rem;width:min(360px,100%);
+      box-shadow:0 20px 60px rgba(16,16,15,.18);transform:scale(.96);transition:transform .2s cubic-bezier(.22,1,.36,1)}
+    #confirm-overlay.open .confirm-box{transform:none}
+    .confirm-box h3{font-size:1.2rem;margin-bottom:.5rem}
+    .confirm-box p{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem}
+    .confirm-actions{display:flex;gap:.6rem;justify-content:flex-end}
+
+    @media(max-width:720px){
+      .sidebar{display:none}.topbar{padding:0 1rem}.main-content{padding:1rem}
+      .item-card{grid-template-columns:1fr auto}
+      .item-thumb,.item-thumb-placeholder{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════ LOGIN ═══════ -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-brand"><span>Inspire Workplace</span><span class="badge">Admin</span></div>
+    <h1>Sign in</h1>
+    <p>Enter your GitHub Personal Access Token to manage content.</p>
+    <form id="login-form">
+      <div class="field">
+        <label for="pat-input">GitHub PAT Token</label>
+        <input type="password" id="pat-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn-olive" type="submit" id="login-btn">
+        <span id="login-btn-text">Sign in</span>
+        <span class="spinner" id="login-spinner"></span>
+      </button>
+      <div id="login-error"></div>
+    </form>
+    <p style="margin-top:1.2rem;font-size:.78rem;color:var(--muted)">Token needs <code>repo</code> scope. Stored in session only — never sent anywhere other than the GitHub API.</p>
+  </div>
+</div>
+
+<!-- ═══════ APP ═══════ -->
+<div id="app">
+  <header class="topbar">
+    <div class="topbar-brand"><span>Inspire Workplace</span><span class="badge">Admin</span></div>
+    <div class="topbar-user">
+      Signed in as <strong id="gh-user">—</strong>
+      <button class="btn btn-outline btn-sm" id="logout-btn">Sign out</button>
+    </div>
+  </header>
+
+  <div class="app-body">
+    <nav class="sidebar">
+      <span class="sidebar-label">Content</span>
+      <div class="nav-item active" data-page="blogs"><span class="icon">📝</span> Blogs</div>
+      <div class="nav-item" data-page="events"><span class="icon">📅</span> Events</div>
+      <span class="sidebar-label">Pages</span>
+      <div class="nav-item" data-page="page-home"><span class="icon">🏠</span> Home</div>
+      <div class="nav-item" data-page="page-spaces"><span class="icon">🏢</span> Spaces</div>
+      <div class="nav-item" data-page="page-about"><span class="icon">ℹ️</span> About</div>
+      <div class="nav-item" data-page="page-events"><span class="icon">🎪</span> Events page</div>
+      <div class="nav-item" data-page="page-blog"><span class="icon">📰</span> Journal</div>
+      <div class="nav-item" data-page="page-contact"><span class="icon">📞</span> Contact</div>
+      <span class="sidebar-label">Assets</span>
+      <div class="nav-item" data-page="images"><span class="icon">🖼️</span> Images</div>
+      <span class="sidebar-label">Config</span>
+      <div class="nav-item" data-page="settings"><span class="icon">⚙️</span> Settings</div>
+    </nav>
+
+    <main class="main-content">
+      <!-- BLOGS -->
+      <section class="page active" id="page-blogs">
+        <div class="page-header">
+          <div><h2>Blogs</h2><p>Journal posts shown on the website.</p></div>
+          <button class="btn btn-dark" id="add-blog-btn">+ Add post</button>
+        </div>
+        <div class="items-grid" id="blog-list"></div>
+      </section>
+
+      <!-- EVENTS DATA -->
+      <section class="page" id="page-events">
+        <div class="page-header">
+          <div><h2>Events</h2><p>Upcoming events shown on the events page.</p></div>
+          <button class="btn btn-dark" id="add-event-btn">+ Add event</button>
+        </div>
+        <div class="items-grid" id="event-list"></div>
+      </section>
+
+      <!-- PAGE EDITORS (generated by JS) -->
+      <section class="page" id="page-page-home">
+        <div class="page-header">
+          <div><h2>Home page</h2><p>Edit text, headings, lists and CTAs on the home page.</p></div>
+          <button class="btn btn-dark" id="save-home-btn"><span>Save Home</span><span class="spinner" id="save-home-sp"></span></button>
+        </div>
+        <div id="editor-home"></div>
+      </section>
+
+      <section class="page" id="page-page-spaces">
+        <div class="page-header">
+          <div><h2>Spaces page</h2><p>Edit space cards, pricing, amenities and CTAs.</p></div>
+          <button class="btn btn-dark" id="save-spaces-btn"><span>Save Spaces</span><span class="spinner" id="save-spaces-sp"></span></button>
+        </div>
+        <div id="editor-spaces"></div>
+      </section>
+
+      <section class="page" id="page-page-about">
+        <div class="page-header">
+          <div><h2>About page</h2><p>Edit the story, values and gallery section text.</p></div>
+          <button class="btn btn-dark" id="save-about-btn"><span>Save About</span><span class="spinner" id="save-about-sp"></span></button>
+        </div>
+        <div id="editor-about"></div>
+      </section>
+
+      <section class="page" id="page-page-events">
+        <div class="page-header">
+          <div><h2>Events page</h2><p>Edit the events page header, venue cards and CTAs.</p></div>
+          <button class="btn btn-dark" id="save-evpage-btn"><span>Save Events page</span><span class="spinner" id="save-evpage-sp"></span></button>
+        </div>
+        <div id="editor-events"></div>
+      </section>
+
+      <section class="page" id="page-page-blog">
+        <div class="page-header">
+          <div><h2>Journal page</h2><p>Edit the Journal page header and CTA. Blog posts are managed in Blogs.</p></div>
+          <button class="btn btn-dark" id="save-blog-btn"><span>Save Journal</span><span class="spinner" id="save-blog-sp"></span></button>
+        </div>
+        <div id="editor-blog"></div>
+      </section>
+
+      <section class="page" id="page-page-contact">
+        <div class="page-header">
+          <div><h2>Contact page</h2><p>Edit contact details, heading and location section.</p></div>
+          <button class="btn btn-dark" id="save-contact-btn"><span>Save Contact</span><span class="spinner" id="save-contact-sp"></span></button>
+        </div>
+        <div id="editor-contact"></div>
+      </section>
+
+      <!-- IMAGES -->
+      <section class="page" id="page-images">
+        <div class="page-header">
+          <div><h2>Images</h2><p>Upload or delete images in the content folder.</p></div>
+          <label class="btn btn-dark" style="cursor:pointer">+ Upload<input type="file" id="upload-input" accept="image/*" multiple style="display:none"></label>
+        </div>
+        <div class="images-grid" id="images-grid"></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="page" id="page-settings">
+        <div class="page-header"><div><h2>Settings</h2><p>Email and form configuration.</p></div></div>
+        <div id="settings-status" class="status-bar"></div>
+
+        <div class="settings-card">
+          <h3>Contact form email (Web3Forms)</h3>
+          <p>The contact form sends enquiries to your email via Web3Forms. Free, no backend needed.</p>
+          <div class="info-box" style="margin-bottom:1rem">
+            <strong>Setup:</strong> Go to <a href="https://web3forms.com" target="_blank">web3forms.com</a>, click <em>Get your Access Key</em>, enter <code>ayushgupta79@gmail.com</code>, and paste the key below.
+          </div>
+          <div class="field"><label>Web3Forms Access Key</label><input type="text" id="s-w3f-key" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></div>
+          <div class="field"><label>Contact email (display only)</label><input type="email" id="s-contact-email" placeholder="ayushgupta79@gmail.com"></div>
+          <div class="field"><label>Email subject line</label><input type="text" id="s-form-subject" placeholder="New Tour Booking — Inspire Workplace"></div>
+          <button class="btn btn-dark" id="save-settings-btn"><span>Save settings</span><span class="spinner" id="save-settings-sp"></span></button>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- ═══════ BLOG MODAL ═══════ -->
+<div class="modal-overlay" id="blog-modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="blog-modal-title">Add blog</h3>
+      <button class="modal-close" data-close="blog-modal-overlay">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field-row">
+        <div class="field"><label>Title *</label><input id="blog-title" placeholder="Post title" required></div>
+        <div class="field"><label>Category</label><input id="blog-category" placeholder="Productivity…"></div>
+      </div>
+      <div class="field"><label>Excerpt *</label><textarea id="blog-excerpt" placeholder="Short description…"></textarea></div>
+      <div class="field-row">
+        <div class="field"><label>Date</label><input type="date" id="blog-date"></div>
+        <div class="field"><label>Read time</label><input id="blog-readtime" placeholder="5 min read"></div>
+      </div>
+      <div class="field"><label>Post URL</label><input id="blog-url" placeholder="/blog/my-post or #"></div>
+      <div class="field"><label>Image alt text</label><input id="blog-imagealt" placeholder="Descriptive alt text"></div>
+      <div class="field">
+        <label>Image</label>
+        <img id="blog-img-preview" class="img-preview-box" alt="">
+        <input type="hidden" id="blog-image-path">
+        <div style="display:flex;gap:.5rem;margin-top:.4rem;flex-wrap:wrap">
+          <button class="btn btn-outline btn-sm" type="button" id="blog-pick-btn">📂 Library</button>
+          <label class="btn btn-outline btn-sm" style="cursor:pointer">⬆ Upload<input type="file" id="blog-upload-img" accept="image/*" style="display:none"></label>
+        </div>
+        <div id="blog-img-picker" style="display:none;margin-top:.5rem"><div class="img-picker-wrap" id="blog-picker-grid"></div></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" data-close="blog-modal-overlay">Cancel</button>
+      <button class="btn btn-dark" id="save-blog-post-btn"><span id="save-blog-post-txt">Save post</span><span class="spinner" id="save-blog-post-sp"></span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ EVENT MODAL ═══════ -->
+<div class="modal-overlay" id="event-modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="event-modal-title">Add event</h3>
+      <button class="modal-close" data-close="event-modal-overlay">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field"><label>Title *</label><input id="event-title" placeholder="Event title" required></div>
+      <div class="field-row">
+        <div class="field"><label>Date</label><input type="date" id="event-date"></div>
+        <div class="field"><label>Time</label><input id="event-time" placeholder="10:00 AM or Full day"></div>
+      </div>
+      <div class="field"><label>Description *</label><textarea id="event-description" placeholder="What is this event about?"></textarea></div>
+      <div class="field-row">
+        <div class="field"><label>Price</label><input id="event-price" placeholder="Free or ₹499"></div>
+        <div class="field"><label>Price note</label><input id="event-pricenote" placeholder="per person…"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>CTA label</label><input id="event-cta" placeholder="Register now"></div>
+        <div class="field"><label>CTA URL</label><input id="event-url" placeholder="contact.html or external URL"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" data-close="event-modal-overlay">Cancel</button>
+      <button class="btn btn-dark" id="save-event-post-btn"><span id="save-event-post-txt">Save event</span><span class="spinner" id="save-event-post-sp"></span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ LIST ITEM MODAL ═══════ -->
+<div class="modal-overlay" id="item-modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="item-modal-title">Edit item</h3>
+      <button class="modal-close" data-close="item-modal-overlay">✕</button>
+    </div>
+    <div class="modal-body" id="item-modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" data-close="item-modal-overlay">Cancel</button>
+      <button class="btn btn-dark" id="save-item-btn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ CONFIRM ═══════ -->
+<div id="confirm-overlay">
+  <div class="confirm-box">
+    <h3 id="confirm-title">Are you sure?</h3>
+    <p id="confirm-message">This cannot be undone.</p>
+    <div class="confirm-actions">
+      <button class="btn btn-outline btn-sm" id="confirm-cancel">Cancel</button>
+      <button class="btn btn-red btn-sm" id="confirm-ok">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ── Config ───────────────────────────────────────────────────────
+const OWNER = "AyushGupta97", REPO = "InspireWorkplace", BRANCH = "main";
+const BLOGS_PATH = "data/blogs.json", EVENTS_PATH = "data/events.json", CONTENT_PATH = "data/content.json";
+const CONTENT_DIR = "content";
+
+// ── State ────────────────────────────────────────────────────────
+let token = "", ghUser = "";
+let blogs = [], events = [], repoImages = [], contentData = {};
+let blogSha = "", eventSha = "", contentSha = "";
+let editingBlogIdx = -1, editingEventIdx = -1;
+let itemModalCallback = null;
+
+// ── GitHub helpers ────────────────────────────────────────────────
+const gh = (path, opts = {}) => fetch(`https://api.github.com${path}`, {
+  ...opts,
+  headers: { Authorization: `token ${token}`, Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28", ...(opts.headers || {}) }
+});
+
+const ghGet = async (filePath) => {
+  const r = await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}?ref=${BRANCH}`);
+  if (!r.ok) throw new Error(`Cannot load ${filePath} (${r.status})`);
+  const d = await r.json();
+  return { content: JSON.parse(atob(d.content.replace(/\n/g, ""))), sha: d.sha };
+};
+
+const ghPut = async (filePath, content, sha, message) => {
+  const r = await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}`, {
+    method: "PUT", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message, branch: BRANCH, sha,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))) })
+  });
+  if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.message || `Save failed (${r.status})`); }
+  return (await r.json()).content.sha;
+};
+
+const ghUpload = async (filePath, b64, message) => {
+  let sha;
+  try { const x = await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}?ref=${BRANCH}`);
+    if (x.ok) sha = (await x.json()).sha; } catch (_) {}
+  const r = await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}`, {
+    method: "PUT", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message, branch: BRANCH, content: b64, ...(sha ? { sha } : {}) })
+  });
+  if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.message || `Upload failed`); }
+  return await r.json();
+};
+
+const ghDelete = async (filePath, sha, message) => {
+  const r = await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}`, {
+    method: "DELETE", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message, sha, branch: BRANCH })
+  });
+  if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.message || `Delete failed`); }
+};
+
+const ghListDir = async (dir) => {
+  const r = await gh(`/repos/${OWNER}/${REPO}/contents/${dir}?ref=${BRANCH}`);
+  if (!r.ok) return [];
+  return r.json();
+};
+
+// ── Toast / confirm ───────────────────────────────────────────────
+let _toastTimer;
+const toast = (msg, type = "success") => {
+  const el = document.getElementById("toast");
+  el.textContent = msg; el.className = `show ${type}`;
+  clearTimeout(_toastTimer); _toastTimer = setTimeout(() => el.className = "", 3200);
+};
+
+const confirmDialog = (title, msg) => new Promise(resolve => {
+  const ov = document.getElementById("confirm-overlay");
+  document.getElementById("confirm-title").textContent = title;
+  document.getElementById("confirm-message").textContent = msg;
+  ov.classList.add("open");
+  const ok = document.getElementById("confirm-ok"), cancel = document.getElementById("confirm-cancel");
+  const cleanup = v => { ov.classList.remove("open"); ok.onclick = null; cancel.onclick = null; resolve(v); };
+  ok.onclick = () => cleanup(true); cancel.onclick = () => cleanup(false);
+});
+
+// ── Modal helpers ─────────────────────────────────────────────────
+const openModal = id => document.getElementById(id).classList.add("open");
+const closeModal = id => document.getElementById(id).classList.remove("open");
+document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => closeModal(b.dataset.close)));
+document.querySelectorAll(".modal-overlay").forEach(ov => ov.addEventListener("click", e => { if (e.target === ov) closeModal(ov.id); }));
+
+// ── Spinner helpers ────────────────────────────────────────────────
+const setBusy = (spanId, spId, busy) => {
+  const s = document.getElementById(spanId), sp = document.getElementById(spId);
+  if (s) s.style.opacity = busy ? "0" : "1";
+  if (sp) sp.style.display = busy ? "inline-block" : "none";
+};
+
+// ── Nav routing ────────────────────────────────────────────────────
+document.querySelectorAll(".nav-item[data-page]").forEach(item => {
+  item.addEventListener("click", () => {
+    document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    item.classList.add("active");
+    const pg = document.getElementById(`page-${item.dataset.page}`);
+    if (pg) pg.classList.add("active");
+    if (item.dataset.page === "images") loadImages();
+    if (item.dataset.page === "settings") fillSettings();
+  });
+});
+
+// ── Login ─────────────────────────────────────────────────────────
+document.getElementById("login-form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const errEl = document.getElementById("login-error"); errEl.style.display = "none";
+  setBusy("login-btn-text", "login-spinner", true);
+  const pat = document.getElementById("pat-input").value.trim();
+  try {
+    const u = await fetch("https://api.github.com/user", { headers: { Authorization: `token ${pat}`, Accept: "application/vnd.github+json" } });
+    if (!u.ok) throw new Error("Invalid token.");
+    const user = await u.json();
+    const rr = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}`, { headers: { Authorization: `token ${pat}`, Accept: "application/vnd.github+json" } });
+    if (!rr.ok) throw new Error("Token does not have access to this repository.");
+    token = pat; ghUser = user.login;
+    sessionStorage.setItem("admin_pat", pat); sessionStorage.setItem("admin_user", ghUser);
+    await initApp();
+  } catch (err) {
+    errEl.textContent = err.message; errEl.style.display = "block";
+  } finally { setBusy("login-btn-text", "login-spinner", false); }
+});
+
+document.getElementById("logout-btn").addEventListener("click", () => {
+  sessionStorage.removeItem("admin_pat"); sessionStorage.removeItem("admin_user");
+  token = ""; ghUser = "";
+  document.getElementById("app").style.display = "none";
+  document.getElementById("login-screen").style.display = "flex";
+});
+
+// ── Init ──────────────────────────────────────────────────────────
+const initApp = async () => {
+  document.getElementById("login-screen").style.display = "none";
+  document.getElementById("app").style.display = "block";
+  document.getElementById("gh-user").textContent = ghUser;
+  await Promise.all([loadBlogs(), loadEvents(), loadContent()]);
+};
+
+// ── Escape helper ─────────────────────────────────────────────────
+const esc = s => String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+
+// ═══════════════════════════════════════════════════════════════════
+// BLOGS
+// ═══════════════════════════════════════════════════════════════════
+const loadBlogs = async () => {
+  try { const { content, sha } = await ghGet(BLOGS_PATH); blogs = content; blogSha = sha; renderBlogList(); }
+  catch (e) { document.getElementById("blog-list").innerHTML = `<div class="empty-state"><p>⚠️ ${e.message}</p></div>`; }
+};
+
+const renderBlogList = () => {
+  const el = document.getElementById("blog-list");
+  if (!blogs.length) { el.innerHTML = `<div class="empty-state"><div class="icon">📝</div><p>No blog posts yet.</p></div>`; return; }
+  el.innerHTML = blogs.map((b, i) => {
+    const imgSrc = b.image ? b.image.replace("../content/", `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/content/`) : "";
+    return `<div class="item-card">
+      ${imgSrc ? `<img class="item-thumb" src="${esc(imgSrc)}" loading="lazy">` : `<div class="item-thumb-placeholder">🖼️</div>`}
+      <div class="item-info"><h3>${esc(b.title)}</h3><div class="item-meta">${esc([b.category, b.date, b.readTime].filter(Boolean).join(" · "))}</div></div>
+      <div class="item-actions"><button class="btn btn-outline btn-sm" onclick="openBlogEdit(${i})">Edit</button><button class="btn btn-red btn-sm" onclick="deleteBlog(${i})">Delete</button></div>
+    </div>`;
+  }).join("");
+};
+
+window.openBlogEdit = i => {
+  editingBlogIdx = i; const b = blogs[i];
+  document.getElementById("blog-modal-title").textContent = "Edit blog";
+  ["blog-title","blog-category","blog-excerpt","blog-date","blog-readtime","blog-url","blog-imagealt"].forEach(id => {
+    const key = id.replace("blog-", "").replace("readtime","readTime").replace("imagealt","imageAlt");
+    document.getElementById(id).value = b[key] || b[key.toLowerCase()] || "";
+  });
+  document.getElementById("blog-date").value = b.date || "";
+  document.getElementById("blog-readtime").value = b.readTime || "";
+  document.getElementById("blog-imagealt").value = b.imageAlt || "";
+  document.getElementById("blog-image-path").value = b.image || "";
+  const prev = document.getElementById("blog-img-preview");
+  if (b.image) { prev.src = b.image.replace("../content/", `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/content/`); prev.classList.add("visible"); }
+  else prev.classList.remove("visible");
+  document.getElementById("blog-img-picker").style.display = "none";
+  openModal("blog-modal-overlay");
+};
+
+document.getElementById("add-blog-btn").addEventListener("click", () => {
+  editingBlogIdx = -1;
+  document.getElementById("blog-modal-title").textContent = "Add blog";
+  ["blog-title","blog-category","blog-excerpt","blog-date","blog-readtime","blog-url","blog-imagealt","blog-image-path"].forEach(id => document.getElementById(id).value = "");
+  document.getElementById("blog-img-preview").classList.remove("visible");
+  document.getElementById("blog-img-picker").style.display = "none";
+  openModal("blog-modal-overlay");
+});
+
+document.getElementById("save-blog-post-btn").addEventListener("click", async () => {
+  const title = document.getElementById("blog-title").value.trim();
+  const excerpt = document.getElementById("blog-excerpt").value.trim();
+  if (!title || !excerpt) { toast("Title and excerpt required.", "error"); return; }
+  const entry = {
+    title, category: document.getElementById("blog-category").value.trim() || undefined,
+    excerpt, image: document.getElementById("blog-image-path").value.trim() || undefined,
+    imageAlt: document.getElementById("blog-imagealt").value.trim() || undefined,
+    date: document.getElementById("blog-date").value || undefined,
+    readTime: document.getElementById("blog-readtime").value.trim() || undefined,
+    url: document.getElementById("blog-url").value.trim() || "#",
+  };
+  Object.keys(entry).forEach(k => entry[k] === undefined && delete entry[k]);
+  setBusy("save-blog-post-txt", "save-blog-post-sp", true);
+  try {
+    editingBlogIdx === -1 ? blogs.unshift(entry) : (blogs[editingBlogIdx] = entry);
+    blogSha = await ghPut(BLOGS_PATH, blogs, blogSha, `${editingBlogIdx === -1 ? "Add" : "Update"} blog: ${title}`);
+    closeModal("blog-modal-overlay"); renderBlogList();
+    toast(editingBlogIdx === -1 ? "Post added." : "Post updated.");
+  } catch (e) { toast(e.message, "error"); }
+  finally { setBusy("save-blog-post-txt", "save-blog-post-sp", false); }
+});
+
+window.deleteBlog = async i => {
+  if (!await confirmDialog("Delete post?", `"${blogs[i].title}" will be permanently removed.`)) return;
+  try { blogs.splice(i, 1); blogSha = await ghPut(BLOGS_PATH, blogs, blogSha, `Delete blog #${i}`); renderBlogList(); toast("Post deleted."); }
+  catch (e) { toast(e.message, "error"); await loadBlogs(); }
+};
+
+// Blog image pick
+document.getElementById("blog-pick-btn").addEventListener("click", async () => {
+  const panel = document.getElementById("blog-img-picker");
+  if (panel.style.display !== "none") { panel.style.display = "none"; return; }
+  panel.style.display = "block";
+  const grid = document.getElementById("blog-picker-grid");
+  grid.innerHTML = `<div style="padding:.5rem;font-size:.8rem;color:var(--muted)">Loading…</div>`;
+  if (!repoImages.length) {
+    const files = await ghListDir(CONTENT_DIR);
+    repoImages = files.filter(f => /\.(jpe?g|png|gif|webp)$/i.test(f.name));
+  }
+  if (!repoImages.length) { grid.innerHTML = `<div style="padding:.5rem;font-size:.8rem">No images found.</div>`; return; }
+  const cur = document.getElementById("blog-image-path").value;
+  grid.innerHTML = repoImages.map(img => {
+    const rel = `../content/${img.name}`; const sel = rel === cur ? " selected" : "";
+    return `<div class="img-pick-item${sel}" data-rel="${esc(rel)}" data-url="${esc(img.download_url)}">
+      <img src="${esc(img.download_url)}" loading="lazy"><div class="check">✓</div></div>`;
+  }).join("");
+  grid.querySelectorAll(".img-pick-item").forEach(it => it.addEventListener("click", () => {
+    grid.querySelectorAll(".img-pick-item").forEach(x => x.classList.remove("selected"));
+    it.classList.add("selected");
+    document.getElementById("blog-image-path").value = it.dataset.rel;
+    const p = document.getElementById("blog-img-preview"); p.src = it.dataset.url; p.classList.add("visible");
+  }));
+});
+
+document.getElementById("blog-upload-img").addEventListener("change", async e => {
+  const file = e.target.files[0]; if (!file) return;
+  toast("Uploading…");
+  try {
+    const b64 = await fileToB64(file);
+    const res = await ghUpload(`${CONTENT_DIR}/${file.name}`, b64, `Upload image: ${file.name}`);
+    const rel = `../content/${file.name}`;
+    document.getElementById("blog-image-path").value = rel;
+    const p = document.getElementById("blog-img-preview"); p.src = res.content.download_url; p.classList.add("visible");
+    repoImages = []; toast("Image uploaded.");
+  } catch (e) { toast(e.message, "error"); }
+  e.target.value = "";
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// EVENTS DATA
+// ═══════════════════════════════════════════════════════════════════
+const loadEvents = async () => {
+  try { const { content, sha } = await ghGet(EVENTS_PATH); events = content; eventSha = sha; renderEventList(); }
+  catch (e) { document.getElementById("event-list").innerHTML = `<div class="empty-state"><p>⚠️ ${e.message}</p></div>`; }
+};
+
+const renderEventList = () => {
+  const el = document.getElementById("event-list");
+  if (!events.length) { el.innerHTML = `<div class="empty-state"><div class="icon">📅</div><p>No events yet.</p></div>`; return; }
+  el.innerHTML = events.map((ev, i) => `
+    <div class="item-card">
+      <div class="item-thumb-placeholder">📅</div>
+      <div class="item-info"><h3>${esc(ev.title)}</h3><div class="item-meta">${esc([ev.date, ev.time, ev.price].filter(Boolean).join(" · "))}</div></div>
+      <div class="item-actions"><button class="btn btn-outline btn-sm" onclick="openEventEdit(${i})">Edit</button><button class="btn btn-red btn-sm" onclick="deleteEvent(${i})">Delete</button></div>
+    </div>`).join("");
+};
+
+window.openEventEdit = i => {
+  editingEventIdx = i; const ev = events[i];
+  document.getElementById("event-modal-title").textContent = "Edit event";
+  ["event-title","event-date","event-time","event-description","event-price","event-pricenote","event-cta","event-url"].forEach(id => {
+    const key = id.replace("event-","").replace("pricenote","priceNote");
+    document.getElementById(id).value = ev[key] || "";
+  });
+  openModal("event-modal-overlay");
+};
+
+document.getElementById("add-event-btn").addEventListener("click", () => {
+  editingEventIdx = -1;
+  document.getElementById("event-modal-title").textContent = "Add event";
+  ["event-title","event-date","event-time","event-description","event-price","event-pricenote","event-cta","event-url"].forEach(id => document.getElementById(id).value = "");
+  openModal("event-modal-overlay");
+});
+
+document.getElementById("save-event-post-btn").addEventListener("click", async () => {
+  const title = document.getElementById("event-title").value.trim();
+  const description = document.getElementById("event-description").value.trim();
+  if (!title || !description) { toast("Title and description required.", "error"); return; }
+  const entry = {
+    title, date: document.getElementById("event-date").value || undefined,
+    time: document.getElementById("event-time").value.trim() || undefined,
+    price: document.getElementById("event-price").value.trim() || undefined,
+    priceNote: document.getElementById("event-pricenote").value.trim() || undefined,
+    description,
+    cta: document.getElementById("event-cta").value.trim() || undefined,
+    url: document.getElementById("event-url").value.trim() || undefined,
+  };
+  Object.keys(entry).forEach(k => entry[k] === undefined && delete entry[k]);
+  setBusy("save-event-post-txt", "save-event-post-sp", true);
+  try {
+    editingEventIdx === -1 ? events.push(entry) : (events[editingEventIdx] = entry);
+    eventSha = await ghPut(EVENTS_PATH, events, eventSha, `${editingEventIdx === -1 ? "Add" : "Update"} event: ${title}`);
+    closeModal("event-modal-overlay"); renderEventList();
+    toast(editingEventIdx === -1 ? "Event added." : "Event updated.");
+  } catch (e) { toast(e.message, "error"); }
+  finally { setBusy("save-event-post-txt", "save-event-post-sp", false); }
+});
+
+window.deleteEvent = async i => {
+  if (!await confirmDialog("Delete event?", `"${events[i].title}" will be removed.`)) return;
+  try { events.splice(i, 1); eventSha = await ghPut(EVENTS_PATH, events, eventSha, `Delete event #${i}`); renderEventList(); toast("Event deleted."); }
+  catch (e) { toast(e.message, "error"); await loadEvents(); }
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// CONTENT.JSON — PAGE EDITORS
+// ═══════════════════════════════════════════════════════════════════
+const loadContent = async () => {
+  try { const { content, sha } = await ghGet(CONTENT_PATH); contentData = content; contentSha = sha; buildAllEditors(); }
+  catch (e) { console.warn("content.json load failed:", e.message); }
+};
+
+const saveContent = async (pageKey, btnSpanId, btnSpId) => {
+  setBusy(btnSpanId, btnSpId, true);
+  try {
+    contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, `Update ${pageKey} page content`);
+    toast("Saved successfully.");
+  } catch (e) { toast(e.message, "error"); }
+  finally { setBusy(btnSpanId, btnSpId, false); }
+};
+
+// Save button wiring
+const saveBtns = {
+  "save-home-btn": ["home", document.getElementById("save-home-btn")?.querySelector("span"), "save-home-sp"],
+  "save-spaces-btn": ["spaces", null, "save-spaces-sp"],
+  "save-about-btn": ["about", null, "save-about-sp"],
+  "save-evpage-btn": ["events", null, "save-evpage-sp"],
+  "save-blog-btn": ["blog", null, "save-blog-sp"],
+  "save-contact-btn": ["contact", null, "save-contact-sp"],
+};
+
+["save-home-btn","save-spaces-btn","save-about-btn","save-evpage-btn","save-blog-btn","save-contact-btn"].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener("click", () => {
+    const map = { "save-home-btn":["home","save-home-sp"], "save-spaces-btn":["spaces","save-spaces-sp"],
+      "save-about-btn":["about","save-about-sp"], "save-evpage-btn":["events","save-evpage-sp"],
+      "save-blog-btn":["blog","save-blog-sp"], "save-contact-btn":["contact","save-contact-sp"] };
+    const [pageKey, spId] = map[id];
+    collectEditorData(pageKey);
+    saveContent(pageKey, el.querySelector("span")?.id || id, spId);
+  });
+});
+
+// ── Editor builder ────────────────────────────────────────────────
+const buildAllEditors = () => {
+  buildEditor("home", homeSchema());
+  buildEditor("spaces", spacesSchema());
+  buildEditor("about", aboutSchema());
+  buildEditor("events", eventsPageSchema());
+  buildEditor("blog", blogPageSchema());
+  buildEditor("contact", contactSchema());
+};
+
+// Build editor HTML for a page
+const buildEditor = (pageKey, schema) => {
+  const container = document.getElementById(`editor-${pageKey}`);
+  if (!container) return;
+  const pc = contentData[pageKey] || {};
+  container.innerHTML = schema.map(sec => buildSection(pageKey, sec, pc)).join("");
+  // Wire up list editors
+  schema.forEach(sec => {
+    if (sec.list) bindListEditor(pageKey, sec, pc);
+  });
+};
+
+const buildSection = (pageKey, sec, pc) => {
+  const data = pc[sec.id] || {};
+  const fieldsHtml = (sec.fields || []).map(f => buildField(`${pageKey}.${sec.id}.${f.key}`, f, data[f.key])).join("");
+  const listHtml = sec.list ? buildListDisplay(pageKey, sec, (data[sec.list.key] || [])) : "";
+  return `
+    <div class="section-card" id="sc-${pageKey}-${sec.id}">
+      <div class="section-card-header" onclick="toggleSection('sc-${pageKey}-${sec.id}')">
+        <div class="section-card-title"><span class="icon">${sec.icon || "📄"}</span>${esc(sec.title)}</div>
+        <span class="section-card-chevron">▼</span>
+      </div>
+      <div class="section-card-body">
+        ${fieldsHtml}
+        ${listHtml}
+      </div>
+    </div>`;
+};
+
+window.toggleSection = id => {
+  const el = document.getElementById(id); if (!el) return;
+  el.classList.toggle("open");
+};
+
+const buildField = (fullKey, f, value) => {
+  const id = `cf-${fullKey.replace(/\./g, "-")}`;
+  const val = esc(value ?? "");
+  let input;
+  if (f.type === "textarea") input = `<textarea id="${id}" placeholder="${esc(f.placeholder || "")}">${val}</textarea>`;
+  else input = `<input type="${f.type || "text"}" id="${id}" value="${val}" placeholder="${esc(f.placeholder || "")}">`;
+  return `<div class="field"><label>${esc(f.label)}</label>${input}</div>`;
+};
+
+const buildListDisplay = (pageKey, sec, items) => {
+  const rows = items.map((item, i) => {
+    const label = typeof sec.list.itemLabel === "function" ? sec.list.itemLabel(item) : item[sec.list.labelKey || "title"] || `Item ${i + 1}`;
+    return `<div class="list-item-row" id="lir-${pageKey}-${sec.id}-${i}">
+      <span class="item-label">${esc(String(label))}</span>
+      <div class="item-actions">
+        <button class="btn btn-outline btn-xs" onclick="editListItem('${pageKey}','${sec.id}',${i})">Edit</button>
+        <button class="btn btn-red btn-xs" onclick="deleteListItem('${pageKey}','${sec.id}',${i})">✕</button>
+      </div>
+    </div>`;
+  }).join("");
+  return `
+    <div style="margin-top:.4rem">
+      <div style="font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:.5rem">${esc(sec.list.title)}</div>
+      <div class="list-editor" id="le-${pageKey}-${sec.id}">${rows || `<div style="color:var(--muted);font-size:.82rem;padding:.4rem 0">No items yet.</div>`}</div>
+      <button class="btn btn-outline btn-sm" onclick="addListItem('${pageKey}','${sec.id}')">+ ${esc(sec.list.addLabel || "Add item")}</button>
+    </div>`;
+};
+
+// ── List item editing ─────────────────────────────────────────────
+window.editListItem = (pageKey, secId, idx) => {
+  const schema = getSchema(pageKey).find(s => s.id === secId);
+  if (!schema?.list) return;
+  const pc = contentData[pageKey] || {};
+  const sec = pc[secId] || {};
+  const items = sec[schema.list.key] || [];
+  const item = items[idx] || {};
+
+  document.getElementById("item-modal-title").textContent = `Edit ${schema.list.itemLabel ? schema.list.itemLabel(item) : "item"}`;
+  document.getElementById("item-modal-body").innerHTML = schema.list.fields.map(f =>
+    buildField(`__item.${f.key}`, f, item[f.key])
+  ).join("") + (schema.list.withImage ? buildImagePickerField(item.image) : "");
+
+  if (schema.list.withImage) bindImagePickerModal(item.image);
+  openModal("item-modal-overlay");
+
+  itemModalCallback = () => {
+    const updated = {};
+    schema.list.fields.forEach(f => {
+      const id = `cf---item-${f.key}`;
+      const el = document.getElementById(id);
+      if (el) updated[f.key] = el.value.trim() || undefined;
+    });
+    if (schema.list.withImage) {
+      updated.image = document.getElementById("item-image-path")?.value?.trim() || undefined;
+    }
+    Object.keys(updated).forEach(k => updated[k] === undefined && delete updated[k]);
+    if (!contentData[pageKey]) contentData[pageKey] = {};
+    if (!contentData[pageKey][secId]) contentData[pageKey][secId] = {};
+    if (!contentData[pageKey][secId][schema.list.key]) contentData[pageKey][secId][schema.list.key] = [];
+    contentData[pageKey][secId][schema.list.key][idx] = updated;
+    rebuildListDisplay(pageKey, secId);
+    closeModal("item-modal-overlay");
+    toast("Item updated — save the page to publish.");
+  };
+};
+
+window.addListItem = (pageKey, secId) => {
+  const schema = getSchema(pageKey).find(s => s.id === secId);
+  if (!schema?.list) return;
+  const pc = contentData[pageKey] || {};
+  const sec = pc[secId] || {};
+  const items = sec[schema.list.key] || [];
+  const newIdx = items.length;
+
+  document.getElementById("item-modal-title").textContent = `Add ${schema.list.addLabel || "item"}`;
+  document.getElementById("item-modal-body").innerHTML = schema.list.fields.map(f =>
+    buildField(`__item.${f.key}`, f, "")
+  ).join("") + (schema.list.withImage ? buildImagePickerField("") : "");
+
+  if (schema.list.withImage) bindImagePickerModal("");
+  openModal("item-modal-overlay");
+
+  itemModalCallback = () => {
+    const entry = {};
+    schema.list.fields.forEach(f => {
+      const id = `cf---item-${f.key}`;
+      const el = document.getElementById(id);
+      if (el) entry[f.key] = el.value.trim() || undefined;
+    });
+    if (schema.list.withImage) {
+      entry.image = document.getElementById("item-image-path")?.value?.trim() || undefined;
+    }
+    Object.keys(entry).forEach(k => entry[k] === undefined && delete entry[k]);
+    if (!contentData[pageKey]) contentData[pageKey] = {};
+    if (!contentData[pageKey][secId]) contentData[pageKey][secId] = {};
+    if (!contentData[pageKey][secId][schema.list.key]) contentData[pageKey][secId][schema.list.key] = [];
+    contentData[pageKey][secId][schema.list.key].push(entry);
+    rebuildListDisplay(pageKey, secId);
+    closeModal("item-modal-overlay");
+    toast("Item added — save the page to publish.");
+  };
+};
+
+window.deleteListItem = async (pageKey, secId, idx) => {
+  if (!await confirmDialog("Delete item?", "This removes the item from the list.")) return;
+  const schema = getSchema(pageKey).find(s => s.id === secId);
+  if (!schema?.list) return;
+  contentData[pageKey][secId][schema.list.key].splice(idx, 1);
+  rebuildListDisplay(pageKey, secId);
+  toast("Item removed — save the page to publish.");
+};
+
+document.getElementById("save-item-btn").addEventListener("click", () => { if (itemModalCallback) itemModalCallback(); });
+
+const rebuildListDisplay = (pageKey, secId) => {
+  const schema = getSchema(pageKey).find(s => s.id === secId);
+  if (!schema?.list) return;
+  const container = document.getElementById(`le-${pageKey}-${secId}`);
+  if (!container) return;
+  const items = contentData[pageKey]?.[secId]?.[schema.list.key] || [];
+  container.innerHTML = items.map((item, i) => {
+    const label = typeof schema.list.itemLabel === "function" ? schema.list.itemLabel(item) : item[schema.list.labelKey || "title"] || `Item ${i + 1}`;
+    return `<div class="list-item-row">
+      <span class="item-label">${esc(String(label))}</span>
+      <div class="item-actions">
+        <button class="btn btn-outline btn-xs" onclick="editListItem('${pageKey}','${secId}',${i})">Edit</button>
+        <button class="btn btn-red btn-xs" onclick="deleteListItem('${pageKey}','${secId}',${i})">✕</button>
+      </div>
+    </div>`;
+  }).join("") || `<div style="color:var(--muted);font-size:.82rem;padding:.4rem 0">No items yet.</div>`;
+};
+
+const buildImagePickerField = (current) => `
+  <div class="field">
+    <label>Image</label>
+    <img id="item-img-preview" class="img-preview-box${current ? " visible" : ""}" src="${current ? `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/content/${current}` : ""}" alt="">
+    <input type="hidden" id="item-image-path" value="${esc(current || "")}">
+    <div style="display:flex;gap:.5rem;margin-top:.4rem;flex-wrap:wrap">
+      <button class="btn btn-outline btn-sm" type="button" id="item-pick-btn">📂 Library</button>
+      <label class="btn btn-outline btn-sm" style="cursor:pointer">⬆ Upload<input type="file" id="item-upload-img" accept="image/*" style="display:none"></label>
+    </div>
+    <div id="item-img-picker" style="display:none;margin-top:.5rem"><div class="img-picker-wrap" id="item-picker-grid"></div></div>
+  </div>`;
+
+const bindImagePickerModal = (current) => {
+  setTimeout(() => {
+    const pickBtn = document.getElementById("item-pick-btn");
+    const uploadInp = document.getElementById("item-upload-img");
+    if (pickBtn) pickBtn.addEventListener("click", async () => {
+      const panel = document.getElementById("item-img-picker");
+      if (panel.style.display !== "none") { panel.style.display = "none"; return; }
+      panel.style.display = "block";
+      const grid = document.getElementById("item-picker-grid");
+      grid.innerHTML = `<div style="padding:.5rem;font-size:.8rem;color:var(--muted)">Loading…</div>`;
+      if (!repoImages.length) { const files = await ghListDir(CONTENT_DIR); repoImages = files.filter(f => /\.(jpe?g|png|gif|webp)$/i.test(f.name)); }
+      const cur = document.getElementById("item-image-path")?.value;
+      grid.innerHTML = repoImages.map(img => {
+        const sel = img.name === cur ? " selected" : "";
+        return `<div class="img-pick-item${sel}" data-name="${esc(img.name)}" data-url="${esc(img.download_url)}">
+          <img src="${esc(img.download_url)}" loading="lazy"><div class="check">✓</div></div>`;
+      }).join("");
+      grid.querySelectorAll(".img-pick-item").forEach(it => it.addEventListener("click", () => {
+        grid.querySelectorAll(".img-pick-item").forEach(x => x.classList.remove("selected"));
+        it.classList.add("selected");
+        document.getElementById("item-image-path").value = it.dataset.name;
+        const p = document.getElementById("item-img-preview"); p.src = it.dataset.url; p.classList.add("visible");
+      }));
+    });
+    if (uploadInp) uploadInp.addEventListener("change", async e => {
+      const file = e.target.files[0]; if (!file) return;
+      toast("Uploading…");
+      try {
+        const b64 = await fileToB64(file);
+        const res = await ghUpload(`${CONTENT_DIR}/${file.name}`, b64, `Upload image: ${file.name}`);
+        document.getElementById("item-image-path").value = file.name;
+        const p = document.getElementById("item-img-preview"); p.src = res.content.download_url; p.classList.add("visible");
+        repoImages = []; toast("Uploaded.");
+      } catch (e) { toast(e.message, "error"); }
+      e.target.value = "";
+    });
+  }, 50);
+};
+
+// ── Collect editor data back into contentData ─────────────────────
+const collectEditorData = (pageKey) => {
+  const schema = getSchema(pageKey);
+  schema.forEach(sec => {
+    if (!contentData[pageKey]) contentData[pageKey] = {};
+    if (!contentData[pageKey][sec.id]) contentData[pageKey][sec.id] = {};
+    (sec.fields || []).forEach(f => {
+      const id = `cf-${pageKey}-${sec.id}-${f.key}`;
+      const el = document.getElementById(id);
+      if (el) contentData[pageKey][sec.id][f.key] = el.value.trim();
+    });
+  });
+};
+
+const bindListEditor = (pageKey, sec, pc) => {};
+
+// ── Schema definitions ────────────────────────────────────────────
+const getSchema = (pageKey) => {
+  const map = { home: homeSchema, spaces: spacesSchema, about: aboutSchema,
+    events: eventsPageSchema, blog: blogPageSchema, contact: contactSchema };
+  return (map[pageKey] || (() => []))();
+};
+
+const homeSchema = () => [
+  { id: "hero", title: "Hero Section", icon: "🦸",
+    fields: [
+      { key: "eyebrow", label: "Eyebrow text", placeholder: "Marathahalli ORR, Bengaluru" },
+      { key: "headingPrefix", label: "Heading (before emphasis)", placeholder: "Coworking spaces designed for " },
+      { key: "headingEmphasis", label: "Heading emphasis (italic)", placeholder: "focus and growth." },
+      { key: "lead", label: "Lead paragraph", type: "textarea" },
+      { key: "cta1Text", label: "CTA 1 text" }, { key: "cta1Url", label: "CTA 1 URL" },
+      { key: "cta2Text", label: "CTA 2 text" }, { key: "cta2Url", label: "CTA 2 URL" },
+      { key: "point1", label: "Highlight point 1" }, { key: "point2", label: "Highlight point 2" }, { key: "point3", label: "Highlight point 3" },
+      { key: "metricTitle", label: "Metric title", placeholder: "8 AM - 8 PM" },
+      { key: "metricSub", label: "Metric subtitle", type: "textarea" },
+    ]},
+  { id: "spacesSection", title: "Spaces List", icon: "📋",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "lead", label: "Lead", type: "textarea" }],
+    list: { key: "items", title: "Space types", addLabel: "Add space type",
+      itemLabel: i => `${i.num || "?"} ${i.title}`,
+      fields: [{ key: "num", label: "Number", placeholder: "01" }, { key: "title", label: "Title" }, { key: "desc", label: "Description", type: "textarea" }, { key: "price", label: "Price" }, { key: "per", label: "Per (e.g. / month)" }] }},
+  { id: "amenitiesSection", title: "Amenities", icon: "✅",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "lead", label: "Lead", type: "textarea" }],
+    list: { key: "items", title: "Amenity tiles", addLabel: "Add amenity",
+      fields: [{ key: "title", label: "Title" }, { key: "desc", label: "Description", type: "textarea" }] }},
+  { id: "whySection", title: "Why Inspire", icon: "💡",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "lead", label: "Lead", type: "textarea" }],
+    list: { key: "checks", title: "Check list items", addLabel: "Add check item",
+      itemLabel: i => (typeof i === "string" ? i : i.text || "Item"),
+      fields: [{ key: "_text", label: "Text" }] }},
+  { id: "rooftopSection", title: "Rooftop & Stats", icon: "🏔️",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "body", label: "Body text", type: "textarea" }],
+    list: { key: "stats", title: "Stats", addLabel: "Add stat",
+      itemLabel: i => `${i.value}${i.suffix} — ${i.label}`,
+      fields: [{ key: "value", label: "Number", placeholder: "6" }, { key: "suffix", label: "Suffix", placeholder: "+" }, { key: "label", label: "Label", placeholder: "workspace formats" }] }},
+  { id: "reviewsSection", title: "Reviews", icon: "⭐",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "lead", label: "Lead", type: "textarea" }],
+    list: { key: "quotes", title: "Testimonials", addLabel: "Add quote",
+      itemLabel: i => i.cite || "Quote",
+      fields: [{ key: "text", label: "Quote text", type: "textarea" }, { key: "cite", label: "Attribution" }, { key: "featured", label: "Featured (true/false)", placeholder: "true" }] }},
+  { id: "faqSection", title: "FAQ", icon: "❓",
+    fields: [{ key: "eyebrowLabel", label: "Eyebrow" }, { key: "heading", label: "Heading" }],
+    list: { key: "items", title: "FAQ items", addLabel: "Add question",
+      itemLabel: i => i.q || "FAQ",
+      fields: [{ key: "q", label: "Question" }, { key: "a", label: "Answer", type: "textarea" }] }},
+  { id: "ctaSection", title: "CTA Banner", icon: "🎯",
+    fields: [
+      { key: "heading", label: "Heading" }, { key: "body", label: "Body text", type: "textarea" },
+      { key: "cta1Text", label: "CTA 1 text" }, { key: "cta1Url", label: "CTA 1 URL" },
+      { key: "cta2Text", label: "CTA 2 text" }, { key: "cta2Url", label: "CTA 2 URL" },
+    ]},
+];
+
+const spacesSchema = () => [
+  { id: "header", title: "Page Header", icon: "📌",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "H1 Heading" }, { key: "lead", label: "Lead", type: "textarea" }] },
+  { id: "cards", title: "Space Cards", icon: "🃏", fields: [],
+    list: { key: "cards", title: "Space cards", addLabel: "Add space card", withImage: true,
+      itemLabel: i => i.title || "Card",
+      fields: [{ key: "id", label: "Anchor ID", placeholder: "hot-desk" }, { key: "title", label: "Title" }, { key: "desc", label: "Description", type: "textarea" }, { key: "price", label: "Price" }, { key: "per", label: "Per" }] }},
+  { id: "amenitiesSection", title: "Amenities (split)", icon: "✅",
+    fields: [{ key: "heading", label: "Heading" }],
+    list: { key: "checks", title: "Check list", addLabel: "Add item",
+      itemLabel: i => (typeof i === "string" ? i : i.text || "Item"),
+      fields: [{ key: "_text", label: "Text" }] }},
+  { id: "ctaSection", title: "CTA Banner", icon: "🎯",
+    fields: [{ key: "heading", label: "Heading" }, { key: "body", label: "Body", type: "textarea" }, { key: "cta1Text", label: "CTA 1 text" }, { key: "cta1Url", label: "CTA 1 URL" }, { key: "cta2Text", label: "CTA 2 text" }, { key: "cta2Url", label: "CTA 2 URL" }] },
+];
+
+const aboutSchema = () => [
+  { id: "storySection", title: "Our Story", icon: "📖",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "H1 Heading" }, { key: "lead", label: "Lead", type: "textarea" }],
+    list: { key: "checks", title: "Check list", addLabel: "Add item",
+      itemLabel: i => (typeof i === "string" ? i : i.text || "Item"),
+      fields: [{ key: "_text", label: "Text" }] }},
+  { id: "valuesSection", title: "Values", icon: "🏅",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }],
+    list: { key: "items", title: "Value cards", addLabel: "Add value",
+      fields: [{ key: "title", label: "Title" }, { key: "desc", label: "Description", type: "textarea" }] }},
+  { id: "gallerySection", title: "Gallery Section Header", icon: "🖼️",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "lead", label: "Lead", type: "textarea" }] },
+  { id: "ctaSection", title: "CTA Banner", icon: "🎯",
+    fields: [{ key: "heading", label: "Heading" }, { key: "body", label: "Body", type: "textarea" }, { key: "cta1Text", label: "CTA 1 text" }, { key: "cta1Url", label: "CTA 1 URL" }, { key: "cta2Text", label: "CTA 2 text" }, { key: "cta2Url", label: "CTA 2 URL" }] },
+];
+
+const eventsPageSchema = () => [
+  { id: "header", title: "Page Header", icon: "📌",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "H1 Heading" }, { key: "lead", label: "Lead", type: "textarea" }] },
+  { id: "venues", title: "Venue Cards", icon: "🎪", fields: [],
+    list: { key: "venues", title: "Venue cards", addLabel: "Add venue", withImage: true,
+      itemLabel: i => i.title || "Venue",
+      fields: [{ key: "title", label: "Title" }, { key: "desc", label: "Description", type: "textarea" }, { key: "price", label: "Price" }, { key: "per", label: "Per" }] }},
+  { id: "upcomingSection", title: "Upcoming Events Header", icon: "📅",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "lead", label: "Lead", type: "textarea" }] },
+  { id: "ctaSection", title: "CTA Banner", icon: "🎯",
+    fields: [{ key: "heading", label: "Heading" }, { key: "body", label: "Body", type: "textarea" }, { key: "cta1Text", label: "CTA 1 text" }, { key: "cta1Url", label: "CTA 1 URL" }, { key: "cta2Text", label: "CTA 2 text" }, { key: "cta2Url", label: "CTA 2 URL" }] },
+];
+
+const blogPageSchema = () => [
+  { id: "header", title: "Journal Header", icon: "📰",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "H1 Heading" }, { key: "lead", label: "Lead", type: "textarea" }] },
+  { id: "ctaSection", title: "CTA Banner", icon: "🎯",
+    fields: [{ key: "heading", label: "Heading" }, { key: "body", label: "Body", type: "textarea" }, { key: "cta1Text", label: "CTA 1 text" }, { key: "cta1Url", label: "CTA 1 URL" }, { key: "cta2Text", label: "CTA 2 text" }, { key: "cta2Url", label: "CTA 2 URL" }] },
+];
+
+const contactSchema = () => [
+  { id: "header", title: "Page Header", icon: "📌",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "H1 Heading" }, { key: "lead", label: "Lead", type: "textarea" }] },
+  { id: "details", title: "Contact Details", icon: "📋",
+    fields: [
+      { key: "addressLine1", label: "Address line 1" }, { key: "addressLine2", label: "Address line 2" },
+      { key: "phone1", label: "Phone 1 (tel: value)", placeholder: "+917899830610" },
+      { key: "phone1Display", label: "Phone 1 (display)" },
+      { key: "phone2", label: "Phone 2 (tel: value)", placeholder: "+919916130610" },
+      { key: "phone2Display", label: "Phone 2 (display)" },
+      { key: "email", label: "Email address" },
+      { key: "hours", label: "Business hours" },
+    ] },
+  { id: "locationSection", title: "Location Section", icon: "📍",
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "lead", label: "Lead", type: "textarea" }],
+    list: { key: "checks", title: "Check list", addLabel: "Add item",
+      itemLabel: i => (typeof i === "string" ? i : i.text || "Item"),
+      fields: [{ key: "_text", label: "Text" }] }},
+];
+
+// Handle the "checks" lists where items are plain strings
+// We store them as strings in JSON, but edit them via a _text field
+const normalizeCheckItem = item => typeof item === "string" ? item : item._text || "";
+
+// ═══════════════════════════════════════════════════════════════════
+// IMAGES
+// ═══════════════════════════════════════════════════════════════════
+const loadImages = async () => {
+  document.getElementById("images-grid").innerHTML = `<div class="empty-state"><div class="icon">⏳</div><p>Loading…</p></div>`;
+  try {
+    const files = await ghListDir(CONTENT_DIR);
+    repoImages = files.filter(f => /\.(jpe?g|png|gif|webp|svg)$/i.test(f.name));
+    renderImageGrid();
+  } catch (e) { document.getElementById("images-grid").innerHTML = `<div class="empty-state"><p>⚠️ ${e.message}</p></div>`; }
+};
+
+const renderImageGrid = () => {
+  const el = document.getElementById("images-grid");
+  if (!repoImages.length) { el.innerHTML = `<div class="empty-state"><div class="icon">🖼️</div><p>No images yet.</p></div>`; return; }
+  el.innerHTML = repoImages.map(img => `
+    <div class="img-tile">
+      <img src="${esc(img.download_url)}" alt="${esc(img.name)}" loading="lazy">
+      <div class="img-tile-overlay"><button class="btn btn-red btn-sm" onclick="deleteImage('${esc(img.path)}','${esc(img.sha)}','${esc(img.name)}')">Delete</button></div>
+      <div class="img-tile-name">${esc(img.name)}</div>
+    </div>`).join("");
+};
+
+window.deleteImage = async (path, sha, name) => {
+  if (!await confirmDialog("Delete image?", `"${name}" will be permanently deleted.`)) return;
+  try { await ghDelete(path, sha, `Delete image: ${name}`); repoImages = repoImages.filter(i => i.path !== path); renderImageGrid(); toast("Deleted."); }
+  catch (e) { toast(e.message, "error"); }
+};
+
+document.getElementById("upload-input").addEventListener("change", async e => {
+  const files = [...e.target.files]; if (!files.length) return;
+  for (const f of files) { try { const b64 = await fileToB64(f); await ghUpload(`${CONTENT_DIR}/${f.name}`, b64, `Upload: ${f.name}`); } catch (e) { toast(e.message, "error"); } }
+  e.target.value = ""; repoImages = []; await loadImages(); toast("Upload complete.");
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// SETTINGS
+// ═══════════════════════════════════════════════════════════════════
+const fillSettings = () => {
+  const s = contentData.settings || {};
+  document.getElementById("s-w3f-key").value = s.web3formsKey || "";
+  document.getElementById("s-contact-email").value = s.contactEmail || "ayushgupta79@gmail.com";
+  document.getElementById("s-form-subject").value = s.formSubject || "New Tour Booking — Inspire Workplace";
+};
+
+document.getElementById("save-settings-btn").addEventListener("click", async () => {
+  setBusy(null, "save-settings-sp", true);
+  const status = document.getElementById("settings-status");
+  try {
+    if (!contentData.settings) contentData.settings = {};
+    contentData.settings.web3formsKey = document.getElementById("s-w3f-key").value.trim();
+    contentData.settings.contactEmail = document.getElementById("s-contact-email").value.trim();
+    contentData.settings.formSubject = document.getElementById("s-form-subject").value.trim();
+    contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, "Update settings");
+    status.textContent = "Settings saved. The contact form will use the new key on next page load.";
+    status.className = "status-bar success show";
+    setTimeout(() => status.classList.remove("show"), 4000);
+  } catch (e) { status.textContent = e.message; status.className = "status-bar error show"; }
+  finally { setBusy(null, "save-settings-sp", false); }
+});
+
+// ── Utility ───────────────────────────────────────────────────────
+const fileToB64 = file => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result.split(",")[1]); r.onerror = rej; r.readAsDataURL(file); });
+
+// ── Auto-login from session ────────────────────────────────────────
+const sp = sessionStorage.getItem("admin_pat"), su = sessionStorage.getItem("admin_user");
+if (sp && su) { token = sp; ghUser = su; initApp().catch(() => { sessionStorage.removeItem("admin_pat"); sessionStorage.removeItem("admin_user"); }); }
+</script>
+</body>
+</html>
