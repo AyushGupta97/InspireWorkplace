@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin · Inspire Workplace</title>
+  <link rel="icon" type="image/jpeg" href="content/WhatsApp%20Image%202026-05-15%20at%2012.59.04.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -404,6 +405,7 @@
         </div>
         <div id="blog-img-picker" style="display:none;margin-top:.5rem"><div class="img-picker-wrap" id="blog-picker-grid"></div></div>
       </div>
+      <div class="field"><label>Blog Content *</label><textarea id="blog-content" placeholder="Full blog post content (supports markdown or plain text)…" style="min-height:200px"></textarea></div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-outline" data-close="blog-modal-overlay">Cancel</button>
@@ -647,6 +649,7 @@ window.openBlogEdit = i => {
   document.getElementById("blog-date").value = b.date || "";
   document.getElementById("blog-readtime").value = b.readTime || "";
   document.getElementById("blog-imagealt").value = b.imageAlt || "";
+  document.getElementById("blog-content").value = b.content || "";
   document.getElementById("blog-image-path").value = b.image || "";
   const prev = document.getElementById("blog-img-preview");
   if (b.image) { prev.src = b.image.replace("../content/", `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/content/`); prev.classList.add("visible"); }
@@ -658,7 +661,7 @@ window.openBlogEdit = i => {
 document.getElementById("add-blog-btn").addEventListener("click", () => {
   editingBlogIdx = -1;
   document.getElementById("blog-modal-title").textContent = "Add blog";
-  ["blog-title","blog-category","blog-excerpt","blog-date","blog-readtime","blog-url","blog-imagealt","blog-image-path"].forEach(id => document.getElementById(id).value = "");
+  ["blog-title","blog-category","blog-excerpt","blog-date","blog-readtime","blog-url","blog-imagealt","blog-image-path","blog-content"].forEach(id => document.getElementById(id).value = "");
   document.getElementById("blog-img-preview").classList.remove("visible");
   document.getElementById("blog-img-picker").style.display = "none";
   openModal("blog-modal-overlay");
@@ -667,10 +670,11 @@ document.getElementById("add-blog-btn").addEventListener("click", () => {
 document.getElementById("save-blog-post-btn").addEventListener("click", async () => {
   const title = document.getElementById("blog-title").value.trim();
   const excerpt = document.getElementById("blog-excerpt").value.trim();
-  if (!title || !excerpt) { toast("Title and excerpt required.", "error"); return; }
+  const content = document.getElementById("blog-content").value.trim();
+  if (!title || !excerpt || !content) { toast("Title, excerpt and content required.", "error"); return; }
   const entry = {
     title, category: document.getElementById("blog-category").value.trim() || undefined,
-    excerpt, image: document.getElementById("blog-image-path").value.trim() || undefined,
+    excerpt, content, image: document.getElementById("blog-image-path").value.trim() || undefined,
     imageAlt: document.getElementById("blog-imagealt").value.trim() || undefined,
     date: document.getElementById("blog-date").value || undefined,
     readTime: document.getElementById("blog-readtime").value.trim() || undefined,
