@@ -9,7 +9,7 @@
       "cta1Url": "html/contact.html",
       "cta2Text": "View spaces and pricing",
       "cta2Url": "html/spaces.html",
-      "point1": "Plans from ₹6,000/month",
+      "point1": "Plans from â¹6,000/month",
       "point2": "ORR address for GST",
       "point3": "Private cabins and managed offices",
       "metricTitle": "8 AM - 8 PM",
@@ -20,11 +20,41 @@
       "heading": "Choose the right workspace for today, then scale without moving.",
       "lead": "A workspace stack for individuals, founders, distributed teams and companies that need a managed office in Bangalore without traditional lease overhead.",
       "items": [
-        {"num": "01", "title": "Hot Desk", "desc": "Any available desk on the open floor. Walk in, plug in and work with high-speed internet, common areas and cafeteria access.", "price": "₹6,000", "per": "/ month"},
-        {"num": "02", "title": "Dedicated Desk", "desc": "Your fixed desk, personal locker, priority meeting room access and mail handling for everyday professionals.", "price": "₹8,000", "per": "/ month"},
-        {"num": "03", "title": "Private Cabin", "desc": "Enclosed glass cabins for 4 to 10 seats, customised on longer contracts with branding and layout support.", "price": "₹40K+", "per": "/ month"},
-        {"num": "04", "title": "Managed Office", "desc": "A complete zone or floor built to spec for 15 to 50 person teams with furniture, cabling and branding ready before move-in.", "price": "₹10K+", "per": "/ seat"},
-        {"num": "05", "title": "Virtual Office", "desc": "ORR business address for GST registration, mail handling and meeting room hours without a full-time desk.", "price": "₹2,000", "per": "/ month"}
+        {
+          "num": "01",
+          "title": "Hot Desk",
+          "desc": "Any available desk on the open floor. Walk in, plug in and work with high-speed internet, common areas and cafeteria access.",
+          "price": "â¹6,000",
+          "per": "/ month"
+        },
+        {
+          "num": "02",
+          "title": "Dedicated Desk",
+          "desc": "Your fixed desk, personal locker, priority meeting room access and mail handling for everyday professionals.",
+          "price": "â¹8,000",
+          "per": "/ month"
+        },
+        {
+          "num": "03",
+          "title": "Private Cabin",
+          "desc": "Enclosed glass cabins for 4 to 10 seats, customised on longer contracts with branding and layout support.",
+          "price": "â¹40K+",
+          "per": "/ month"
+        },
+        {
+          "num": "04",
+          "title": "Managed Office",
+          "desc": "A complete zone or floor built to spec for 15 to 50 person teams with furniture, cabling and branding ready before move-in.",
+          "price": "â¹10K+",
+          "per": "/ seat"
+        },
+        {
+          "num": "05",
+          "title": "Virtual Office",
+          "desc": "ORR business address for GST registration, mail handling and meeting room hours without a full-time desk.",
+          "price": "â¹2,000",
+          "per": "/ month"
+        }
       ]
     },
     "amenitiesSection": {
@@ -32,14 +62,38 @@
       "heading": "Seamless work support, not just seats.",
       "lead": "The essentials are included so teams can stay focused on work instead of office operations.",
       "items": [
-        {"title": "High-speed internet", "desc": "Reliable leased-line connectivity for daily work."},
-        {"title": "Power backup", "desc": "Work through local interruptions with less downtime."},
-        {"title": "Meeting rooms", "desc": "Professional rooms for client calls, interviews and reviews."},
-        {"title": "Rooftop cafeteria", "desc": "Meals, breaks and informal catchups without leaving the building."},
-        {"title": "Car parking", "desc": "Dedicated premises parking for members and teams."},
-        {"title": "Recreation room", "desc": "TT, foosball, carrom and chess for genuine pauses."},
-        {"title": "GST address", "desc": "Virtual office support for business registration."},
-        {"title": "Custom interiors", "desc": "Branding and layout support for cabins and managed offices."}
+        {
+          "title": "High-speed internet",
+          "desc": "Reliable leased-line connectivity for daily work."
+        },
+        {
+          "title": "Power backup",
+          "desc": "Work through local interruptions with less downtime."
+        },
+        {
+          "title": "Meeting rooms",
+          "desc": "Professional rooms for client calls, interviews and reviews."
+        },
+        {
+          "title": "Rooftop cafeteria",
+          "desc": "Meals, breaks and informal catchups without leaving the building."
+        },
+        {
+          "title": "Car parking",
+          "desc": "Dedicated premises parking for members and teams."
+        },
+        {
+          "title": "Recreation room",
+          "desc": "TT, foosball, carrom and chess for genuine pauses."
+        },
+        {
+          "title": "GST address",
+          "desc": "Virtual office support for business registration."
+        },
+        {
+          "title": "Custom interiors",
+          "desc": "Branding and layout support for cabins and managed offices."
+        }
       ]
     },
     "whySection": {
@@ -57,9 +111,21 @@
       "heading": "Space to pause, meet and reset between focused work blocks.",
       "body": "At this price point, a rooftop cafeteria is rare. It gives members an open-air break area, city views and a natural place for informal conversations.",
       "stats": [
-        {"value": "6", "suffix": "+", "label": "workspace formats"},
-        {"value": "40", "suffix": "", "label": "training room seats"},
-        {"value": "2", "suffix": "", "label": "phone lines for enquiries"}
+        {
+          "value": "6",
+          "suffix": "+",
+          "label": "workspace formats"
+        },
+        {
+          "value": "40",
+          "suffix": "",
+          "label": "training room seats"
+        },
+        {
+          "value": "2",
+          "suffix": "",
+          "label": "phone lines for enquiries"
+        }
       ]
     },
     "reviewsSection": {
@@ -67,19 +133,43 @@
       "heading": "Trusted by operators, founders and teams.",
       "lead": "The strongest signal is simple: members stay when the workspace helps them do better work.",
       "quotes": [
-        {"text": "Mid-size IT building on the ORR, connectivity at its best. Cafeteria, car park, recreation room and space you can customise.", "cite": "Yogesh Pawde, Head India Ops, Unikorn Inc", "featured": true},
-        {"text": "A practical place for founders who need focus, meetings and a professional address without office headaches.", "cite": "Startup member", "featured": false},
-        {"text": "The rooftop and natural light make long workdays easier. It feels professional without feeling cold.", "cite": "Dedicated desk member", "featured": false}
+        {
+          "text": "Mid-size IT building on the ORR, connectivity at its best. Cafeteria, car park, recreation room and space you can customise.",
+          "cite": "Yogesh Pawde, Head India Ops, Unikorn Inc",
+          "featured": true
+        },
+        {
+          "text": "A practical place for founders who need focus, meetings and a professional address without office headaches.",
+          "cite": "Startup member",
+          "featured": false
+        },
+        {
+          "text": "The rooftop and natural light make long workdays easier. It feels professional without feeling cold.",
+          "cite": "Dedicated desk member",
+          "featured": false
+        }
       ]
     },
     "faqSection": {
       "eyebrowLabel": "Frequently asked questions",
       "heading": "Coworking questions, answered.",
       "items": [
-        {"q": "What types of coworking plans do you offer?", "a": "Inspire Workplace offers hot desks, dedicated desks, private cabins, managed offices, virtual office plans and training room bookings."},
-        {"q": "Can I book a tour before signing up?", "a": "Yes. You can book a free tour to see the workspace, rooftop cafeteria, cabins and available seating before choosing a plan."},
-        {"q": "Do you provide a GST registration address?", "a": "Yes. The virtual office plan includes an ORR business address for GST registration, mail handling and meeting room hours."},
-        {"q": "Is Inspire Workplace suitable for teams?", "a": "Yes. Private cabins support 4 to 10 seats, while managed office plans can be customised for larger teams of around 15 to 50 seats."}
+        {
+          "q": "What types of coworking plans do you offer?",
+          "a": "Inspire Workplace offers hot desks, dedicated desks, private cabins, managed offices, virtual office plans and training room bookings."
+        },
+        {
+          "q": "Can I book a tour before signing up?",
+          "a": "Yes. You can book a free tour to see the workspace, rooftop cafeteria, cabins and available seating before choosing a plan."
+        },
+        {
+          "q": "Do you provide a GST registration address?",
+          "a": "Yes. The virtual office plan includes an ORR business address for GST registration, mail handling and meeting room hours."
+        },
+        {
+          "q": "Is Inspire Workplace suitable for teams?",
+          "a": "Yes. Private cabins support 4 to 10 seats, while managed office plans can be customised for larger teams of around 15 to 50 seats."
+        }
       ]
     },
     "ctaSection": {
@@ -98,12 +188,54 @@
       "lead": "All plans include internet, common areas, staffed support and access to a workspace designed for productive workdays near Marathahalli ORR."
     },
     "cards": [
-      {"id": "hot-desk", "title": "Hot Desk", "desc": "Flexible open-floor seating for freelancers, consultants and remote workers. Day passes from ₹350.", "price": "₹6,000", "per": "/ month", "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg"},
-      {"id": "dedicated-desk", "title": "Dedicated Desk", "desc": "Your fixed desk, personal locker, mail handling and priority meeting room access.", "price": "₹8,000", "per": "/ month", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"},
-      {"id": "private-cabin", "title": "Private Cabin", "desc": "Glass-partitioned office cabins for 4 to 10 seats with layout and branding options.", "price": "₹40K+", "per": "/ month", "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg"},
-      {"id": "managed-office", "title": "Managed Office", "desc": "Complete zone or floor for 15 to 50 person teams, built to spec with furniture, cabling and branding.", "price": "₹10K+", "per": "/ seat / month", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"},
-      {"id": "virtual-office", "title": "Virtual Office", "desc": "ORR address for GST, mail handling and 4 meeting room hours monthly without a full-time desk.", "price": "₹2,000", "per": "/ month", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"},
-      {"id": "training-room", "title": "Training Room", "desc": "40-person venue with projector, screen, whiteboard and catering options for workshops and training.", "price": "₹8,000", "per": "/ day", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"}
+      {
+        "id": "hot-desk",
+        "title": "Hot Desk",
+        "desc": "Flexible open-floor seating for freelancers, consultants and remote workers. Day passes from â¹350.",
+        "price": "â¹6,000",
+        "per": "/ month",
+        "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg"
+      },
+      {
+        "id": "dedicated-desk",
+        "title": "Dedicated Desk",
+        "desc": "Your fixed desk, personal locker, mail handling and priority meeting room access.",
+        "price": "â¹8,000",
+        "per": "/ month",
+        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"
+      },
+      {
+        "id": "private-cabin",
+        "title": "Private Cabin",
+        "desc": "Glass-partitioned office cabins for 4 to 10 seats with layout and branding options.",
+        "price": "â¹40K+",
+        "per": "/ month",
+        "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg"
+      },
+      {
+        "id": "managed-office",
+        "title": "Managed Office",
+        "desc": "Complete zone or floor for 15 to 50 person teams, built to spec with furniture, cabling and branding.",
+        "price": "â¹10K+",
+        "per": "/ seat / month",
+        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
+      },
+      {
+        "id": "virtual-office",
+        "title": "Virtual Office",
+        "desc": "ORR address for GST, mail handling and 4 meeting room hours monthly without a full-time desk.",
+        "price": "â¹2,000",
+        "per": "/ month",
+        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"
+      },
+      {
+        "id": "training-room",
+        "title": "Training Room",
+        "desc": "40-person venue with projector, screen, whiteboard and catering options for workshops and training.",
+        "price": "â¹8,000",
+        "per": "/ day",
+        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"
+      }
     ],
     "amenitiesSection": {
       "heading": "Amenities that make the workday smoother.",
@@ -139,9 +271,18 @@
       "eyebrow": "Values",
       "heading": "Three things we never compromise on.",
       "items": [
-        {"title": "Flexibility first", "desc": "Contracts and workspace options designed around growth, not lock-ins."},
-        {"title": "Useful community", "desc": "Members share ideas, referrals and collaborators in a calm professional environment."},
-        {"title": "Honest operations", "desc": "Internet, power, cafeteria, parking and meeting support handled clearly from day one."}
+        {
+          "title": "Flexibility first",
+          "desc": "Contracts and workspace options designed around growth, not lock-ins."
+        },
+        {
+          "title": "Useful community",
+          "desc": "Members share ideas, referrals and collaborators in a calm professional environment."
+        },
+        {
+          "title": "Honest operations",
+          "desc": "Internet, power, cafeteria, parking and meeting support handled clearly from day one."
+        }
       ]
     },
     "gallerySection": {
@@ -165,9 +306,27 @@
       "lead": "Use Inspire Workplace for focused workshops, founder meetups, team training, demo nights and professional sessions near Marathahalli ORR."
     },
     "venues": [
-      {"title": "Training Room", "desc": "Seats up to 40 people with projector, screen, whiteboard and catering options.", "price": "₹8,000", "per": "/ day", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"},
-      {"title": "Rooftop Sessions", "desc": "Open-air setting for member mixers, wellness mornings and informal community events.", "price": "Custom", "per": "quote", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg"},
-      {"title": "Founder Meetups", "desc": "Professional venue for talks, product demos, networking breakfasts and small-group sessions.", "price": "From ₹299", "per": "/ attendee", "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"}
+      {
+        "title": "Training Room",
+        "desc": "Seats up to 40 people with projector, screen, whiteboard and catering options.",
+        "price": "â¹8,000",
+        "per": "/ day",
+        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"
+      },
+      {
+        "title": "Rooftop Sessions",
+        "desc": "Open-air setting for member mixers, wellness mornings and informal community events.",
+        "price": "Custom",
+        "per": "quote",
+        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg"
+      },
+      {
+        "title": "Founder Meetups",
+        "desc": "Professional venue for talks, product demos, networking breakfasts and small-group sessions.",
+        "price": "From â¹299",
+        "per": "/ attendee",
+        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
+      }
     ],
     "upcomingSection": {
       "eyebrow": "Upcoming events",
@@ -227,8 +386,8 @@
   },
   "seo": {
     "home": {
-      "title": "Inspire Workplace | Coworking Spaces in Bangalore | ₹6,000/month",
-      "description": "Flexible coworking spaces on Marathahalli ORR in Bangalore. Hot desks from ₹6,000/month, dedicated desks, private cabins, managed offices and rooftop cafeteria.",
+      "title": "Inspire Workplace | Coworking Spaces in Bangalore |6,000/month",
+      "description": "Flexible coworking spaces on Marathahalli ORR in Bangalore. Hot desks from â¹6,000/month, dedicated desks, private cabins, managed offices and rooftop cafeteria.",
       "keywords": "coworking space Bangalore, hot desk, dedicated desk, private cabin, managed office, virtual office, ORR, Marathahalli",
       "ogTitle": "Inspire Workplace | Coworking Spaces Bangalore",
       "ogDescription": "Flexible coworking spaces on Marathahalli ORR with hot desks, cabins, managed offices and rooftop cafeteria.",
@@ -237,7 +396,7 @@
     },
     "spaces": {
       "title": "Coworking Plans & Pricing | Inspire Workplace Bangalore",
-      "description": "Hot desks, dedicated desks, private cabins, managed offices and virtual office plans starting from ₹6,000/month. Compare pricing and amenities.",
+      "description": "Hot desks, dedicated desks, private cabins, managed offices and virtual office plans starting from â¹6,000/month. Compare pricing and amenities.",
       "keywords": "coworking plans, flexible workspace, hot desk price, dedicated desk, private cabin, managed office, virtual office",
       "ogTitle": "Coworking Plans & Pricing",
       "ogDescription": "Flexible workspace options from hot desks to managed offices. All plans include high-speed internet, meeting rooms and rooftop cafeteria.",
@@ -246,7 +405,7 @@
     },
     "about": {
       "title": "About Inspire Workplace | Coworking in Bangalore",
-      "description": "Learn about Inspire Workplace — a flexible coworking space built for focus, community and growth on Marathahalli ORR in Bangalore.",
+      "description": "Learn about Inspire Workplace â a flexible coworking space built for focus, community and growth on Marathahalli ORR in Bangalore.",
       "keywords": "about inspire workplace, coworking community, workspace design, flexible workspace",
       "ogTitle": "About Inspire Workplace",
       "ogDescription": "Designed for focus, community and growth. A flexible coworking space on ORR with natural light, rooftop and warm interiors.",
@@ -284,6 +443,6 @@
   "settings": {
     "web3formsKey": "d28fdc1b-8b2a-448c-9e53-9f6a1135caac",
     "contactEmail": "ayushgupta79@gmail.com",
-    "formSubject": "New Tour Booking — Inspire Workplace"
+    "formSubject": "New Tour Booking â Inspire Workplace"
   }
 }
