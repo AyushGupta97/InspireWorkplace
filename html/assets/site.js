@@ -130,7 +130,7 @@ const formatDate = (value) => {
 };
 
 const loadJson = async (url) => {
-  const response = await fetch(url, { cache: "no-store" });
+  const response = await fetch(url, { cache: "default" });
   if (!response.ok) throw new Error(`Unable to load ${url}`);
   return response.json();
 };
@@ -142,7 +142,7 @@ const renderBlogs = (container, posts) => {
       .filter(Boolean)
       .join(" · ");
     const image = post.image || "../content/WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg";
-    const href = post.url || "#";
+    const href = "blog-detail.html?id=" + i;
     const delay = i % 3;
     return `
       <article class="article-card" data-reveal ${delay ? `data-delay="${delay}"` : ""}>

@@ -17,6 +17,37 @@
     // Expose settings globally so site.js can read web3formsKey
     window._siteSettings = all.settings || {};
 
+    // ── Inject SEO meta tags ──────────────────────────────────
+    const seoData = all.seo && all.seo[pageId];
+    if (seoData) {
+      if (seoData.title) document.title = seoData.title;
+
+      const setMeta = (name, content, attr = 'name') => {
+        let tag = document.querySelector(`meta[${attr}="${name}"]`);
+        if (!tag) {
+          tag = document.createElement('meta');
+          tag.setAttribute(attr, name);
+          document.head.appendChild(tag);
+        }
+        tag.content = content;
+      };
+
+      if (seoData.description) setMeta('description', seoData.description);
+      if (seoData.keywords) setMeta('keywords', seoData.keywords);
+      if (seoData.ogTitle) setMeta('og:title', seoData.ogTitle, 'property');
+      if (seoData.ogDescription) setMeta('og:description', seoData.ogDescription, 'property');
+      if (seoData.ogImagePath) setMeta('og:image', seoData.ogImagePath, 'property');
+      if (seoData.canonicalUrl) {
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+          canonical = document.createElement('link');
+          canonical.rel = 'canonical';
+          document.head.appendChild(canonical);
+        }
+        canonical.href = seoData.canonicalUrl;
+      }
+    }
+
     const pc = all[pageId];
     if (!pc) return;
 

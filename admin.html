@@ -275,6 +275,7 @@
       <span class="sidebar-label">Assets</span>
       <div class="nav-item" data-page="images"><span class="icon">🖼️</span> Images</div>
       <span class="sidebar-label">Config</span>
+      <div class="nav-item" data-page="page-seo"><span class="icon">🔍</span> SEO</div>
       <div class="nav-item" data-page="settings"><span class="icon">⚙️</span> Settings</div>
     </nav>
 
@@ -344,6 +345,15 @@
           <button class="btn btn-dark" id="save-contact-btn"><span>Save Contact</span><span class="spinner" id="save-contact-sp"></span></button>
         </div>
         <div id="editor-contact"></div>
+      </section>
+
+      <!-- SEO -->
+      <section class="page" id="page-page-seo">
+        <div class="page-header">
+          <div><h2>SEO Settings</h2><p>Manage meta tags, og tags and keywords for all pages.</p></div>
+          <button class="btn btn-dark" id="save-seo-btn"><span>Save SEO</span><span class="spinner" id="save-seo-sp"></span></button>
+        </div>
+        <div id="editor-seo" style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1rem"></div>
       </section>
 
       <!-- IMAGES -->
@@ -671,7 +681,7 @@ document.getElementById("save-blog-post-btn").addEventListener("click", async ()
   const title = document.getElementById("blog-title").value.trim();
   const excerpt = document.getElementById("blog-excerpt").value.trim();
   const content = document.getElementById("blog-content").value.trim();
-  if (!title || !excerpt || !content) { toast("Title, excerpt and content required.", "error"); return; }
+  if (!title || !excerpt) { toast("Title and excerpt are required.", "error"); return; }
   const entry = {
     title, category: document.getElementById("blog-category").value.trim() || undefined,
     excerpt, content, image: document.getElementById("blog-image-path").value.trim() || undefined,
@@ -843,6 +853,18 @@ const saveBtns = {
   });
 });
 
+// SEO save button
+document.getElementById("save-seo-btn")?.addEventListener("click", async () => {
+  const el = document.getElementById("save-seo-btn");
+  setBusy(null, "save-seo-sp", true);
+  try {
+    collectSeoData(seoActivePage);
+    contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, "Update SEO settings");
+    toast("SEO settings saved successfully.");
+  } catch (e) { toast(e.message, "error"); }
+  finally { setBusy(null, "save-seo-sp", false); }
+});
+
 // ── Editor builder ────────────────────────────────────────────────
 const buildAllEditors = () => {
   buildEditor("home", homeSchema());
@@ -851,6 +873,7 @@ const buildAllEditors = () => {
   buildEditor("events", eventsPageSchema());
   buildEditor("blog", blogPageSchema());
   buildEditor("contact", contactSchema());
+  buildSeoEditor();
 };
 
 // Build editor HTML for a page
@@ -1218,6 +1241,98 @@ const contactSchema = () => [
 // Handle the "checks" lists where items are plain strings
 // We store them as strings in JSON, but edit them via a _text field
 const normalizeCheckItem = item => typeof item === "string" ? item : item._text || "";
+
+// SEO editor — manage meta tags for all pages
+let seoActivePage = "home";
+const seoPages = ["home", "spaces", "about", "events", "blog", "contact"];
+
+const buildSeoEditor = () => {
+  const container = document.getElementById("editor-seo");
+  if (!container) return;
+  const seo = contentData.seo || {};
+
+  const tabsHtml = seoPages.map(p =>
+    `<button class="btn ${p === seoActivePage ? "btn-olive" : "btn-outline"} btn-sm" data-page="${p}" onclick="switchSeoPage('${p}')" style="flex:1">${p.charAt(0).toUpperCase() + p.slice(1)}</button>`
+  ).join("");
+
+  const pageData = seo[seoActivePage] || {};
+  const fieldsHtml = `
+    <div class="section-card open">
+      <div class="section-card-header">
+        <div class="section-card-title"><span class="icon">🔍</span>${seoActivePage.charAt(0).toUpperCase() + seoActivePage.slice(1)} page SEO</div>
+      </div>
+      <div class="section-card-body">
+        <div class="field">
+          <label>Page title <span style="color:var(--muted);font-weight:400">(${(pageData.title || "").length}/60)</span></label>
+          <input type="text" id="seo-title" maxlength="60" placeholder="Page title for browser tab and search" value="${esc(pageData.title || "")}">
+        </div>
+        <div class="field">
+          <label>Meta description <span style="color:var(--muted);font-weight:400">(${(pageData.description || "").length}/160)</span></label>
+          <textarea id="seo-description" maxlength="160" placeholder="Summary shown in search results" style="min-height:60px">${esc(pageData.description || "")}</textarea>
+        </div>
+        <div class="field">
+          <label>Keywords</label>
+          <input type="text" id="seo-keywords" placeholder="Comma-separated keywords" value="${esc(pageData.keywords || "")}">
+        </div>
+        <div style="border-top:1px solid var(--line);padding-top:1rem;margin-top:1rem">
+          <h4 style="font-size:.9rem;margin-bottom:.6rem;color:var(--ink)">Open Graph (social sharing)</h4>
+          <div class="field">
+            <label>OG Title</label>
+            <input type="text" id="seo-og-title" placeholder="Social sharing title" value="${esc(pageData.ogTitle || "")}">
+          </div>
+          <div class="field">
+            <label>OG Description</label>
+            <textarea id="seo-og-description" placeholder="Social sharing description" style="min-height:60px">${esc(pageData.ogDescription || "")}</textarea>
+          </div>
+          <div class="field">
+            <label>OG Image path</label>
+            <input type="text" id="seo-og-image" placeholder="../content/image.jpg" value="${esc(pageData.ogImagePath || "")}">
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line);padding-top:1rem;margin-top:1rem">
+          <div class="field">
+            <label>Canonical URL</label>
+            <input type="text" id="seo-canonical" placeholder="https://inspireworkplace.com/" value="${esc(pageData.canonicalUrl || "")}">
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  container.innerHTML = `<div style="display:flex;gap:.5rem;margin-bottom:1rem">${tabsHtml}</div>${fieldsHtml}`;
+
+  // Update character counters
+  document.getElementById("seo-title")?.addEventListener("input", e => {
+    const len = e.target.value.length;
+    e.target.parentElement.querySelector("span").textContent = `(${len}/60)`;
+  });
+  document.getElementById("seo-description")?.addEventListener("input", e => {
+    const len = e.target.value.length;
+    e.target.parentElement.querySelector("span").textContent = `(${len}/160)`;
+  });
+};
+
+window.switchSeoPage = async (page) => {
+  if (seoActivePage !== page) {
+    collectSeoData(seoActivePage);
+    seoActivePage = page;
+    buildSeoEditor();
+  }
+};
+
+const collectSeoData = (page) => {
+  if (!contentData.seo) contentData.seo = {};
+  if (!contentData.seo[page]) contentData.seo[page] = {};
+  contentData.seo[page] = {
+    title: document.getElementById("seo-title")?.value || "",
+    description: document.getElementById("seo-description")?.value || "",
+    keywords: document.getElementById("seo-keywords")?.value || "",
+    ogTitle: document.getElementById("seo-og-title")?.value || "",
+    ogDescription: document.getElementById("seo-og-description")?.value || "",
+    ogImagePath: document.getElementById("seo-og-image")?.value || "",
+    canonicalUrl: document.getElementById("seo-canonical")?.value || "",
+  };
+};
 
 // ═══════════════════════════════════════════════════════════════════
 // IMAGES

@@ -7,6 +7,10 @@
   <title>Inspire Journal | Coworking, Startup & Workplace Tips Bangalore</title>
   <link rel="icon" type="image/jpeg" href="../content/WhatsApp%20Image%202026-05-15%20at%2012.59.04.jpeg">
   <meta name="description" content="Practical articles on coworking, startup growth, productivity, virtual offices and managed office planning from Inspire Workplace Bangalore.">
+  <meta name="keywords" content="coworking tips, productivity, startup office, workspace design, work environment">
+  <meta property="og:title" content="Inspire Journal">
+  <meta property="og:description" content="Ideas on work, space and building teams in Bangalore. Articles on coworking, productivity and startup growth.">
+  <meta property="og:image" content="../content/WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg">
   <link rel="canonical" href="https://inspireworkplace.com/blog/">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/site.css">
@@ -44,23 +48,5 @@
   <footer class="site-footer"><div class="wrap"><div class="footer-grid"><div><div class="footer-brand"><img src="../content/WhatsApp%20Image%202026-05-15%20at%2012.59.04.jpeg" alt=""><strong>Inspire Workplace</strong></div><p>Articles for founders, freelancers and teams using flexible workspace in Bangalore.</p></div><div><h3>Pages</h3><a href="../index.html">Home</a><a href="spaces.html">Spaces</a><a href="about.html">About</a><a href="events.html">Events</a><a href="contact.html">Contact</a></div><div><h3>Topics</h3><a href="spaces.html#managed-office">Managed offices</a><a href="spaces.html#virtual-office">Virtual office</a><a href="spaces.html#training-room">Training rooms</a></div><div><h3>Contact</h3><a href="tel:+917899830610">+91 78998 30610</a><a href="mailto:admin@inspireworkplace.com">admin@inspireworkplace.com</a></div></div><div class="footer-bottom"><span>© 2026 Inspire Workplace.</span><span>Marathahalli ORR, Bengaluru</span></div></div></footer>
   <script src="assets/content-loader.js"></script>
   <script src="assets/site.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const blogList = document.querySelector('[data-blog-list]');
-      if (blogList) {
-        fetch('../data/blogs.json')
-          .then(r => r.json())
-          .then(blogs => {
-            blogList.querySelectorAll('.article-card').forEach((card, index) => {
-              card.style.cursor = 'pointer';
-              card.addEventListener('click', () => {
-                window.location.href = `blog-detail.html?id=${index}`;
-              });
-            });
-          })
-          .catch(e => console.error('Error loading blogs:', e));
-      }
-    });
-  </script>
 </body>
 </html>
