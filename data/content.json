@@ -9,7 +9,7 @@
       "cta1Url": "html/contact.html",
       "cta2Text": "View spaces and pricing",
       "cta2Url": "html/spaces.html",
-      "point1": "Plans from â¹6,000/month",
+      "point1": "Plans from Ã¢ÂÂ¹6,000/month",
       "point2": "ORR address for GST",
       "point3": "Private cabins and managed offices",
       "metricTitle": "8 AM - 8 PM",
@@ -24,35 +24,35 @@
           "num": "01",
           "title": "Hot Desk",
           "desc": "Any available desk on the open floor. Walk in, plug in and work with high-speed internet, common areas and cafeteria access.",
-          "price": "â¹6,000",
+          "price": "Ã¢ÂÂ¹6,000",
           "per": "/ month"
         },
         {
           "num": "02",
           "title": "Dedicated Desk",
           "desc": "Your fixed desk, personal locker, priority meeting room access and mail handling for everyday professionals.",
-          "price": "â¹8,000",
+          "price": "Ã¢ÂÂ¹8,000",
           "per": "/ month"
         },
         {
           "num": "03",
           "title": "Private Cabin",
           "desc": "Enclosed glass cabins for 4 to 10 seats, customised on longer contracts with branding and layout support.",
-          "price": "â¹40K+",
+          "price": "Ã¢ÂÂ¹40K+",
           "per": "/ month"
         },
         {
           "num": "04",
           "title": "Managed Office",
           "desc": "A complete zone or floor built to spec for 15 to 50 person teams with furniture, cabling and branding ready before move-in.",
-          "price": "â¹10K+",
+          "price": "Ã¢ÂÂ¹10K+",
           "per": "/ seat"
         },
         {
           "num": "05",
           "title": "Virtual Office",
           "desc": "ORR business address for GST registration, mail handling and meeting room hours without a full-time desk.",
-          "price": "â¹2,000",
+          "price": "Ã¢ÂÂ¹2,000",
           "per": "/ month"
         }
       ]
@@ -191,8 +191,8 @@
       {
         "id": "hot-desk",
         "title": "Hot Desk",
-        "desc": "Flexible open-floor seating for freelancers, consultants and remote workers. Day passes from â¹350.",
-        "price": "â¹6,000",
+        "desc": "Flexible open-floor seating for freelancers, consultants and remote workers. Day passes from Ã¢ÂÂ¹350.",
+        "price": "Ã¢ÂÂ¹6,000",
         "per": "/ month",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg"
       },
@@ -200,7 +200,7 @@
         "id": "dedicated-desk",
         "title": "Dedicated Desk",
         "desc": "Your fixed desk, personal locker, mail handling and priority meeting room access.",
-        "price": "â¹8,000",
+        "price": "Ã¢ÂÂ¹8,000",
         "per": "/ month",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"
       },
@@ -208,7 +208,7 @@
         "id": "private-cabin",
         "title": "Private Cabin",
         "desc": "Glass-partitioned office cabins for 4 to 10 seats with layout and branding options.",
-        "price": "â¹40K+",
+        "price": "Ã¢ÂÂ¹40K+",
         "per": "/ month",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg"
       },
@@ -216,7 +216,7 @@
         "id": "managed-office",
         "title": "Managed Office",
         "desc": "Complete zone or floor for 15 to 50 person teams, built to spec with furniture, cabling and branding.",
-        "price": "â¹10K+",
+        "price": "Ã¢ÂÂ¹10K+",
         "per": "/ seat / month",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
       },
@@ -224,7 +224,7 @@
         "id": "virtual-office",
         "title": "Virtual Office",
         "desc": "ORR address for GST, mail handling and 4 meeting room hours monthly without a full-time desk.",
-        "price": "â¹2,000",
+        "price": "Ã¢ÂÂ¹2,000",
         "per": "/ month",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"
       },
@@ -232,7 +232,7 @@
         "id": "training-room",
         "title": "Training Room",
         "desc": "40-person venue with projector, screen, whiteboard and catering options for workshops and training.",
-        "price": "â¹8,000",
+        "price": "Ã¢ÂÂ¹8,000",
         "per": "/ day",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"
       }
@@ -309,7 +309,7 @@
       {
         "title": "Training Room",
         "desc": "Seats up to 40 people with projector, screen, whiteboard and catering options.",
-        "price": "â¹8,000",
+        "price": "Ã¢ÂÂ¹8,000",
         "per": "/ day",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"
       },
@@ -323,7 +323,7 @@
       {
         "title": "Founder Meetups",
         "desc": "Professional venue for talks, product demos, networking breakfasts and small-group sessions.",
-        "price": "From â¹299",
+        "price": "From Ã¢ÂÂ¹299",
         "per": "/ attendee",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
       }
