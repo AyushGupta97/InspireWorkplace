@@ -17,7 +17,7 @@
     },
     "heroImages": {
       "img1": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg",
-      "img2": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"
+      "img2": "content/Inspire Side View.png"
     },
     "spacesSection": {
       "eyebrow": "Our spaces",
@@ -594,5 +594,5 @@
       ]
     }
   },
-  "revision": 1779204648
+  "revision": 1779206571
 }
