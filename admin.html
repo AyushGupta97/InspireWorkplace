@@ -1095,13 +1095,13 @@ const buildEditor = (pageKey, schema) => {
 const buildSection = (pageKey, sec, pc) => {
   const data = pc[sec.id] || {};
   let fieldsHtml = (sec.fields || []).map(f => {
-    if (sec.hasImages && f.key.endsWith("image")) {
+    if (f.type === "image") {
       const id = `cf-${pageKey}-${sec.id}-${f.key}`;
       const val = esc(data[f.key] || "");
       const imgUrl = data[f.key] ? `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${data[f.key]}` : "";
       return `<div class="field">
         <label>${esc(f.label)}</label>
-        ${imgUrl ? `<img src="${imgUrl}" alt="" class="img-preview-box" style="margin-bottom:.5rem">` : ''}
+        <img src="${imgUrl}" alt="" class="img-preview-box${imgUrl ? ' visible' : ''}" style="margin-bottom:.5rem">
         <input type="text" id="${id}" value="${val}" placeholder="content/image.jpg">
         <button type="button" class="btn btn-outline btn-sm" style="margin-top:.4rem" onclick="openImagePickerModal('${pageKey}','${sec.id}','${f.key}')">📂 Library</button>
       </div>`;
@@ -1312,36 +1312,43 @@ const bindImagePickerModal = (current) => {
 
 // Open image picker for section-level image fields
 window.openImagePickerModal = async (pageKey, secId, fieldKey) => {
-  const modal = document.getElementById("image-modal-overlay");
-  if (!modal) return;
+  try {
+    if (!token) { toast("Please log in first with your GitHub token", "error"); return; }
+    const modal = document.getElementById("image-modal-overlay");
+    if (!modal) return;
 
-  const grid = document.getElementById("section-picker-grid");
-  const inputId = `cf-${pageKey}-${secId}-${fieldKey}`;
-  const currentVal = document.getElementById(inputId)?.value || "";
+    const grid = document.getElementById("section-picker-grid");
+    const inputId = `cf-${pageKey}-${secId}-${fieldKey}`;
+    const currentVal = document.getElementById(inputId)?.value || "";
 
-  grid.innerHTML = `<div style="padding:.5rem;font-size:.8rem;color:var(--muted)">Loading…</div>`;
-  if (!repoImages.length) {
-    const files = await ghListDir(CONTENT_DIR);
-    repoImages = files.filter(f => /\.(jpe?g|png|gif|webp)$/i.test(f.name));
+    grid.innerHTML = `<div style="padding:.5rem;font-size:.8rem;color:var(--muted)">Loading images…</div>`;
+    if (!repoImages.length) {
+      const files = await ghListDir(CONTENT_DIR);
+      if (!files || !files.length) { grid.innerHTML = `<div style="padding:.5rem;font-size:.8rem;color:var(--red)">No images found in content/ folder</div>`; return; }
+      repoImages = files.filter(f => /\.(jpe?g|png|gif|webp)$/i.test(f.name));
+    }
+
+    if (!repoImages.length) { grid.innerHTML = `<div style="padding:.5rem;font-size:.8rem;color:var(--muted)">No image files found</div>`; openModal("image-modal-overlay"); return; }
+
+    grid.innerHTML = repoImages.map(img => {
+      const sel = img.name === currentVal ? " selected" : "";
+      return `<div class="img-pick-item${sel}" data-input-id="${inputId}" data-name="${esc(img.name)}" data-url="${esc(img.download_url)}">
+        <img src="${esc(img.download_url)}" loading="lazy"><div class="check">✓</div></div>`;
+    }).join("");
+
+    grid.querySelectorAll(".img-pick-item").forEach(it => it.addEventListener("click", () => {
+      const inputEl = document.getElementById(it.dataset.inputId);
+      if (inputEl) inputEl.value = it.dataset.name;
+      grid.querySelectorAll(".img-pick-item").forEach(x => x.classList.remove("selected"));
+      it.classList.add("selected");
+      const previewEl = document.querySelector(`#sc-${pageKey}-${secId} .img-preview-box`);
+      if (previewEl) { previewEl.src = it.dataset.url; previewEl.classList.add("visible"); }
+      closeModal("image-modal-overlay");
+    }));
+    openModal("image-modal-overlay");
+  } catch (e) {
+    toast(`Image picker error: ${e.message}`, "error");
   }
-
-  grid.innerHTML = repoImages.map(img => {
-    const sel = img.name === currentVal ? " selected" : "";
-    return `<div class="img-pick-item${sel}" data-input-id="${inputId}" data-name="${esc(img.name)}" data-url="${esc(img.download_url)}">
-      <img src="${esc(img.download_url)}" loading="lazy"><div class="check">✓</div></div>`;
-  }).join("");
-
-  grid.querySelectorAll(".img-pick-item").forEach(it => it.addEventListener("click", () => {
-    const inputEl = document.getElementById(it.dataset.inputId);
-    if (inputEl) inputEl.value = it.dataset.name;
-    grid.querySelectorAll(".img-pick-item").forEach(x => x.classList.remove("selected"));
-    it.classList.add("selected");
-    // Update preview if visible in the same section
-    const previewEl = document.querySelector(`#sc-${pageKey}-${secId} .img-preview-box`);
-    if (previewEl) previewEl.src = it.dataset.url;
-    closeModal("image-modal-overlay");
-  }));
-  openModal("image-modal-overlay");
 };
 
 // ── Collect editor data back into contentData ─────────────────────
