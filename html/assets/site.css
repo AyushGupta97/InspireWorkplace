@@ -307,34 +307,35 @@ input:focus, select:focus, textarea:focus {
 .cta {
   position: relative;
   overflow: hidden;
-  padding: clamp(4rem, 8vw, 7rem) 0;
-  background: var(--olive);
-  color: rgba(255,255,255,.72);
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  background: linear-gradient(135deg, var(--olive) 0%, #3d5c40 100%);
+  color: rgba(255,255,255,.75);
   text-align: center;
 }
 .cta::before {
   content: "WORK BETTER";
   position: absolute;
   inset: auto 0 -5vw 0;
-  color: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.05);
   font-family: "Instrument Serif", Georgia, serif;
   font-size: clamp(4rem, 13vw, 13rem);
   letter-spacing: -.05em;
 }
 .cta .wrap { position: relative; z-index: 1; }
-.cta h2 { color: var(--white); margin-bottom: 1rem; }
-.cta p { max-width: 620px; margin: 0 auto 1.7rem; }
-.cta-actions { display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap; }
+.cta h2 { color: var(--white); margin-bottom: 1.2rem; font-size: clamp(2rem, 5vw, 3rem); }
+.cta p { max-width: 620px; margin: 0 auto 2.2rem; font-size: 1.05rem; line-height: 1.6; }
+.cta-actions { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; margin-top: 0.5rem; }
 
-.site-footer { background: var(--ink); color: rgba(255,255,255,.45); padding: 3.5rem 0 1.5rem; }
-.footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 2rem; }
-.footer-grid h2, .footer-grid h3 { color: var(--white); font-family: Inter, sans-serif; font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; }
-.footer-grid a { display: block; margin-top: .45rem; color: rgba(255,255,255,.55); font-size: .9rem; }
-.footer-grid a:hover { color: var(--white); }
-.footer-brand { display: flex; align-items: center; gap: .65rem; margin-bottom: .8rem; }
-.footer-brand img { width: 34px; height: 34px; object-fit: contain; }
-.footer-brand strong { color: var(--white); font-family: "Instrument Serif", Georgia, serif; font-size: 1.35rem; font-weight: 400; }
-.footer-bottom { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.6rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,.08); font-size: .8rem; }
+.site-footer { background: var(--ink); color: rgba(255,255,255,.5); padding: 4rem 0 2rem; border-top: 1px solid rgba(255,255,255,.1); }
+.footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 3rem; }
+.footer-grid h2, .footer-grid h3 { color: var(--white); font-family: Inter, sans-serif; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1rem; font-weight: 600; }
+.footer-grid a { display: block; margin-top: .65rem; color: rgba(255,255,255,.6); font-size: .92rem; transition: color .2s ease, transform .2s ease; }
+.footer-grid a:hover { color: var(--white); transform: translateX(4px); }
+.footer-grid p { margin-bottom: 1rem; line-height: 1.6; font-size: .95rem; color: rgba(255,255,255,.55); }
+.footer-brand { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.2rem; }
+.footer-brand img { width: 40px; height: 40px; object-fit: contain; }
+.footer-brand strong { color: var(--white); font-family: "Instrument Serif", Georgia, serif; font-size: 1.4rem; font-weight: 400; }
+.footer-bottom { display: flex; justify-content: space-between; gap: 1.5rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.1); font-size: .82rem; color: rgba(255,255,255,.45); }
 
 /* ── Scroll reveal ────────────────────────────────────────── */
 [data-reveal] {
@@ -523,13 +524,34 @@ input:focus, select:focus, textarea:focus {
   to   { opacity: 1; transform: none; }
 }
 
-/* ── CTA pulse button ─────────────────────────────────────── */
+/* ── CTA buttons ──────────────────────────────────────────── */
+.cta .btn {
+  font-weight: 600;
+  transition: all .3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
 .cta .btn-light {
+  background: var(--white);
+  color: var(--olive);
   animation: cta-pulse 3s ease-in-out infinite;
 }
+.cta .btn-light:hover {
+  background: #f5f5f5;
+  box-shadow: 0 6px 16px rgba(0,0,0,.2);
+  transform: translateY(-2px);
+}
+.cta .btn-olive {
+  border-color: var(--white);
+  color: var(--white);
+}
+.cta .btn-olive:hover {
+  background: rgba(255,255,255,.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,.2);
+  transform: translateY(-2px);
+}
 @keyframes cta-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,.4); }
-  50% { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+  0%, 100% { box-shadow: 0 4px 12px rgba(0,0,0,.15), 0 0 0 0 rgba(255,255,255,.4); }
+  50% { box-shadow: 0 4px 12px rgba(0,0,0,.15), 0 0 0 12px rgba(255,255,255,0); }
 }
 
 /* ── Footer links ─────────────────────────────────────────── */
