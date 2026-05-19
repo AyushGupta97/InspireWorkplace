@@ -251,10 +251,10 @@ p { margin: 0; font-weight: 300; }
 .quote.featured cite { color: rgba(255,255,255,.45); }
 
 .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-.article-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; transition: all .2s ease; cursor: pointer; }
+.article-card { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; transition: all .2s ease; cursor: pointer; }
 .article-card:hover { border-color: var(--olive); box-shadow: 0 4px 16px rgba(64, 94, 66, 0.12); transform: translateY(-2px); }
 .article-card:active { transform: translateY(0); }
-.article-card a { display: block; height: 100%; text-decoration: none; color: inherit; }
+.article-card a { display: block; text-decoration: none; color: inherit; }
 .article-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform .3s ease; }
 .article-card:hover img { transform: scale(1.03); }
 .article-card .meta { color: var(--olive); font-size: .72rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
