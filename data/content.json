@@ -35,28 +35,28 @@
           "num": "02",
           "title": "Dedicated Desk",
           "desc": "Your fixed desk, personal locker, priority meeting room access and mail handling for everyday professionals.",
-          "price": "ÃÂ¢ÃÂÃÂ¹8,000",
+          "price": "8,000",
           "per": "/ month"
         },
         {
           "num": "03",
           "title": "Private Cabin",
           "desc": "Enclosed glass cabins for 4 to 10 seats, customised on longer contracts with branding and layout support.",
-          "price": "ÃÂ¢ÃÂÃÂ¹40K+",
+          "price": "40K+",
           "per": "/ month"
         },
         {
           "num": "04",
           "title": "Managed Office",
           "desc": "A complete zone or floor built to spec for 15 to 50 person teams with furniture, cabling and branding ready before move-in.",
-          "price": "ÃÂ¢ÃÂÃÂ¹10K+",
+          "price": "10K+",
           "per": "/ seat"
         },
         {
           "num": "05",
           "title": "Virtual Office",
           "desc": "ORR business address for GST registration, mail handling and meeting room hours without a full-time desk.",
-          "price": "ÃÂ¢ÃÂÃÂ¹2,000",
+          "price": "2,000",
           "per": "/ month"
         }
       ]
@@ -594,5 +594,5 @@
       ]
     }
   },
-  "revision": 1779207641
+  "revision": 1779207679
 }
