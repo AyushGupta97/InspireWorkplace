@@ -82,8 +82,8 @@ p { margin: 0; font-weight: 300; }
   gap: 1.25rem;
 }
 .brand { display: inline-flex; align-items: center; gap: .72rem; min-width: max-content; }
-.brand img { width: 42px; height: 42px; object-fit: contain; }
-.brand span { color: var(--ink); font-family: "Instrument Serif", Georgia, serif; font-size: 1.35rem; }
+.brand img { width: 56px; height: 56px; object-fit: contain; background: none; }
+.brand span { color: var(--ink); font-family: "Instrument Serif", Georgia, serif; font-size: 1.5rem; }
 .menu { display: flex; align-items: center; gap: clamp(.8rem, 2vw, 1.8rem); }
 .menu a { color: var(--muted); font-size: .86rem; font-weight: 500; transition: color .2s ease; }
 .menu a:hover { color: var(--ink); }
@@ -132,7 +132,7 @@ p { margin: 0; font-weight: 300; }
     linear-gradient(140deg, #fbf8f1 0%, #efe5d5 48%, #dbe6d4 100%);
 }
 .hero::after {
-  content: "INSPIRE";
+  content: "";
   position: absolute;
   right: -5vw;
   bottom: -4vw;

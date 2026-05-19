@@ -15,7 +15,7 @@
     },
     "heroImages": {
       "img1": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg",
-      "img2": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg"
+      "img2": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"
     },
     "spacesSection": {
       "eyebrow": "Our spaces",
@@ -99,13 +99,13 @@
       ]
     },
     "whySection": {
-      "eyebrow": "Why Inspire",
-      "heading": "A Bangalore coworking space built around real workdays.",
-      "lead": "Most offices are rigid, expensive or forgettable. Inspire Workplace combines a practical ORR location with warm interiors, natural light, team privacy and flexible plans that fit how businesses grow.",
+      "eyebrow": "Why Inspire Workplace",
+      "heading": "A coworking space built for real workdays.",
+      "lead": "Thoughtfully designed workspaces in a prime ORR location, with natural light, warm interiors, and the flexibility to choose what works best for your team.",
       "checks": [
-        "Near Marathahalli, ITPL, Bagmane and Prestige Tech Park commute corridors.",
-        "Move from hot desk to dedicated desk, private cabin or managed office in one address.",
-        "Transparent pricing with common amenities built into the workspace experience."
+        "Well-connected location near Marathahalli, ITPL, Bagmane & Prestige Tech Park",
+        "Multiple workspace options in one place—from hot desks to managed offices",
+        "Transparent pricing with essential amenities included"
       ]
     },
     "reviewsSection": {
@@ -175,57 +175,69 @@
   },
   "spaces": {
     "header": {
-      "eyebrow": "Spaces and pricing",
-      "heading": "Coworking plans for individuals, startups and growing teams.",
-      "lead": "All plans include internet, common areas, staffed support and access to a workspace designed for productive workdays near Marathahalli ORR."
+      "eyebrow": "Spaces & Pricing",
+      "heading": "From teams of 3 to 30, we have spaces that fit the way you work.",
+      "lead": "All plans include high-speed internet, power backup, air conditioning, and access to common areas. No hidden charges."
     },
     "cards": [
       {
         "id": "hot-desk",
         "title": "Hot Desk",
-        "desc": "Flexible open-floor seating for freelancers, consultants and remote workers. Day passes from ₹350.",
-        "price": "₹6,000",
-        "per": "/ month",
+        "subtitle": "For freelancers & individuals",
+        "desc": "Work from any available desk on our open floor—maximum flexibility, no long-term commitment.",
+        "features": ["Access to any available seat", "High-speed leased line internet", "Cafeteria & common areas"],
+        "pricing": [{"label": "Day Pass", "price": "₹350/day"}, {"label": "Monthly", "price": "₹5,000"}],
+        "cta": "Enquire Now",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg"
       },
       {
         "id": "dedicated-desk",
         "title": "Dedicated Desk",
-        "desc": "Your fixed desk, personal locker, mail handling and priority meeting room access.",
-        "price": "₹8,000",
-        "per": "/ month",
+        "subtitle": "For professionals",
+        "desc": "Your own fixed desk in a shared workspace. Set it up once, and come back to it every day.",
+        "features": ["Fixed desk, exclusively yours", "Personal storage locker", "Priority meeting room access", "Mail & courier handling"],
+        "pricing": [{"label": "Monthly", "price": "₹6,000"}],
+        "cta": "Enquire Now",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"
       },
       {
         "id": "private-cabin",
         "title": "Private Cabin",
-        "desc": "Glass-partitioned office cabins for 4 to 10 seats with layout and branding options.",
-        "price": "₹40K+",
-        "per": "/ month",
+        "subtitle": "For teams of 4–10",
+        "desc": "A fully enclosed, secure workspace for your team. Designed for privacy, focus, and collaboration.",
+        "features": ["Glass-partition, enclosed cabin", "Custom layout & branding (6+ months)", "Dedicated meeting room hours", "Available for 4–10 seats"],
+        "pricing": [{"label": "Starting at", "price": "₹40,000/month"}],
+        "cta": "Enquire Now",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg"
       },
       {
         "id": "managed-office",
         "title": "Managed Office",
-        "desc": "Complete zone or floor for 15 to 50 person teams, built to spec with furniture, cabling and branding.",
-        "price": "₹10K+",
-        "per": "/ seat / month",
+        "subtitle": "For teams of 15–50",
+        "desc": "A fully customised office space built to your requirements—ready to move in from day one.",
+        "features": ["Private zone or full-floor options", "Custom interiors, furniture & branding", "Dedicated server room option", "12–24 month contracts"],
+        "pricing": [{"label": "Starting at", "price": "₹6,000/seat/month"}],
+        "cta": "Discuss Requirements",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
       },
       {
         "id": "virtual-office",
         "title": "Virtual Office",
-        "desc": "ORR address for GST, mail handling and 4 meeting room hours monthly without a full-time desk.",
-        "price": "₹2,000",
-        "per": "/ month",
+        "subtitle": "For businesses & freelancers",
+        "desc": "Get a professional business address without a physical workspace.",
+        "features": ["GST-registered ORR address", "Mail & courier handling", "4 meeting room hours per month"],
+        "pricing": [{"label": "Starting at", "price": "₹21,000/yearly"}],
+        "cta": "Enquire Now",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"
       },
       {
         "id": "training-room",
         "title": "Training Room",
-        "desc": "40-person venue with projector, screen, whiteboard and catering options for workshops and training.",
-        "price": "₹8,000",
-        "per": "/ day",
+        "subtitle": "For events & workshops",
+        "desc": "A fully equipped space for team sessions, workshops, and training programs.",
+        "features": ["Seating for up to 25-30 people", "Projector, screen & whiteboard", "Catering support available", "Discounts on weekly bookings"],
+        "pricing": [{"label": "Starting at", "price": "₹3,500/per hour"}],
+        "cta": "Check Availability",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"
       }
     ],
