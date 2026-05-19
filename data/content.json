@@ -63,8 +63,8 @@
     },
     "amenitiesSection": {
       "eyebrow": "Amenities",
-      "heading": "Seamless work support, not just seats.",
-      "lead": "The essentials are included so teams can stay focused on work instead of office operations.",
+      "heading": "Everything you need to work, built in.",
+      "lead": "Fast internet, power backup, air conditioning, and well-maintained common areas, so your team can stay focused throughout the day.",
       "items": [
         {
           "title": "High-speed internet",
@@ -594,5 +594,5 @@
       ]
     }
   },
-  "revision": 1779209269
+  "revision": 1779209324
 }
