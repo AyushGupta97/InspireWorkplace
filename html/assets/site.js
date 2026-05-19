@@ -189,22 +189,26 @@ const renderEvents = (container, events) => {
   container.innerHTML = events.map((eventItem, index) => {
     const dateLine = [formatDate(eventItem.date), eventItem.time].filter(Boolean).join(" · ");
     const price = eventItem.price || "Free";
-    const priceNote = eventItem.priceNote || "";
+    const image = eventItem.image || "../content/WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg";
     const delay = Math.min(index, 4);
     return `
-      <article class="space-row" data-reveal data-delay="${delay}">
-        <span class="num">${String(index + 1).padStart(2, "0")}</span>
+      <article class="event-card" data-reveal data-delay="${delay}" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;padding:2rem;background:#f9f9f9;border-radius:8px;align-items:center;cursor:pointer;transition:all 0.3s ease" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'" onclick="window.openEventDetail(${index})">
+        <img src="${escapeHtml(image)}" alt="${escapeHtml(eventItem.imageAlt || eventItem.title)}" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px">
         <div>
-          <h3>${escapeHtml(eventItem.title)}</h3>
-          <p>${escapeHtml(dateLine)}</p>
-          <p>${escapeHtml(eventItem.description)}</p>
-          ${eventItem.url ? `<p><a href="${escapeHtml(eventItem.url)}">${escapeHtml(eventItem.cta || "Learn more")}</a></p>` : ""}
+          <h3 style="margin:0 0 0.5rem 0">${escapeHtml(eventItem.title)}</h3>
+          <div style="color:var(--muted);margin-bottom:1rem;font-size:0.9rem">${escapeHtml(dateLine)}</div>
+          <p style="margin:0 0 1.5rem 0">${escapeHtml(eventItem.description)}</p>
+          <div style="display:flex;gap:1rem;align-items:center">
+            <div style="font-weight:700">${escapeHtml(price)} ${eventItem.priceNote ? `<small>${escapeHtml(eventItem.priceNote)}</small>` : ""}</div>
+            <button class="btn btn-dark" style="cursor:pointer">View details →</button>
+          </div>
         </div>
-        <div class="price">${escapeHtml(price)} <small>${escapeHtml(priceNote)}</small></div>
       </article>
     `;
   }).join("");
   container.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
+  // Store events globally for modal access
+  window._pageEvents = events;
 };
 
 const blogList = document.querySelector("[data-blog-list]");
@@ -250,3 +254,86 @@ if (eventList) {
 } else {
   console.warn("[data-event-list] element not found on this page");
 }
+
+// ── Event Details Modal ──────────────────────────────────────
+window.openEventDetail = (index) => {
+  const event = window._pageEvents?.[index];
+  if (!event) return;
+  
+  const modal = document.getElementById("event-details-modal");
+  if (!modal) return;
+  
+  // Populate modal with event data
+  document.getElementById("modal-event-title").textContent = event.title;
+  document.getElementById("modal-event-image").src = event.image || "";
+  document.getElementById("modal-event-image").alt = event.imageAlt || event.title;
+  
+  const dateTime = [formatDate(event.date), event.time].filter(Boolean).join(" · ");
+  document.getElementById("modal-event-datetime").textContent = dateTime;
+  
+  const price = event.price || "Free";
+  const priceNote = event.priceNote ? ` ${event.priceNote}` : "";
+  document.getElementById("modal-event-price").textContent = price + priceNote;
+  
+  document.getElementById("modal-event-description").textContent = event.longDescription || event.description || "";
+  
+  // Agenda section
+  const agendaSection = document.getElementById("modal-event-agenda-section");
+  if (event.agenda && Array.isArray(event.agenda) && event.agenda.length > 0) {
+    document.getElementById("modal-event-agenda").innerHTML = event.agenda.map(item => `<li>${escapeHtml(item)}</li>`).join("");
+    agendaSection.style.display = "block";
+  } else {
+    agendaSection.style.display = "none";
+  }
+  
+  // Speakers section
+  const speakersSection = document.getElementById("modal-event-speakers-section");
+  if (event.speakers && Array.isArray(event.speakers) && event.speakers.length > 0) {
+    document.getElementById("modal-event-speakers").innerHTML = event.speakers.map(speaker => `<li>${escapeHtml(speaker)}</li>`).join("");
+    speakersSection.style.display = "block";
+  } else {
+    speakersSection.style.display = "none";
+  }
+  
+  // Registration info section
+  const regSection = document.getElementById("modal-event-registration-section");
+  if (event.registrationInfo) {
+    document.getElementById("modal-event-registration").textContent = event.registrationInfo;
+    regSection.style.display = "block";
+  } else {
+    regSection.style.display = "none";
+  }
+  
+  // CTA Button
+  const ctaButton = document.getElementById("modal-event-cta");
+  ctaButton.textContent = event.cta || "Register Now";
+  ctaButton.href = event.ctaUrl || "#";
+  
+  // Contact link
+  const contactLink = document.getElementById("modal-event-contact");
+  if (event.contactEmail) {
+    contactLink.href = `mailto:${event.contactEmail}`;
+  }
+  
+  // Show modal
+  modal.style.display = "block";
+  document.body.style.overflow = "hidden";
+};
+
+window.closeEventModal = () => {
+  const modal = document.getElementById("event-details-modal");
+  if (modal) {
+    modal.style.display = "none";
+    document.body.style.overflow = "";
+  }
+};
+
+// Close modal on background click
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("event-details-modal");
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) window.closeEventModal();
+    });
+  }
+});

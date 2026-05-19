@@ -39,15 +39,55 @@
         <div class="section-head center" data-reveal>
           <span class="eyebrow" data-ckey="upcomingSection.eyebrow">Upcoming events</span>
           <h2 data-ckey="upcomingSection.heading">Events that support builders and teams.</h2>
-          <p class="lead" data-ckey="upcomingSection.lead">Upcoming events are managed from the Events section in the admin panel.</p>
+          <p class="lead" data-ckey="upcomingSection.lead">Join us for workshops, networking sessions, and professional development events.</p>
         </div>
-        <div class="space-list" data-event-list data-source="../data/events.json">
-          <article class="space-row"><span class="num">01</span><div><h3>Founder Breakfast</h3><p>Small-group morning for early-stage founders to exchange lessons, hiring needs and customer introductions.</p></div><div class="price">Free <small>limited seats</small></div></article>
-          <article class="space-row"><span class="num">02</span><div><h3>Productivity Workshop</h3><p>Hands-on session for freelancers and solopreneurs building better systems for sales, delivery and admin.</p></div><div class="price">₹499 <small>/ person</small></div></article>
-          <article class="space-row"><span class="num">03</span><div><h3>Team Training Day</h3><p>Dedicated room, AV setup and cafeteria support for internal training, onboarding or quarterly planning.</p></div><div class="price">₹8,000 <small>/ day</small></div></article>
+        <div class="events-grid" data-event-list data-source="../data/events.json" style="display:grid;gap:2rem;margin-top:2rem">
+          <article class="event-card" data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;padding:2rem;background:#f9f9f9;border-radius:8px;align-items:center"><img src="../content/WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg" alt="Event" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px"><div><h3>Event name</h3><p>Event description goes here</p><div style="display:flex;gap:1rem;align-items:center;margin-top:1rem"><div><span style="font-weight:700">Date</span></div><button class="btn btn-dark" onclick="alert('Modal will open here')">View details</button></div></div></article>
         </div>
       </div>
     </section>
+
+    <!-- Event Details Modal -->
+    <div id="event-details-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1000;overflow-y:auto">
+      <div style="background:white;margin:2rem auto;max-width:800px;border-radius:8px;max-height:90vh;overflow-y:auto">
+        <div style="padding:2rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center">
+          <h2 id="modal-event-title" style="margin:0">Event Title</h2>
+          <button onclick="closeEventModal()" style="background:none;border:none;font-size:1.5rem;cursor:pointer">✕</button>
+        </div>
+        <div style="padding:2rem">
+          <img id="modal-event-image" src="" alt="Event" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;margin-bottom:2rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem">
+            <div>
+              <div style="font-size:0.9rem;color:var(--muted);margin-bottom:0.25rem">DATE & TIME</div>
+              <div id="modal-event-datetime" style="font-weight:600">Date/Time</div>
+            </div>
+            <div>
+              <div style="font-size:0.9rem;color:var(--muted);margin-bottom:0.25rem">PRICE</div>
+              <div id="modal-event-price" style="font-weight:600">Free</div>
+            </div>
+          </div>
+          <h3>About this event</h3>
+          <p id="modal-event-description"></p>
+          <div id="modal-event-agenda-section" style="display:none;margin-top:2rem">
+            <h3>📋 Agenda</h3>
+            <ul id="modal-event-agenda" style="margin:0;padding-left:1.5rem"></ul>
+          </div>
+          <div id="modal-event-speakers-section" style="display:none;margin-top:2rem">
+            <h3>🎤 Speakers</h3>
+            <ul id="modal-event-speakers" style="margin:0;padding-left:1.5rem"></ul>
+          </div>
+          <div id="modal-event-registration-section" style="display:none;margin-top:2rem">
+            <h3>📝 Registration</h3>
+            <p id="modal-event-registration"></p>
+          </div>
+          <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid var(--line);display:flex;gap:1rem;flex-wrap:wrap">
+            <a id="modal-event-cta" href="#" class="btn btn-dark" target="_blank" rel="noopener">Register Now</a>
+            <a id="modal-event-contact" href="mailto:" class="btn btn-outline">Contact organizer</a>
+            <button onclick="closeEventModal()" class="btn btn-outline">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <section class="cta">
       <div class="wrap">
         <h2 data-ckey="ctaSection.heading">Planning an event?</h2>

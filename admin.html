@@ -431,21 +431,36 @@
       <h3 id="event-modal-title">Add event</h3>
       <button class="modal-close" data-close="event-modal-overlay">✕</button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" style="max-height:70vh;overflow-y:auto">
       <div class="field"><label>Title *</label><input id="event-title" placeholder="Event title" required></div>
       <div class="field-row">
         <div class="field"><label>Date</label><input type="date" id="event-date"></div>
         <div class="field"><label>Time</label><input id="event-time" placeholder="10:00 AM or Full day"></div>
       </div>
-      <div class="field"><label>Description *</label><textarea id="event-description" placeholder="What is this event about?"></textarea></div>
+      <div class="field"><label>Short Description *</label><textarea id="event-description" placeholder="Brief summary (shown in event list)" style="min-height:60px"></textarea></div>
+      <div class="field"><label>Long Description</label><textarea id="event-long-description" placeholder="Detailed description (shown in popup)" style="min-height:80px"></textarea></div>
+      <div class="field"><label>Image</label>
+        <div style="display:flex;gap:0.5rem;align-items:center">
+          <img id="event-img-preview" style="width:80px;height:80px;object-fit:cover;border-radius:4px;display:none">
+          <button class="btn btn-outline btn-sm" id="event-pick-btn" style="cursor:pointer">📁 Pick image</button>
+          <button class="btn btn-outline btn-sm" id="event-upload-img-label" style="cursor:pointer">⬆ Upload</button>
+          <input type="file" id="event-upload-img" accept="image/*" style="display:none">
+        </div>
+        <input id="event-image-path" placeholder="../content/image.jpg" style="margin-top:0.5rem">
+        <input id="event-imagealt" placeholder="Image alt text" style="margin-top:0.5rem">
+      </div>
       <div class="field-row">
         <div class="field"><label>Price</label><input id="event-price" placeholder="Free or ₹499"></div>
         <div class="field"><label>Price note</label><input id="event-pricenote" placeholder="per person…"></div>
       </div>
+      <div class="field"><label>Agenda (one item per line)</label><textarea id="event-agenda" placeholder="10:00 AM - 10:30 AM: Welcome&#10;10:30 AM - 11:30 AM: Main session" style="min-height:80px;font-family:monospace"></textarea></div>
+      <div class="field"><label>Speakers (one per line)</label><textarea id="event-speakers" placeholder="John Doe, Event Organizer&#10;Jane Smith, Expert" style="min-height:60px;font-family:monospace"></textarea></div>
+      <div class="field"><label>Registration Info</label><textarea id="event-registration" placeholder="Ticket pricing, prerequisites, catering info, etc." style="min-height:60px"></textarea></div>
       <div class="field-row">
-        <div class="field"><label>CTA label</label><input id="event-cta" placeholder="Register now"></div>
-        <div class="field"><label>CTA URL</label><input id="event-url" placeholder="contact.html or external URL"></div>
+        <div class="field"><label>CTA Button Label</label><input id="event-cta" placeholder="Register now"></div>
+        <div class="field"><label>CTA Button URL</label><input id="event-url" placeholder="https://forms.google.com/... or contact.html"></div>
       </div>
+      <div class="field"><label>Contact Email</label><input id="event-contact-email" placeholder="events@inspireworkplace.com" type="email"></div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-outline" data-close="event-modal-overlay">Cancel</button>
@@ -748,6 +763,62 @@ document.getElementById("blog-upload-img").addEventListener("change", async e =>
   e.target.value = "";
 });
 
+// Event image upload
+document.getElementById("event-upload-img").addEventListener("change", async e => {
+  const file = e.target.files[0]; if (!file) return;
+  toast("Uploading…");
+  try {
+    const b64 = await fileToB64(file);
+    const res = await ghUpload(`${CONTENT_DIR}/${file.name}`, b64, `Upload image: ${file.name}`);
+    const rel = `../content/${file.name}`;
+    document.getElementById("event-image-path").value = rel;
+    const p = document.getElementById("event-img-preview"); p.src = res.content.download_url; p.classList.add("visible");
+    repoImages = []; toast("Image uploaded.");
+  } catch (e) { toast(e.message, "error"); }
+  e.target.value = "";
+});
+
+document.getElementById("event-upload-img-label").addEventListener("click", () => {
+  document.getElementById("event-upload-img").click();
+});
+
+// Event image picker
+document.getElementById("event-pick-btn").addEventListener("click", async () => {
+  const panel = document.getElementById("event-img-picker");
+  if (!panel) {
+    const picker = document.createElement("div");
+    picker.id = "event-img-picker";
+    picker.style.display = "block";
+    picker.style.marginTop = "0.5rem";
+    picker.style.padding = "0.5rem";
+    picker.style.border = "1px solid var(--line)";
+    picker.style.borderRadius = "4px";
+    picker.style.maxHeight = "200px";
+    picker.style.overflowY = "auto";
+    document.getElementById("event-pick-btn").parentElement.appendChild(picker);
+    if (!repoImages.length) {
+      try {
+        const res = await ghGet("contents/content");
+        repoImages = res.data || [];
+      } catch (e) { toast(e.message, "error"); }
+    }
+    renderEventImageGrid(picker);
+  }
+});
+
+const renderEventImageGrid = (container) => {
+  if (!repoImages.length) { container.innerHTML = "<p style='font-size:0.85rem'>No images found</p>"; return; }
+  container.innerHTML = repoImages.map(img => `
+    <button class="btn btn-outline btn-sm" style="margin:0.25rem;font-size:0.75rem" onclick="selectEventImage('${img.name}')">${img.name}</button>
+  `).join("");
+};
+
+window.selectEventImage = (name) => {
+  document.getElementById("event-image-path").value = `../content/${name}`;
+  document.getElementById("event-img-preview").src = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/content/${name}`;
+  document.getElementById("event-img-preview").classList.add("visible");
+};
+
 // ═══════════════════════════════════════════════════════════════════
 // EVENTS DATA
 // ═══════════════════════════════════════════════════════════════════
@@ -770,17 +841,35 @@ const renderEventList = () => {
 window.openEventEdit = i => {
   editingEventIdx = i; const ev = events[i];
   document.getElementById("event-modal-title").textContent = "Edit event";
-  ["event-title","event-date","event-time","event-description","event-price","event-pricenote","event-cta","event-url"].forEach(id => {
-    const key = id.replace("event-","").replace("pricenote","priceNote");
-    document.getElementById(id).value = ev[key] || "";
-  });
+  document.getElementById("event-title").value = ev.title || "";
+  document.getElementById("event-date").value = ev.date || "";
+  document.getElementById("event-time").value = ev.time || "";
+  document.getElementById("event-description").value = ev.description || "";
+  document.getElementById("event-long-description").value = ev.longDescription || "";
+  document.getElementById("event-image-path").value = ev.image || "";
+  document.getElementById("event-imagealt").value = ev.imageAlt || "";
+  if (ev.image) {
+    document.getElementById("event-img-preview").src = ev.image.replace("../content/", `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/content/`);
+    document.getElementById("event-img-preview").classList.add("visible");
+  } else {
+    document.getElementById("event-img-preview").classList.remove("visible");
+  }
+  document.getElementById("event-price").value = ev.price || "";
+  document.getElementById("event-pricenote").value = ev.priceNote || "";
+  document.getElementById("event-agenda").value = (Array.isArray(ev.agenda) ? ev.agenda.join("\n") : ev.agenda) || "";
+  document.getElementById("event-speakers").value = (Array.isArray(ev.speakers) ? ev.speakers.join("\n") : ev.speakers) || "";
+  document.getElementById("event-registration").value = ev.registrationInfo || "";
+  document.getElementById("event-cta").value = ev.cta || "";
+  document.getElementById("event-url").value = ev.ctaUrl || "";
+  document.getElementById("event-contact-email").value = ev.contactEmail || "";
   openModal("event-modal-overlay");
 };
 
 document.getElementById("add-event-btn").addEventListener("click", () => {
   editingEventIdx = -1;
   document.getElementById("event-modal-title").textContent = "Add event";
-  ["event-title","event-date","event-time","event-description","event-price","event-pricenote","event-cta","event-url"].forEach(id => document.getElementById(id).value = "");
+  ["event-title","event-date","event-time","event-description","event-long-description","event-price","event-pricenote","event-cta","event-url","event-image-path","event-imagealt","event-agenda","event-speakers","event-registration","event-contact-email"].forEach(id => document.getElementById(id).value = "");
+  document.getElementById("event-img-preview").classList.remove("visible");
   openModal("event-modal-overlay");
 });
 
@@ -788,14 +877,23 @@ document.getElementById("save-event-post-btn").addEventListener("click", async (
   const title = document.getElementById("event-title").value.trim();
   const description = document.getElementById("event-description").value.trim();
   if (!title || !description) { toast("Title and description required.", "error"); return; }
+  const agendaText = document.getElementById("event-agenda").value.trim();
+  const speakersText = document.getElementById("event-speakers").value.trim();
   const entry = {
     title, date: document.getElementById("event-date").value || undefined,
     time: document.getElementById("event-time").value.trim() || undefined,
     price: document.getElementById("event-price").value.trim() || undefined,
     priceNote: document.getElementById("event-pricenote").value.trim() || undefined,
     description,
+    longDescription: document.getElementById("event-long-description").value.trim() || undefined,
+    image: document.getElementById("event-image-path").value.trim() || undefined,
+    imageAlt: document.getElementById("event-imagealt").value.trim() || undefined,
+    agenda: agendaText ? agendaText.split("\n").map(l => l.trim()).filter(Boolean) : undefined,
+    speakers: speakersText ? speakersText.split("\n").map(l => l.trim()).filter(Boolean) : undefined,
+    registrationInfo: document.getElementById("event-registration").value.trim() || undefined,
     cta: document.getElementById("event-cta").value.trim() || undefined,
-    url: document.getElementById("event-url").value.trim() || undefined,
+    ctaUrl: document.getElementById("event-url").value.trim() || undefined,
+    contactEmail: document.getElementById("event-contact-email").value.trim() || undefined,
   };
   Object.keys(entry).forEach(k => entry[k] === undefined && delete entry[k]);
   setBusy("save-event-post-txt", "save-event-post-sp", true);
