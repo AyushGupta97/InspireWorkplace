@@ -4,7 +4,7 @@
       "eyebrow": "Marathahalli ORR, Bengaluru",
       "headingPrefix": "Coworking spaces designed for",
       "headingEmphasis": "focus and growth.",
-      "lead": "Whether you’re a freelancer, a startup, or a growing team, Inspire Workplace gives you a professional environment designed to help you do your best work.",
+      "lead": "Whether youÃ¢ÂÂre a freelancer, a startup, or a growing team, Inspire Workplace gives you a professional environment designed to help you do your best work.",
       "cta1Text": "Book a free tour",
       "cta1Url": "html/contact.html",
       "cta2Text": "View spaces and pricing",
@@ -21,8 +21,8 @@
     },
     "spacesSection": {
       "eyebrow": "Our spaces",
-      "heading": "Choose the right workspace for today, then scale without moving.",
-      "lead": "A workspace stack for individuals, founders, distributed teams and companies that need a managed office in Bangalore without traditional lease overhead.",
+      "heading": "From teams of 3 to 30, we have spaces that fit the way you work.",
+      "lead": "",
       "items": [
         {
           "num": "01",
@@ -594,5 +594,5 @@
       ]
     }
   },
-  "revision": 1779206688
+  "revision": 1779207737
 }
