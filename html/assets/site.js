@@ -130,9 +130,18 @@ const formatDate = (value) => {
 };
 
 const loadJson = async (url) => {
-  const response = await fetch(url, { cache: "default" });
-  if (!response.ok) throw new Error(`Unable to load ${url}`);
-  return response.json();
+  try {
+    const response = await fetch(url, { cache: "default" });
+    if (!response.ok) {
+      console.warn(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
+      throw new Error(`Unable to load ${url}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error(`loadJson error for ${url}:`, e);
+    throw e;
+  }
 };
 
 const renderBlogs = (container, posts) => {
@@ -184,15 +193,45 @@ const renderEvents = (container, events) => {
 };
 
 const blogList = document.querySelector("[data-blog-list]");
-if (blogList?.dataset.source) {
-  loadJson(blogList.dataset.source)
-    .then((posts) => renderBlogs(blogList, posts))
-    .catch(() => {});
+if (blogList) {
+  const blogSource = blogList.getAttribute("data-source");
+  if (blogSource) {
+    loadJson(blogSource)
+      .then((posts) => {
+        if (Array.isArray(posts) && posts.length > 0) {
+          renderBlogs(blogList, posts);
+        } else {
+          console.warn("No blog posts found or invalid format");
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load blogs from " + blogSource + ":", err.message);
+      });
+  } else {
+    console.warn("[data-blog-list] found but no data-source attribute");
+  }
+} else {
+  console.warn("[data-blog-list] element not found on this page");
 }
 
 const eventList = document.querySelector("[data-event-list]");
-if (eventList?.dataset.source) {
-  loadJson(eventList.dataset.source)
-    .then((events) => renderEvents(eventList, events))
-    .catch(() => {});
+if (eventList) {
+  const eventSource = eventList.getAttribute("data-source");
+  if (eventSource) {
+    loadJson(eventSource)
+      .then((events) => {
+        if (Array.isArray(events) && events.length > 0) {
+          renderEvents(eventList, events);
+        } else {
+          console.warn("No events found or invalid format");
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load events from " + eventSource + ":", err.message);
+      });
+  } else {
+    console.warn("[data-event-list] found but no data-source attribute");
+  }
+} else {
+  console.warn("[data-event-list] element not found on this page");
 }
