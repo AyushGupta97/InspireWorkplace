@@ -201,8 +201,9 @@ function render(type, data, base) {
 
     testimonialsGrid: items => items.map((it, i) => `
       <blockquote class="quote${it.featured ? ' featured' : ''}" data-reveal ${i > 0 ? `data-delay="${Math.min(i,4)}"` : ''}>
+        ${it.image ? `<img src="${cp}${esc(it.image)}" alt="${esc(it.cite)}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;margin-bottom:1rem;">` : ''}
         <p>"${esc(it.text)}"</p>
-        <cite>${esc(it.cite)}</cite>
+        <cite><strong>${esc(it.cite)}</strong>${it.title ? `<br>${esc(it.title)}` : ''}</cite>
       </blockquote>`).join(''),
 
     faqItems: items => items.map(it => `
