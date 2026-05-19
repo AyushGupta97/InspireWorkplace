@@ -17,6 +17,17 @@
     // Expose settings globally so site.js can read web3formsKey
     window._siteSettings = all.settings || {};
 
+    // ── Content revision tracking (auto-refresh when edited) ────
+    const currentRevision = all.revision;
+    const storedRevision = sessionStorage.getItem('_contentRevision');
+    if (currentRevision && storedRevision && currentRevision !== storedRevision) {
+      // Content was updated in admin panel, reload page to show latest
+      sessionStorage.setItem('_contentRevision', currentRevision);
+      location.reload();
+    } else if (currentRevision) {
+      sessionStorage.setItem('_contentRevision', currentRevision);
+    }
+
     // ── Inject SEO meta tags ──────────────────────────────────
     const seoData = all.seo && all.seo[pageId];
     if (seoData) {

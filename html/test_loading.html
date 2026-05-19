@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Blog and Events Loading</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    .section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+    .article-card { padding: 10px; margin: 10px 0; background: #f9f9f9; border: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <h1>Test: JSON Loading</h1>
+  
+  <div class="section">
+    <h2>Blog Articles (should show 6 from JSON)</h2>
+    <div class="blog-grid" data-blog-list data-source="../data/blogs.json">
+      <div class="article-card">Static fallback - if you see this, JSON didn't load</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Events (should show 3 from JSON)</h2>
+    <div class="space-list" data-event-list data-source="../data/events.json">
+      <div>Static fallback - if you see this, JSON didn't load</div>
+    </div>
+  </div>
+
+  <div class="section" id="log-area">
+    <h2>Console Log:</h2>
+    <pre id="log-content" style="background: #222; color: #0f0; padding: 10px; overflow-x: auto;"></pre>
+  </div>
+
+  <script>
+    // Capture console output
+    const logContent = document.getElementById('log-content');
+    const originalLog = console.log;
+    const originalWarn = console.warn;
+    const originalError = console.error;
+
+    function addLog(msg, style = '') {
+      logContent.textContent += msg + '\n';
+      logContent.scrollTop = logContent.scrollHeight;
+    }
+
+    console.log = (...args) => {
+      addLog('LOG: ' + args.join(' '));
+      originalLog.apply(console, args);
+    };
+    console.warn = (...args) => {
+      addLog('WARN: ' + args.join(' '));
+      originalWarn.apply(console, args);
+    };
+    console.error = (...args) => {
+      addLog('ERROR: ' + args.join(' '));
+      originalError.apply(console, args);
+    };
+
+    // Load the scripts
+    const script1 = document.createElement('script');
+    script1.src = 'assets/content-loader.js';
+    script1.onload = () => { console.log('content-loader.js loaded'); };
+    script1.onerror = () => { console.error('Failed to load content-loader.js'); };
+    document.body.appendChild(script1);
+
+    const script2 = document.createElement('script');
+    script2.src = 'assets/site.js';
+    script2.onload = () => { 
+      console.log('site.js loaded');
+      setTimeout(() => {
+        console.log('Blog grid articles count:', document.querySelectorAll('.blog-grid .article-card').length);
+        console.log('Event list items count:', document.querySelectorAll('.space-list article').length);
+      }, 500);
+    };
+    script2.onerror = () => { console.error('Failed to load site.js'); };
+    document.body.appendChild(script2);
+  </script>
+</body>
+</html>

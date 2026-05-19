@@ -694,6 +694,7 @@ document.getElementById("save-blog-post-btn").addEventListener("click", async ()
   setBusy("save-blog-post-txt", "save-blog-post-sp", true);
   try {
     editingBlogIdx === -1 ? blogs.unshift(entry) : (blogs[editingBlogIdx] = entry);
+    blogs._revision = Math.floor(Date.now() / 1000);
     blogSha = await ghPut(BLOGS_PATH, blogs, blogSha, `${editingBlogIdx === -1 ? "Add" : "Update"} blog: ${title}`);
     closeModal("blog-modal-overlay"); renderBlogList();
     toast(editingBlogIdx === -1 ? "Post added." : "Post updated.");
@@ -703,7 +704,7 @@ document.getElementById("save-blog-post-btn").addEventListener("click", async ()
 
 window.deleteBlog = async i => {
   if (!await confirmDialog("Delete post?", `"${blogs[i].title}" will be permanently removed.`)) return;
-  try { blogs.splice(i, 1); blogSha = await ghPut(BLOGS_PATH, blogs, blogSha, `Delete blog #${i}`); renderBlogList(); toast("Post deleted."); }
+  try { blogs.splice(i, 1); blogs._revision = Math.floor(Date.now() / 1000); blogSha = await ghPut(BLOGS_PATH, blogs, blogSha, `Delete blog #${i}`); renderBlogList(); toast("Post deleted."); }
   catch (e) { toast(e.message, "error"); await loadBlogs(); }
 };
 
@@ -800,6 +801,7 @@ document.getElementById("save-event-post-btn").addEventListener("click", async (
   setBusy("save-event-post-txt", "save-event-post-sp", true);
   try {
     editingEventIdx === -1 ? events.push(entry) : (events[editingEventIdx] = entry);
+    events._revision = Math.floor(Date.now() / 1000);
     eventSha = await ghPut(EVENTS_PATH, events, eventSha, `${editingEventIdx === -1 ? "Add" : "Update"} event: ${title}`);
     closeModal("event-modal-overlay"); renderEventList();
     toast(editingEventIdx === -1 ? "Event added." : "Event updated.");
@@ -809,7 +811,7 @@ document.getElementById("save-event-post-btn").addEventListener("click", async (
 
 window.deleteEvent = async i => {
   if (!await confirmDialog("Delete event?", `"${events[i].title}" will be removed.`)) return;
-  try { events.splice(i, 1); eventSha = await ghPut(EVENTS_PATH, events, eventSha, `Delete event #${i}`); renderEventList(); toast("Event deleted."); }
+  try { events.splice(i, 1); events._revision = Math.floor(Date.now() / 1000); eventSha = await ghPut(EVENTS_PATH, events, eventSha, `Delete event #${i}`); renderEventList(); toast("Event deleted."); }
   catch (e) { toast(e.message, "error"); await loadEvents(); }
 };
 
@@ -824,6 +826,7 @@ const loadContent = async () => {
 const saveContent = async (pageKey, btnSpanId, btnSpId) => {
   setBusy(btnSpanId, btnSpId, true);
   try {
+    contentData.revision = Math.floor(Date.now() / 1000);
     contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, `Update ${pageKey} page content`);
     toast("Saved successfully.");
   } catch (e) { toast(e.message, "error"); }
@@ -859,6 +862,7 @@ document.getElementById("save-seo-btn")?.addEventListener("click", async () => {
   setBusy(null, "save-seo-sp", true);
   try {
     collectSeoData(seoActivePage);
+    contentData.revision = Math.floor(Date.now() / 1000);
     contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, "Update SEO settings");
     toast("SEO settings saved successfully.");
   } catch (e) { toast(e.message, "error"); }
@@ -1387,6 +1391,7 @@ document.getElementById("save-settings-btn").addEventListener("click", async () 
     contentData.settings.web3formsKey = document.getElementById("s-w3f-key").value.trim();
     contentData.settings.contactEmail = document.getElementById("s-contact-email").value.trim();
     contentData.settings.formSubject = document.getElementById("s-form-subject").value.trim();
+    contentData.revision = Math.floor(Date.now() / 1000);
     contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, "Update settings");
     status.textContent = "Settings saved. The contact form will use the new key on next page load.";
     status.className = "status-bar success show";

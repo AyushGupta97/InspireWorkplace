@@ -129,7 +129,7 @@ const formatDate = (value) => {
   }).format(date);
 };
 
-const loadJson = async (url) => {
+const loadJson = async (url, storageKey) => {
   try {
     const response = await fetch(url, { cache: "default" });
     if (!response.ok) {
@@ -137,6 +137,21 @@ const loadJson = async (url) => {
       throw new Error(`Unable to load ${url}`);
     }
     const data = await response.json();
+
+    // ── Update tracking for auto-refresh ──────────────────────
+    if (storageKey) {
+      const revision = data.revision || data._revision;
+      if (revision) {
+        const storedRevision = sessionStorage.getItem(`_${storageKey}_revision`);
+        if (storedRevision && storedRevision !== String(revision)) {
+          sessionStorage.setItem(`_${storageKey}_revision`, revision);
+          location.reload();
+        } else {
+          sessionStorage.setItem(`_${storageKey}_revision`, revision);
+        }
+      }
+    }
+
     return data;
   } catch (e) {
     console.error(`loadJson error for ${url}:`, e);
@@ -196,7 +211,7 @@ const blogList = document.querySelector("[data-blog-list]");
 if (blogList) {
   const blogSource = blogList.getAttribute("data-source");
   if (blogSource) {
-    loadJson(blogSource)
+    loadJson(blogSource, "blogs")
       .then((posts) => {
         if (Array.isArray(posts) && posts.length > 0) {
           renderBlogs(blogList, posts);
@@ -218,7 +233,7 @@ const eventList = document.querySelector("[data-event-list]");
 if (eventList) {
   const eventSource = eventList.getAttribute("data-source");
   if (eventSource) {
-    loadJson(eventSource)
+    loadJson(eventSource, "events")
       .then((events) => {
         if (Array.isArray(events) && events.length > 0) {
           renderEvents(eventList, events);
