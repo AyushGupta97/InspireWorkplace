@@ -139,16 +139,15 @@ const loadJson = async (url, storageKey) => {
     const data = await response.json();
 
     // ── Update tracking for auto-refresh ──────────────────────
-    if (storageKey) {
-      const revision = data.revision || data._revision;
-      if (revision) {
-        const storedRevision = sessionStorage.getItem(`_${storageKey}_revision`);
-        if (storedRevision && storedRevision !== String(revision)) {
-          sessionStorage.setItem(`_${storageKey}_revision`, revision);
-          location.reload();
-        } else {
-          sessionStorage.setItem(`_${storageKey}_revision`, revision);
-        }
+    // Only check for content.json (which has proper revision field)
+    // Skip for blogs/events arrays as they use _revision which doesn't serialize properly to JSON
+    if (storageKey === "content" && data.revision) {
+      const storedRevision = sessionStorage.getItem(`_${storageKey}_revision`);
+      if (storedRevision && storedRevision !== String(data.revision)) {
+        sessionStorage.setItem(`_${storageKey}_revision`, data.revision);
+        location.reload();
+      } else {
+        sessionStorage.setItem(`_${storageKey}_revision`, data.revision);
       }
     }
 

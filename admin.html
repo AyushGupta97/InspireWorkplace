@@ -709,7 +709,6 @@ document.getElementById("save-blog-post-btn").addEventListener("click", async ()
   setBusy("save-blog-post-txt", "save-blog-post-sp", true);
   try {
     editingBlogIdx === -1 ? blogs.unshift(entry) : (blogs[editingBlogIdx] = entry);
-    blogs._revision = Math.floor(Date.now() / 1000);
     blogSha = await ghPut(BLOGS_PATH, blogs, blogSha, `${editingBlogIdx === -1 ? "Add" : "Update"} blog: ${title}`);
     closeModal("blog-modal-overlay"); renderBlogList();
     toast(editingBlogIdx === -1 ? "Post added." : "Post updated.");
@@ -719,7 +718,7 @@ document.getElementById("save-blog-post-btn").addEventListener("click", async ()
 
 window.deleteBlog = async i => {
   if (!await confirmDialog("Delete post?", `"${blogs[i].title}" will be permanently removed.`)) return;
-  try { blogs.splice(i, 1); blogs._revision = Math.floor(Date.now() / 1000); blogSha = await ghPut(BLOGS_PATH, blogs, blogSha, `Delete blog #${i}`); renderBlogList(); toast("Post deleted."); }
+  try { blogs.splice(i, 1); blogSha = await ghPut(BLOGS_PATH, blogs, blogSha, `Delete blog #${i}`); renderBlogList(); toast("Post deleted."); }
   catch (e) { toast(e.message, "error"); await loadBlogs(); }
 };
 
@@ -899,7 +898,6 @@ document.getElementById("save-event-post-btn").addEventListener("click", async (
   setBusy("save-event-post-txt", "save-event-post-sp", true);
   try {
     editingEventIdx === -1 ? events.push(entry) : (events[editingEventIdx] = entry);
-    events._revision = Math.floor(Date.now() / 1000);
     eventSha = await ghPut(EVENTS_PATH, events, eventSha, `${editingEventIdx === -1 ? "Add" : "Update"} event: ${title}`);
     closeModal("event-modal-overlay"); renderEventList();
     toast(editingEventIdx === -1 ? "Event added." : "Event updated.");
@@ -909,7 +907,7 @@ document.getElementById("save-event-post-btn").addEventListener("click", async (
 
 window.deleteEvent = async i => {
   if (!await confirmDialog("Delete event?", `"${events[i].title}" will be removed.`)) return;
-  try { events.splice(i, 1); events._revision = Math.floor(Date.now() / 1000); eventSha = await ghPut(EVENTS_PATH, events, eventSha, `Delete event #${i}`); renderEventList(); toast("Event deleted."); }
+  try { events.splice(i, 1); eventSha = await ghPut(EVENTS_PATH, events, eventSha, `Delete event #${i}`); renderEventList(); toast("Event deleted."); }
   catch (e) { toast(e.message, "error"); await loadEvents(); }
 };
 
