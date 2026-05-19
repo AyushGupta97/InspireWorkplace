@@ -1175,7 +1175,7 @@ window.editListItem = (pageKey, secId, idx) => {
   itemModalCallback = () => {
     const updated = {};
     schema.list.fields.forEach(f => {
-      const id = `cf---item-${f.key}`;
+      const id = `cf-__item-${f.key}`;
       const el = document.getElementById(id);
       if (el) updated[f.key] = el.value.trim() || undefined;
     });
@@ -1212,7 +1212,7 @@ window.addListItem = (pageKey, secId) => {
   itemModalCallback = () => {
     const entry = {};
     schema.list.fields.forEach(f => {
-      const id = `cf---item-${f.key}`;
+      const id = `cf-__item-${f.key}`;
       const el = document.getElementById(id);
       if (el) entry[f.key] = el.value.trim() || undefined;
     });
@@ -1382,10 +1382,9 @@ const homeSchema = () => [
     ]},
   { id: "heroImages", title: "Hero Images", icon: "🖼️",
     fields: [
-      { key: "img1", label: "Hero Image 1 (main floor)" },
-      { key: "img2", label: "Hero Image 2 (rooftop)", }
-    ],
-    hasImages: true },
+      { key: "img1", label: "Hero Image 1 (main floor)", type: "image" },
+      { key: "img2", label: "Hero Image 2 (rooftop)", type: "image" }
+    ] },
   { id: "spacesSection", title: "Spaces List", icon: "📋",
     fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "lead", label: "Lead", type: "textarea" }],
     list: { key: "items", title: "Space types", addLabel: "Add space type",
@@ -1441,11 +1440,10 @@ const spacesSchema = () => [
 
 const aboutSchema = () => [
   { id: "storySection", title: "Our Story", icon: "📖",
-    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "H1 Heading" }, { key: "lead", label: "Lead", type: "textarea" }, { key: "image", label: "Story image" }],
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "H1 Heading" }, { key: "lead", label: "Lead", type: "textarea" }, { key: "image", label: "Story image", type: "image" }],
     list: { key: "checks", title: "Check list", addLabel: "Add item",
       itemLabel: i => (typeof i === "string" ? i : i.text || "Item"),
-      fields: [{ key: "_text", label: "Text" }] },
-    hasImages: true },
+      fields: [{ key: "_text", label: "Text" }] } },
   { id: "valuesSection", title: "Values", icon: "🏅",
     fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }],
     list: { key: "items", title: "Value cards", addLabel: "Add value",
@@ -1490,11 +1488,10 @@ const contactSchema = () => [
       { key: "hours", label: "Business hours" },
     ] },
   { id: "locationSection", title: "Location Section", icon: "📍",
-    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "lead", label: "Lead", type: "textarea" }, { key: "image", label: "Location image" }],
+    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "lead", label: "Lead", type: "textarea" }, { key: "image", label: "Location image", type: "image" }],
     list: { key: "checks", title: "Check list", addLabel: "Add item",
       itemLabel: i => (typeof i === "string" ? i : i.text || "Item"),
-      fields: [{ key: "_text", label: "Text" }] },
-    hasImages: true },
+      fields: [{ key: "_text", label: "Text" }] } },
 ];
 
 // Handle the "checks" lists where items are plain strings
