@@ -4,16 +4,14 @@
       "eyebrow": "Marathahalli ORR, Bengaluru",
       "headingPrefix": "Coworking spaces designed for ",
       "headingEmphasis": "focus and growth.",
-      "lead": "Inspire Workplace gives freelancers, startups and growing teams a professional workspace with hot desks, dedicated desks, private cabins, managed offices, virtual office support and a rooftop cafeteria.",
+      "lead": "Whether you're a freelancer, startup, or growing team, Inspire Workplace gives you a professional environment designed to help you do your best work.",
       "cta1Text": "Book a free tour",
       "cta1Url": "html/contact.html",
       "cta2Text": "View spaces and pricing",
       "cta2Url": "html/spaces.html",
-      "point1": "Plans from ₹6,000/month",
-      "point2": "ORR address for GST",
-      "point3": "Private cabins and managed offices",
-      "metricTitle": "8 AM - 8 PM",
-      "metricSub": "Open Monday to Saturday with staffed support and building amenities."
+      "point1": "Plans starting from ₹5,000/month",
+      "point2": "Virtual Office Agreements",
+      "point3": "Private cabins and managed offices"
     },
     "heroImages": {
       "img1": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg",
@@ -108,28 +106,6 @@
         "Near Marathahalli, ITPL, Bagmane and Prestige Tech Park commute corridors.",
         "Move from hot desk to dedicated desk, private cabin or managed office in one address.",
         "Transparent pricing with common amenities built into the workspace experience."
-      ]
-    },
-    "rooftopSection": {
-      "eyebrow": "Rooftop included",
-      "heading": "Space to pause, meet and reset between focused work blocks.",
-      "body": "At this price point, a rooftop cafeteria is rare. It gives members an open-air break area, city views and a natural place for informal conversations.",
-      "stats": [
-        {
-          "value": "6",
-          "suffix": "+",
-          "label": "workspace formats"
-        },
-        {
-          "value": "40",
-          "suffix": "",
-          "label": "training room seats"
-        },
-        {
-          "value": "2",
-          "suffix": "",
-          "label": "phone lines for enquiries"
-        }
       ]
     },
     "reviewsSection": {
