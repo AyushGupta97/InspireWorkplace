@@ -434,7 +434,7 @@
   },
   "blog": {
     "header": {
-      "eyebrow": "Inspire Journal",
+      "eyebrow": "Inspire Blogs",
       "heading": "Ideas on work, space and building teams in Bangalore.",
       "lead": "Practical articles on coworking, startup growth, productivity, virtual offices and managed office planning from Inspire Workplace Bangalore."
     },
@@ -594,5 +594,5 @@
       ]
     }
   },
-  "revision": 1779210325
+  "revision": 1779210380
 }
