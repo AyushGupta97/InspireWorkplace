@@ -17,15 +17,12 @@
     // Expose settings globally so site.js can read web3formsKey
     window._siteSettings = all.settings || {};
 
-    // ── Content revision tracking (auto-refresh when edited) ────
-    const currentRevision = all.revision;
-    const storedRevision = sessionStorage.getItem('_contentRevision');
-    if (currentRevision && storedRevision && currentRevision !== storedRevision) {
-      // Content was updated in admin panel, reload page to show latest
-      sessionStorage.setItem('_contentRevision', currentRevision);
+    // ── Content refresh (only when triggered from admin save) ────
+    // Check if admin panel signaled a reload is needed
+    if (localStorage.getItem('_adminSaved') === 'true') {
+      localStorage.removeItem('_adminSaved');
+      // Reload to show updated content from admin
       location.reload();
-    } else if (currentRevision) {
-      sessionStorage.setItem('_contentRevision', currentRevision);
     }
 
     // ── Inject SEO meta tags ──────────────────────────────────

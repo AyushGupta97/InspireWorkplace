@@ -924,7 +924,9 @@ const saveContent = async (pageKey, btnSpanId, btnSpId) => {
   try {
     contentData.revision = Math.floor(Date.now() / 1000);
     contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, `Update ${pageKey} page content`);
-    toast("Saved successfully.");
+    toast("Saved successfully. Pages will update on next visit.");
+    // Signal to pages that content was updated
+    localStorage.setItem('_adminSaved', 'true');
   } catch (e) { toast(e.message, "error"); }
   finally { setBusy(btnSpanId, btnSpId, false); }
 };
@@ -960,7 +962,9 @@ document.getElementById("save-seo-btn")?.addEventListener("click", async () => {
     collectSeoData(seoActivePage);
     contentData.revision = Math.floor(Date.now() / 1000);
     contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, "Update SEO settings");
-    toast("SEO settings saved successfully.");
+    toast("SEO settings saved successfully. Pages will update on next visit.");
+    // Signal to pages that content was updated
+    localStorage.setItem('_adminSaved', 'true');
   } catch (e) { toast(e.message, "error"); }
   finally { setBusy(null, "save-seo-sp", false); }
 });
@@ -1489,9 +1493,11 @@ document.getElementById("save-settings-btn").addEventListener("click", async () 
     contentData.settings.formSubject = document.getElementById("s-form-subject").value.trim();
     contentData.revision = Math.floor(Date.now() / 1000);
     contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, "Update settings");
-    status.textContent = "Settings saved. The contact form will use the new key on next page load.";
+    status.textContent = "Settings saved. Pages will update on next visit.";
     status.className = "status-bar success show";
     setTimeout(() => status.classList.remove("show"), 4000);
+    // Signal to pages that content was updated
+    localStorage.setItem('_adminSaved', 'true');
   } catch (e) { status.textContent = e.message; status.className = "status-bar error show"; }
   finally { setBusy(null, "save-settings-sp", false); }
 });
