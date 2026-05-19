@@ -4,7 +4,7 @@
       "eyebrow": "Marathahalli ORR, Bengaluru",
       "headingPrefix": "Coworking spaces designed for",
       "headingEmphasis": "focus and growth.",
-      "lead": "Whether youÃ¢ÂÂre a freelancer, a startup, or a growing team, Inspire Workplace gives you a professional environment designed to help you do your best work.",
+      "lead": "Whether youÃÂ¢ÃÂÃÂre a freelancer, a startup, or a growing team, Inspire Workplace gives you a professional environment designed to help you do your best work.",
       "cta1Text": "Book a free tour",
       "cta1Url": "html/contact.html",
       "cta2Text": "View spaces and pricing",
@@ -27,36 +27,36 @@
         {
           "num": "01",
           "title": "Hot Desk",
-          "desc": "Any available desk on the open floor. Walk in, plug in and work with high-speed internet, common areas and cafeteria access.",
-          "price": "₹6,000",
+          "desc": "Walk in, plug in, and work with high-speed internet, common areas, and cafeteria access.",
+          "price": "5,000",
           "per": "/ month"
         },
         {
           "num": "02",
           "title": "Dedicated Desk",
           "desc": "Your fixed desk, personal locker, priority meeting room access and mail handling for everyday professionals.",
-          "price": "₹8,000",
+          "price": "6,000",
           "per": "/ month"
         },
         {
           "num": "03",
           "title": "Private Cabin",
-          "desc": "Enclosed glass cabins for 4 to 10 seats, customised on longer contracts with branding and layout support.",
-          "price": "₹40K+",
+          "desc": "Enclosed glass cabins for 4 to 10 seats, customised for longer contracts with branding and layout support.",
+          "price": "40,000",
           "per": "/ month"
         },
         {
           "num": "04",
           "title": "Managed Office",
           "desc": "A complete zone or floor built to spec for 15 to 50 person teams with furniture, cabling and branding ready before move-in.",
-          "price": "₹10K+",
+          "price": "6,000",
           "per": "/ seat"
         },
         {
           "num": "05",
           "title": "Virtual Office",
           "desc": "ORR business address for GST registration, mail handling and meeting room hours without a full-time desk.",
-          "price": "₹2,000",
+          "price": "2,000",
           "per": "/ month"
         }
       ]
@@ -106,7 +106,7 @@
       "lead": "Thoughtfully designed workspaces in a prime ORR location, with natural light, warm interiors, and the flexibility to choose what works best for your team.",
       "checks": [
         "Well-connected location near Marathahalli, ITPL, Bagmane & Prestige Tech Park",
-        "Multiple workspace options in one placeâfrom hot desks to managed offices",
+        "Multiple workspace options in one placeÃ¢ÂÂfrom hot desks to managed offices",
         "Transparent pricing with essential amenities included"
       ]
     },
@@ -207,7 +207,7 @@
         "id": "hot-desk",
         "title": "Hot Desk",
         "subtitle": "For freelancers & individuals",
-        "desc": "Work from any available desk on our open floorâmaximum flexibility, no long-term commitment.",
+        "desc": "Work from any available desk on our open floorÃ¢ÂÂmaximum flexibility, no long-term commitment.",
         "features": [
           "Access to any available seat",
           "High-speed leased line internet",
@@ -216,11 +216,11 @@
         "pricing": [
           {
             "label": "Day Pass",
-            "price": "₹350/day"
+            "price": "â¹350/day"
           },
           {
             "label": "Monthly",
-            "price": "₹5,000"
+            "price": "â¹5,000"
           }
         ],
         "cta": "Enquire Now",
@@ -240,7 +240,7 @@
         "pricing": [
           {
             "label": "Monthly",
-            "price": "₹6,000"
+            "price": "â¹6,000"
           }
         ],
         "cta": "Enquire Now",
@@ -249,18 +249,18 @@
       {
         "id": "private-cabin",
         "title": "Private Cabin",
-        "subtitle": "For teams of 4â10",
+        "subtitle": "For teams of 4Ã¢ÂÂ10",
         "desc": "A fully enclosed, secure workspace for your team. Designed for privacy, focus, and collaboration.",
         "features": [
           "Glass-partition, enclosed cabin",
           "Custom layout & branding (6+ months)",
           "Dedicated meeting room hours",
-          "Available for 4â10 seats"
+          "Available for 4Ã¢ÂÂ10 seats"
         ],
         "pricing": [
           {
             "label": "Starting at",
-            "price": "₹40,000/month"
+            "price": "â¹40,000/month"
           }
         ],
         "cta": "Enquire Now",
@@ -269,18 +269,18 @@
       {
         "id": "managed-office",
         "title": "Managed Office",
-        "subtitle": "For teams of 15â50",
-        "desc": "A fully customised office space built to your requirementsâready to move in from day one.",
+        "subtitle": "For teams of 15Ã¢ÂÂ50",
+        "desc": "A fully customised office space built to your requirementsÃ¢ÂÂready to move in from day one.",
         "features": [
           "Private zone or full-floor options",
           "Custom interiors, furniture & branding",
           "Dedicated server room option",
-          "12â24 month contracts"
+          "12Ã¢ÂÂ24 month contracts"
         ],
         "pricing": [
           {
             "label": "Starting at",
-            "price": "₹6,000/seat/month"
+            "price": "â¹6,000/seat/month"
           }
         ],
         "cta": "Discuss Requirements",
@@ -299,7 +299,7 @@
         "pricing": [
           {
             "label": "Starting at",
-            "price": "₹21,000/yearly"
+            "price": "â¹21,000/yearly"
           }
         ],
         "cta": "Enquire Now",
@@ -319,7 +319,7 @@
         "pricing": [
           {
             "label": "Starting at",
-            "price": "₹3,500/per hour"
+            "price": "â¹3,500/per hour"
           }
         ],
         "cta": "Check Availability",
@@ -399,7 +399,7 @@
       {
         "title": "Training Room",
         "desc": "Seats up to 40 people with projector, screen, whiteboard and catering options.",
-        "price": "₹8,000",
+        "price": "â¹8,000",
         "per": "/ day",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"
       },
@@ -413,7 +413,7 @@
       {
         "title": "Founder Meetups",
         "desc": "Professional venue for talks, product demos, networking breakfasts and small-group sessions.",
-        "price": "From ₹299",
+        "price": "From â¹299",
         "per": "/ attendee",
         "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
       }
@@ -478,7 +478,7 @@
   "seo": {
     "home": {
       "title": "Inspire Workplace | Coworking Spaces in Bangalore |6,000/month",
-      "description": "Flexible coworking spaces on Marathahalli ORR in Bangalore. Hot desks from ₹6,000/month, dedicated desks, private cabins, managed offices and rooftop cafeteria.",
+      "description": "Flexible coworking spaces on Marathahalli ORR in Bangalore. Hot desks from â¹6,000/month, dedicated desks, private cabins, managed offices and rooftop cafeteria.",
       "keywords": "coworking space Bangalore, hot desk, dedicated desk, private cabin, managed office, virtual office, ORR, Marathahalli",
       "ogTitle": "Inspire Workplace | Coworking Spaces Bangalore",
       "ogDescription": "Flexible coworking spaces on Marathahalli ORR with hot desks, cabins, managed offices and rooftop cafeteria.",
@@ -488,7 +488,7 @@
     },
     "spaces": {
       "title": "Coworking Plans & Pricing | Inspire Workplace Bangalore",
-      "description": "Hot desks, dedicated desks, private cabins, managed offices and virtual office plans starting from ₹6,000/month. Compare pricing and amenities.",
+      "description": "Hot desks, dedicated desks, private cabins, managed offices and virtual office plans starting from â¹6,000/month. Compare pricing and amenities.",
       "keywords": "coworking plans, flexible workspace, hot desk price, dedicated desk, private cabin, managed office, virtual office",
       "ogTitle": "Coworking Plans & Pricing",
       "ogDescription": "Flexible workspace options from hot desks to managed offices. All plans include high-speed internet, meeting rooms and rooftop cafeteria.",
@@ -498,7 +498,7 @@
     },
     "about": {
       "title": "About Inspire Workplace | Coworking in Bangalore",
-      "description": "Learn about Inspire Workplace â a flexible coworking space built for focus, community and growth on Marathahalli ORR in Bangalore.",
+      "description": "Learn about Inspire Workplace Ã¢ÂÂ a flexible coworking space built for focus, community and growth on Marathahalli ORR in Bangalore.",
       "keywords": "about inspire workplace, coworking community, workspace design, flexible workspace",
       "ogTitle": "About Inspire Workplace",
       "ogDescription": "Designed for focus, community and growth. A flexible coworking space on ORR with natural light, rooftop and warm interiors.",
@@ -540,7 +540,7 @@
   "settings": {
     "web3formsKey": "d28fdc1b-8b2a-448c-9e53-9f6a1135caac",
     "contactEmail": "ayushgupta79@gmail.com",
-    "formSubject": "New Tour Booking â Inspire Workplace",
+    "formSubject": "New Tour Booking Ã¢ÂÂ Inspire Workplace",
     "googleVerification": "",
     "schema": {
       "localBusiness": {
@@ -552,7 +552,7 @@
         "addressLocality": "Bengaluru",
         "addressRegion": "Karnataka",
         "postalCode": "560037",
-        "priceRange": "₹₹",
+        "priceRange": "â¹â¹",
         "url": "https://inspireworkplace.com/",
         "image": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg",
         "openingHours": "Mo-Sa 08:00-20:00"
@@ -594,5 +594,5 @@
       ]
     }
   },
-  "revision": 1779207737
+  "revision": 1779209269
 }
