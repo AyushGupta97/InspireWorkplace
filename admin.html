@@ -1001,9 +1001,9 @@ const saveContent = async (pageKey, btnSpanId, btnSpId) => {
   try {
     contentData.revision = Math.floor(Date.now() / 1000);
     contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, `Update ${pageKey} page content`);
-    toast("Saved successfully. Pages will update on next visit.");
     // Signal to pages that content was updated
     localStorage.setItem('_adminSaved', 'true');
+    toast("✓ Saved! Visit the website to see changes (Ctrl+Shift+R to hard refresh).");
   } catch (e) { toast(e.message, "error"); }
   finally { setBusy(btnSpanId, btnSpId, false); }
 };

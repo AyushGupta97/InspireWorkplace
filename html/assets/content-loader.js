@@ -10,20 +10,21 @@
   const dataPath = base ? `${base}/data` : 'data';
 
   try {
+    // Check if admin panel signaled a reload is needed
+    const adminSaved = localStorage.getItem('_adminSaved') === 'true';
+    if (adminSaved) {
+      localStorage.removeItem('_adminSaved');
+      // Hard refresh to bypass cache and get fresh content
+      location.reload(true);
+      return;
+    }
+
     const res = await fetch(`${dataPath}/content.json`, { cache: 'default' });
     if (!res.ok) return;
     const all = await res.json();
 
     // Expose settings globally so site.js can read web3formsKey
     window._siteSettings = all.settings || {};
-
-    // ── Content refresh (only when triggered from admin save) ────
-    // Check if admin panel signaled a reload is needed
-    if (localStorage.getItem('_adminSaved') === 'true') {
-      localStorage.removeItem('_adminSaved');
-      // Reload to show updated content from admin
-      location.reload();
-    }
 
     // ── Inject SEO meta tags ──────────────────────────────────
     const seoData = all.seo && all.seo[pageId];
