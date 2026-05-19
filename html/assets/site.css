@@ -89,6 +89,8 @@ p { margin: 0; font-weight: 300; }
 .menu a:hover { color: var(--ink); }
 .menu a[aria-current="page"] { color: var(--ink); font-weight: 700; }
 .nav-actions { display: flex; align-items: center; gap: .8rem; }
+.nav-actions .phone { color: var(--ink); font-weight: 600; font-size: .9rem; transition: color .2s ease, text-shadow .2s ease; }
+.nav-actions .phone:hover { color: var(--olive); font-weight: 700; text-shadow: 0 0 12px rgba(64, 94, 66, 0.3); }
 .mobile-toggle { display: none; border: 0; background: transparent; font-size: 1.8rem; line-height: 1; color: var(--ink); }
 
 .btn {
