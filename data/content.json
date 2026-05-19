@@ -102,7 +102,7 @@
     },
     "whySection": {
       "eyebrow": "Why Inspire Workplace",
-      "heading": "A coworking space built for real workdays.",
+      "heading": "A co-working space built for real workdays.",
       "lead": "Thoughtfully designed workspaces in a prime ORR location, with natural light, warm interiors, and the flexibility to choose what works best for your team.",
       "checks": [
         "Well-connected location near Marathahalli, ITPL, Bagmane & Prestige Tech Park",
@@ -594,5 +594,5 @@
       ]
     }
   },
-  "revision": 1779209324
+  "revision": 1779209385
 }
