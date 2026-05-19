@@ -111,21 +111,33 @@
     "reviewsSection": {
       "eyebrow": "Reviews",
       "heading": "Trusted by operators, founders and teams.",
-      "lead": "The strongest signal is simple: members stay when the workspace helps them do better work.",
       "quotes": [
         {
-          "text": "Mid-size IT building on the ORR, connectivity at its best. Cafeteria, car park, recreation room and space you can customise.",
-          "cite": "Yogesh Pawde, Head India Ops, Unikorn Inc",
+          "text": "I am very happy and satisfied with the services of Inspire WorkPlace. They were able to provide me with an office which catered to my specific requirements and, more importantly in my budget! Not only do they provide great working spaces, but they also have conference rooms. What I like most about them is that they are very flexible and accommodating, unlike other serviced offices. I highly recommend them!!!!",
+          "cite": "Sushma Somanna",
+          "title": "AVP Sale, Zerodha",
+          "image": "",
           "featured": true
         },
         {
-          "text": "A practical place for founders who need focus, meetings and a professional address without office headaches.",
-          "cite": "Startup member",
+          "text": "Inspire WorkPlace is effective, quick, reliable and respects every business's budget constraints. I am a happy customer, who recommends Inspire WorkPlace to businesses of all sizes, including start-ups and wish good luck to Inspire WorkPlace for a fresh concept in space management.",
+          "cite": "Kushagra Gupta",
+          "title": "Founder, Ecomm",
+          "image": "",
           "featured": false
         },
         {
-          "text": "The rooftop and natural light make long workdays easier. It feels professional without feeling cold.",
-          "cite": "Dedicated desk member",
+          "text": "Inspire WorkPlace is the best option for the startup entrepreneurs as you can have the options of desired space within the desired budget and with a good address line to your office address. Thanks to Inspire WorkPlace for helping us get the most appropriate place for our Business.",
+          "cite": "Surendra Gupta",
+          "title": "Co-Founder, S2S Softsys Pvt. Ltd",
+          "image": "",
+          "featured": false
+        },
+        {
+          "text": "Great place for small companies and especially start-ups who are early stage. The place is very budget friendly. Inspire has one of the mid-size IT building in the ORR near Marathahalli so connectivity is at its best. The place has the facilities of cafeteria, car park and recreation room. You can get the space customized if you want as well which is the add-on as compared to any other co-working place.",
+          "cite": "Yogesh Pawde",
+          "title": "Head - India Operations, Unikorn Inc",
+          "image": "",
           "featured": false
         }
       ]
