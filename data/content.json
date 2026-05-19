@@ -398,7 +398,8 @@
       "ogTitle": "Inspire Workplace | Coworking Spaces Bangalore",
       "ogDescription": "Flexible coworking spaces on Marathahalli ORR with hot desks, cabins, managed offices and rooftop cafeteria.",
       "ogImagePath": "../content/WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg",
-      "canonicalUrl": "https://inspireworkplace.com/"
+      "canonicalUrl": "https://inspireworkplace.com/",
+      "noindex": false
     },
     "spaces": {
       "title": "Coworking Plans & Pricing | Inspire Workplace Bangalore",
@@ -407,7 +408,8 @@
       "ogTitle": "Coworking Plans & Pricing",
       "ogDescription": "Flexible workspace options from hot desks to managed offices. All plans include high-speed internet, meeting rooms and rooftop cafeteria.",
       "ogImagePath": "../content/WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg",
-      "canonicalUrl": "https://inspireworkplace.com/spaces/"
+      "canonicalUrl": "https://inspireworkplace.com/spaces/",
+      "noindex": false
     },
     "about": {
       "title": "About Inspire Workplace | Coworking in Bangalore",
@@ -416,7 +418,8 @@
       "ogTitle": "About Inspire Workplace",
       "ogDescription": "Designed for focus, community and growth. A flexible coworking space on ORR with natural light, rooftop and warm interiors.",
       "ogImagePath": "../content/WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg",
-      "canonicalUrl": "https://inspireworkplace.com/about/"
+      "canonicalUrl": "https://inspireworkplace.com/about/",
+      "noindex": false
     },
     "events": {
       "title": "Events & Training Room | Inspire Workplace Bangalore",
@@ -425,7 +428,8 @@
       "ogTitle": "Events & Training Room",
       "ogDescription": "Host your workshop or event at Inspire Workplace. Training room for 40 people, rooftop for mixers, founder meetups and more.",
       "ogImagePath": "../content/WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg",
-      "canonicalUrl": "https://inspireworkplace.com/events/"
+      "canonicalUrl": "https://inspireworkplace.com/events/",
+      "noindex": false
     },
     "blog": {
       "title": "Inspire Journal | Coworking & Workplace Articles Bangalore",
@@ -434,7 +438,8 @@
       "ogTitle": "Inspire Journal",
       "ogDescription": "Ideas on work, space and building teams in Bangalore. Articles on coworking, productivity and startup growth.",
       "ogImagePath": "../content/WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg",
-      "canonicalUrl": "https://inspireworkplace.com/blog/"
+      "canonicalUrl": "https://inspireworkplace.com/blog/",
+      "noindex": false
     },
     "contact": {
       "title": "Contact & Book Tour | Inspire Workplace Bangalore",
@@ -443,13 +448,66 @@
       "ogTitle": "Book a Tour",
       "ogDescription": "Book a free tour at Inspire Workplace. Our team will help you choose the right coworking plan for your needs.",
       "ogImagePath": "../content/WhatsApp%20Image%202026-05-15%20at%2012.59.04.jpeg",
-      "canonicalUrl": "https://inspireworkplace.com/contact/"
+      "canonicalUrl": "https://inspireworkplace.com/contact/",
+      "noindex": false
     }
   },
   "settings": {
     "web3formsKey": "d28fdc1b-8b2a-448c-9e53-9f6a1135caac",
     "contactEmail": "ayushgupta79@gmail.com",
-    "formSubject": "New Tour Booking — Inspire Workplace"
+    "formSubject": "New Tour Booking — Inspire Workplace",
+    "googleVerification": "",
+    "schema": {
+      "localBusiness": {
+        "name": "Inspire Workplace",
+        "description": "Premium coworking space in Bangalore with flexible desks, private cabins, managed offices and rooftop cafeteria near Marathahalli ORR.",
+        "telephone": "+917899830610",
+        "email": "admin@inspireworkplace.com",
+        "streetAddress": "Outer Ring Road, Marathahalli",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "560037",
+        "priceRange": "₹₹",
+        "url": "https://inspireworkplace.com/",
+        "image": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg",
+        "openingHours": "Mo-Sa 08:00-20:00"
+      }
+    },
+    "sitemap": {
+      "baseUrl": "https://inspireworkplace.com",
+      "urls": [
+        {
+          "path": "/",
+          "priority": "1.0",
+          "changefreq": "weekly"
+        },
+        {
+          "path": "/html/spaces.html",
+          "priority": "0.9",
+          "changefreq": "monthly"
+        },
+        {
+          "path": "/html/about.html",
+          "priority": "0.7",
+          "changefreq": "monthly"
+        },
+        {
+          "path": "/html/events.html",
+          "priority": "0.8",
+          "changefreq": "weekly"
+        },
+        {
+          "path": "/html/blog.html",
+          "priority": "0.7",
+          "changefreq": "weekly"
+        },
+        {
+          "path": "/html/contact.html",
+          "priority": "0.8",
+          "changefreq": "monthly"
+        }
+      ]
+    }
   },
   "revision": 1779198836
 }

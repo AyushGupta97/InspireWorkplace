@@ -276,6 +276,8 @@
       <div class="nav-item" data-page="images"><span class="icon">🖼️</span> Images</div>
       <span class="sidebar-label">Config</span>
       <div class="nav-item" data-page="page-seo"><span class="icon">🔍</span> SEO</div>
+      <div class="nav-item" data-page="page-sitemap"><span class="icon">🗺️</span> Sitemap</div>
+      <div class="nav-item" data-page="page-robots"><span class="icon">🤖</span> Robots.txt</div>
       <div class="nav-item" data-page="settings"><span class="icon">⚙️</span> Settings</div>
     </nav>
 
@@ -356,6 +358,35 @@
         <div id="editor-seo" style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1rem"></div>
       </section>
 
+      <!-- SITEMAP -->
+      <section class="page" id="page-page-sitemap">
+        <div class="page-header">
+          <div><h2>Sitemap</h2><p>Manage URLs, priority and update frequency for search engine indexing.</p></div>
+          <button class="btn btn-dark" id="save-sitemap-btn"><span>Generate & Save Sitemap</span><span class="spinner" id="save-sitemap-sp"></span></button>
+        </div>
+        <div class="section-card">
+          <div class="section-card-header" onclick="toggleSection('sc-sitemap')"><div class="section-card-title"><span class="icon">⚙️</span>Sitemap Settings</div><span class="section-card-chevron">▼</span></div>
+          <div class="section-card-body">
+            <div class="field"><label>Base URL</label><input type="text" id="sitemap-base-url" placeholder="https://inspireworkplace.com"></div>
+          </div>
+        </div>
+        <div id="sitemap-editor" style="margin-top:1rem"></div>
+      </section>
+
+      <!-- ROBOTS.TXT -->
+      <section class="page" id="page-page-robots">
+        <div class="page-header">
+          <div><h2>Robots.txt</h2><p>Control search engine crawler access to your site.</p></div>
+          <button class="btn btn-dark" id="load-robots-btn"><span>Load / Refresh</span><span class="spinner" id="load-robots-sp"></span></button>
+          <button class="btn btn-dark" id="save-robots-btn" style="margin-left:.5rem"><span>Save robots.txt</span><span class="spinner" id="save-robots-sp"></span></button>
+        </div>
+        <div class="section-card">
+          <div class="section-card-body">
+            <div class="field"><label>robots.txt content</label><textarea id="robots-content" style="min-height:300px;font-family:monospace;font-size:.85rem" placeholder="User-agent: *&#10;Disallow: /admin&#10;Sitemap: https://inspireworkplace.com/sitemap.xml"></textarea></div>
+          </div>
+        </div>
+      </section>
+
       <!-- IMAGES -->
       <section class="page" id="page-images">
         <div class="page-header">
@@ -379,8 +410,32 @@
           <div class="field"><label>Web3Forms Access Key</label><input type="text" id="s-w3f-key" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></div>
           <div class="field"><label>Contact email (display only)</label><input type="email" id="s-contact-email" placeholder="ayushgupta79@gmail.com"></div>
           <div class="field"><label>Email subject line</label><input type="text" id="s-form-subject" placeholder="New Tour Booking — Inspire Workplace"></div>
-          <button class="btn btn-dark" id="save-settings-btn"><span>Save settings</span><span class="spinner" id="save-settings-sp"></span></button>
         </div>
+
+        <div class="settings-card">
+          <h3>Google Search Console</h3>
+          <p>Add your Google site verification code to enable Search Console monitoring.</p>
+          <div class="field"><label>Google Site Verification Code</label><input type="text" id="s-google-verification" placeholder="google1234567890abcdef.html"></div>
+        </div>
+
+        <div class="settings-card">
+          <h3>LocalBusiness Schema Markup</h3>
+          <p>Configure your business information for search engine rich snippets.</p>
+          <div class="field"><label>Business Name</label><input type="text" id="s-schema-name" placeholder="Inspire Workplace"></div>
+          <div class="field"><label>Description</label><textarea id="s-schema-desc" placeholder="Premium coworking space..."></textarea></div>
+          <div class="field"><label>Telephone</label><input type="tel" id="s-schema-phone" placeholder="+917899830610"></div>
+          <div class="field"><label>Email</label><input type="email" id="s-schema-email" placeholder="admin@inspireworkplace.com"></div>
+          <div class="field"><label>Street Address</label><input type="text" id="s-schema-street" placeholder="Outer Ring Road, Marathahalli"></div>
+          <div class="field"><label>City</label><input type="text" id="s-schema-city" placeholder="Bengaluru"></div>
+          <div class="field"><label>Region/State</label><input type="text" id="s-schema-region" placeholder="Karnataka"></div>
+          <div class="field"><label>Postal Code</label><input type="text" id="s-schema-postal" placeholder="560037"></div>
+          <div class="field"><label>Price Range</label><input type="text" id="s-schema-price" placeholder="₹₹" help="How many currency symbols?"></div>
+          <div class="field"><label>Website URL</label><input type="url" id="s-schema-url" placeholder="https://inspireworkplace.com/"></div>
+          <div class="field"><label>Logo/Image URL</label><input type="text" id="s-schema-image" placeholder="content/image.jpg"></div>
+          <div class="field"><label>Opening Hours (e.g. Mo-Sa 08:00-20:00)</label><input type="text" id="s-schema-hours" placeholder="Mo-Sa 08:00-20:00"></div>
+        </div>
+
+        <button class="btn btn-dark" id="save-settings-btn" style="margin-top:1rem"><span>Save all settings</span><span class="spinner" id="save-settings-sp"></span></button>
       </section>
     </main>
   </div>
@@ -542,6 +597,16 @@ const ghPut = async (filePath, content, sha, message) => {
     method: "PUT", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message, branch: BRANCH, sha,
       content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))) })
+  });
+  if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.message || `Save failed (${r.status})`); }
+  return (await r.json()).content.sha;
+};
+
+const ghPutRaw = async (filePath, textContent, sha, message) => {
+  const r = await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}`, {
+    method: "PUT", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message, branch: BRANCH, sha,
+      content: btoa(unescape(encodeURIComponent(textContent))) })
   });
   if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.message || `Save failed (${r.status})`); }
   return (await r.json()).content.sha;
@@ -990,6 +1055,29 @@ const buildAllEditors = () => {
   buildEditor("blog", blogPageSchema());
   buildEditor("contact", contactSchema());
   buildSeoEditor();
+  loadSettingsFields();
+  renderSitemapEditor();
+};
+
+const loadSettingsFields = () => {
+  const s = contentData.settings || {};
+  document.getElementById("s-w3f-key").value = s.web3formsKey || "";
+  document.getElementById("s-contact-email").value = s.contactEmail || "";
+  document.getElementById("s-form-subject").value = s.formSubject || "";
+  document.getElementById("s-google-verification").value = s.googleVerification || "";
+  const lb = s.schema?.localBusiness || {};
+  document.getElementById("s-schema-name").value = lb.name || "";
+  document.getElementById("s-schema-desc").value = lb.description || "";
+  document.getElementById("s-schema-phone").value = lb.telephone || "";
+  document.getElementById("s-schema-email").value = lb.email || "";
+  document.getElementById("s-schema-street").value = lb.streetAddress || "";
+  document.getElementById("s-schema-city").value = lb.addressLocality || "";
+  document.getElementById("s-schema-region").value = lb.addressRegion || "";
+  document.getElementById("s-schema-postal").value = lb.postalCode || "";
+  document.getElementById("s-schema-price").value = lb.priceRange || "";
+  document.getElementById("s-schema-url").value = lb.url || "";
+  document.getElementById("s-schema-image").value = lb.image || "";
+  document.getElementById("s-schema-hours").value = lb.openingHours || "";
 };
 
 // Build editor HTML for a page
@@ -1465,6 +1553,10 @@ const buildSeoEditor = () => {
             <label>Canonical URL</label>
             <input type="text" id="seo-canonical" placeholder="https://inspireworkplace.com/" value="${esc(pageData.canonicalUrl || "")}">
           </div>
+          <div class="field" style="display:flex;align-items:center;gap:.5rem">
+            <input type="checkbox" id="seo-noindex" ${pageData.noindex ? 'checked' : ''}>
+            <label style="margin:0"><strong>Noindex this page</strong> (exclude from search engines)</label>
+          </div>
         </div>
       </div>
     </div>
@@ -1502,6 +1594,7 @@ const collectSeoData = (page) => {
     ogDescription: document.getElementById("seo-og-description")?.value || "",
     ogImagePath: document.getElementById("seo-og-image")?.value || "",
     canonicalUrl: document.getElementById("seo-canonical")?.value || "",
+    noindex: document.getElementById("seo-noindex")?.checked || false,
   };
 };
 
@@ -1555,9 +1648,28 @@ document.getElementById("save-settings-btn").addEventListener("click", async () 
   const status = document.getElementById("settings-status");
   try {
     if (!contentData.settings) contentData.settings = {};
+    // Web3Forms settings
     contentData.settings.web3formsKey = document.getElementById("s-w3f-key").value.trim();
     contentData.settings.contactEmail = document.getElementById("s-contact-email").value.trim();
     contentData.settings.formSubject = document.getElementById("s-form-subject").value.trim();
+    // Google Search Console
+    contentData.settings.googleVerification = document.getElementById("s-google-verification").value.trim() || "";
+    // LocalBusiness Schema
+    if (!contentData.settings.schema) contentData.settings.schema = {};
+    contentData.settings.schema.localBusiness = {
+      name: document.getElementById("s-schema-name").value.trim(),
+      description: document.getElementById("s-schema-desc").value.trim(),
+      telephone: document.getElementById("s-schema-phone").value.trim(),
+      email: document.getElementById("s-schema-email").value.trim(),
+      streetAddress: document.getElementById("s-schema-street").value.trim(),
+      addressLocality: document.getElementById("s-schema-city").value.trim(),
+      addressRegion: document.getElementById("s-schema-region").value.trim(),
+      postalCode: document.getElementById("s-schema-postal").value.trim(),
+      priceRange: document.getElementById("s-schema-price").value.trim(),
+      url: document.getElementById("s-schema-url").value.trim(),
+      image: document.getElementById("s-schema-image").value.trim(),
+      openingHours: document.getElementById("s-schema-hours").value.trim()
+    };
     contentData.revision = Math.floor(Date.now() / 1000);
     contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, "Update settings");
     status.textContent = "Settings saved. Pages will update on next visit.";
@@ -1569,7 +1681,120 @@ document.getElementById("save-settings-btn").addEventListener("click", async () 
   finally { setBusy(null, "save-settings-sp", false); }
 });
 
-// ── Utility ───────────────────────────────────────────────────────
+// ── Sitemap Management ────────────────────────────────────────────
+let sitemapSha = null;
+const renderSitemapEditor = () => {
+  const editor = document.getElementById("sitemap-editor");
+  if (!editor) return;
+  const sitemap = contentData.settings?.sitemap || {};
+  document.getElementById("sitemap-base-url").value = sitemap.baseUrl || "https://inspireworkplace.com";
+  const urls = sitemap.urls || [];
+  const rows = urls.map((u, i) => `
+    <div class="list-item-row">
+      <span class="item-label"><strong>${esc(u.path)}</strong> — <small>${u.priority}</small></span>
+      <div class="item-actions">
+        <button class="btn btn-outline btn-xs" onclick="editSitemapUrl(${i})">Edit</button>
+        <button class="btn btn-red btn-xs" onclick="removeSitemapUrl(${i})">✕</button>
+      </div>
+    </div>`).join("");
+  editor.innerHTML = `<div class="section-card"><div class="section-card-body"><div class="list-editor">${rows || '<p style="color:var(--muted);font-size:.8rem">No URLs yet</p>'}</div><button class="btn btn-outline btn-sm" style="margin-top:.5rem" onclick="addSitemapUrl()">+ Add URL</button></div></div>`;
+};
+
+window.editSitemapUrl = (idx) => {
+  const urls = (contentData.settings?.sitemap?.urls || []);
+  const u = urls[idx];
+  const p = prompt(`Edit URL path:\n(current: ${u.path})`);
+  if (p !== null) { u.path = p; renderSitemapEditor(); }
+};
+
+window.removeSitemapUrl = (idx) => {
+  contentData.settings.sitemap.urls.splice(idx, 1);
+  renderSitemapEditor();
+};
+
+window.addSitemapUrl = () => {
+  const p = prompt("Enter URL path (e.g., /html/spaces.html):");
+  if (p !== null) {
+    if (!contentData.settings?.sitemap?.urls) {
+      if (!contentData.settings) contentData.settings = {};
+      if (!contentData.settings.sitemap) contentData.settings.sitemap = { baseUrl: "https://inspireworkplace.com", urls: [] };
+      if (!contentData.settings.sitemap.urls) contentData.settings.sitemap.urls = [];
+    }
+    contentData.settings.sitemap.urls.push({ path: p, priority: "0.8", changefreq: "monthly" });
+    renderSitemapEditor();
+  }
+};
+
+const buildSitemapXml = (sitemapData) => {
+  const now = new Date().toISOString().split("T")[0];
+  const baseUrl = document.getElementById("sitemap-base-url").value || sitemapData.baseUrl;
+  const urls = (sitemapData.urls || []).map(u => `  <url>
+    <loc>${baseUrl}${u.path}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>${u.changefreq || 'monthly'}</changefreq>
+    <priority>${u.priority || '0.8'}</priority>
+  </url>`).join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
+};
+
+document.getElementById("save-sitemap-btn")?.addEventListener("click", async () => {
+  const el = document.getElementById("save-sitemap-btn");
+  setBusy(null, "save-sitemap-sp", true);
+  try {
+    // Update settings with baseUrl
+    if (!contentData.settings) contentData.settings = {};
+    if (!contentData.settings.sitemap) contentData.settings.sitemap = { urls: [] };
+    contentData.settings.sitemap.baseUrl = document.getElementById("sitemap-base-url").value || "https://inspireworkplace.com";
+    // Generate XML
+    const sitemapXml = buildSitemapXml(contentData.settings.sitemap);
+    // Save both sitemap.xml and updated content.json
+    const [newSitemapSha, newContentSha] = await Promise.all([
+      ghPutRaw("sitemap.xml", sitemapXml, sitemapSha, "Update sitemap"),
+      ghPut(CONTENT_PATH, contentData, contentSha, "Update sitemap URLs")
+    ]);
+    sitemapSha = newSitemapSha;
+    contentSha = newContentSha;
+    localStorage.setItem('_adminSaved', 'true');
+    toast("Sitemap generated and saved successfully.");
+  } catch (e) { toast(e.message, "error"); }
+  finally { setBusy(null, "save-sitemap-sp", false); }
+});
+
+// ── Robots.txt Management ──────────────────────────────────────────
+let robotsSha = null;
+
+document.getElementById("load-robots-btn")?.addEventListener("click", async () => {
+  setBusy(null, "load-robots-sp", true);
+  try {
+    const res = await ghGet("robots.txt");
+    const content = atob(res.content);
+    document.getElementById("robots-content").value = content;
+    robotsSha = res.sha;
+    toast("robots.txt loaded successfully.");
+  } catch (e) {
+    if (e.message.includes("404")) {
+      document.getElementById("robots-content").value = "User-agent: *\nDisallow: /admin\nSitemap: https://inspireworkplace.com/sitemap.xml\n";
+      toast("robots.txt not found — showing default template.");
+    } else {
+      toast(e.message, "error");
+    }
+  }
+  finally { setBusy(null, "load-robots-sp", false); }
+});
+
+document.getElementById("save-robots-btn")?.addEventListener("click", async () => {
+  setBusy(null, "save-robots-sp", true);
+  try {
+    const content = document.getElementById("robots-content").value;
+    robotsSha = await ghPutRaw("robots.txt", content, robotsSha, "Update robots.txt");
+    localStorage.setItem('_adminSaved', 'true');
+    toast("robots.txt saved successfully.");
+  } catch (e) { toast(e.message, "error"); }
+  finally { setBusy(null, "save-robots-sp", false); }
+});
+
+// ─────────────────────────────────────────────────────────────────
+// Utility ───────────────────────────────────────────────────────
 const fileToB64 = file => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result.split(",")[1]); r.onerror = rej; r.readAsDataURL(file); });
 
 // ── Auto-login from session ────────────────────────────────────────

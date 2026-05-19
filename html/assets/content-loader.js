@@ -56,6 +56,69 @@
       }
     }
 
+    // ── Google Search Console verification ──────────────────────
+    if (all.settings?.googleVerification) {
+      setMeta('google-site-verification', all.settings.googleVerification);
+    }
+
+    // ── noindex meta tag ───────────────────────────────────────
+    if (seoData?.noindex) {
+      setMeta('robots', 'noindex, nofollow');
+    } else {
+      // Remove any existing robots meta with noindex
+      const robotsMeta = document.querySelector('meta[name="robots"]');
+      if (robotsMeta && robotsMeta.content.includes('noindex')) {
+        robotsMeta.remove();
+      }
+    }
+
+    // ── JSON-LD Schema Markup ──────────────────────────────────
+    // LocalBusiness (on home page)
+    if (pageId === 'home' && all.settings?.schema?.localBusiness) {
+      const lb = all.settings.schema.localBusiness;
+      const lbSchema = {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": lb.name,
+        "description": lb.description,
+        "telephone": lb.telephone,
+        "email": lb.email,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": lb.streetAddress,
+          "addressLocality": lb.addressLocality,
+          "addressRegion": lb.addressRegion,
+          "postalCode": lb.postalCode,
+          "addressCountry": "IN"
+        },
+        "priceRange": lb.priceRange,
+        "url": lb.url,
+        "image": lb.image
+      };
+      if (lb.openingHours) lbSchema.openingHoursSpecification = parseOpeningHours(lb.openingHours);
+      injectJsonLd('schema-localbusiness', lbSchema);
+    }
+
+    // FAQPage (on home page if FAQ items exist)
+    if (pageId === 'home') {
+      const faqItems = all.home?.faqSection?.items;
+      if (faqItems?.length) {
+        const faqSchema = {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqItems.map(f => ({
+            "@type": "Question",
+            "name": f.q,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": f.a
+            }
+          }))
+        };
+        injectJsonLd('schema-faq', faqSchema);
+      }
+    }
+
     const pc = all[pageId];
     if (!pc) return;
 
@@ -175,4 +238,40 @@ function render(type, data, base) {
   };
 
   return r[type] ? r[type](Array.isArray(data) ? data : [data]) : null;
+}
+
+function injectJsonLd(id, schema) {
+  let script = document.getElementById(id);
+  if (!script) {
+    script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = id;
+    document.head.appendChild(script);
+  }
+  script.textContent = JSON.stringify(schema);
+}
+
+function parseOpeningHours(hoursStr) {
+  // Parse "Mo-Sa 08:00-20:00" → array of openingHoursSpecification objects
+  const dayMap = {'Mo':1,'Tu':2,'We':3,'Th':4,'Fr':5,'Sa':6,'Su':0};
+  const parts = hoursStr.split(' ');
+  if (parts.length !== 2) return [];
+
+  const dayRange = parts[0];
+  const timeRange = parts[1];
+  const [start, end] = timeRange.split('-');
+
+  const specs = [];
+  if (dayRange.includes('-')) {
+    const [startDay, endDay] = dayRange.split('-');
+    const startNum = dayMap[startDay];
+    const endNum = dayMap[endDay];
+    for (let d = startNum; d <= endNum; d++) {
+      const dayKey = Object.keys(dayMap).find(k => dayMap[k] === d);
+      specs.push({ "@type": "OpeningHoursSpecification", "dayOfWeek": dayKey, "opens": start, "closes": end });
+    }
+  } else {
+    specs.push({ "@type": "OpeningHoursSpecification", "dayOfWeek": dayRange, "opens": start, "closes": end });
+  }
+  return specs;
 }

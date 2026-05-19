@@ -218,6 +218,10 @@ if (blogList) {
       .then((posts) => {
         if (Array.isArray(posts) && posts.length > 0) {
           renderBlogs(blogList, posts);
+          // Inject BlogPosting schema on blog listing page
+          if (document.querySelector('meta[name="page-id"]')?.content === 'blog') {
+            injectBlogListSchema(posts);
+          }
         } else {
           console.warn("No blog posts found or invalid format");
         }
@@ -240,6 +244,8 @@ if (eventList) {
       .then((events) => {
         if (Array.isArray(events) && events.length > 0) {
           renderEvents(eventList, events);
+          // Inject Event schema
+          injectEventSchema(events);
         } else {
           console.warn("No events found or invalid format");
         }
@@ -326,6 +332,80 @@ window.closeEventModal = () => {
     document.body.style.overflow = "";
   }
 };
+
+// ── JSON-LD Schema Injection ────────────────────────────────
+function injectJsonLdScript(id, schema) {
+  let script = document.getElementById(id);
+  if (!script) {
+    script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = id;
+    document.head.appendChild(script);
+  }
+  script.textContent = JSON.stringify(schema);
+}
+
+// Inject Event schema for events page
+function injectEventSchema(events) {
+  const eventSchemas = events.map(ev => ({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": ev.title,
+    "description": ev.longDescription || ev.description,
+    "startDate": ev.date,
+    "location": {
+      "@type": "Place",
+      "name": "Inspire Workplace",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Outer Ring Road, Marathahalli",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "560037",
+        "addressCountry": "IN"
+      }
+    },
+    "image": ev.image ? `https://raw.githubusercontent.com/AyushGupta97/InspireWorkplace/main/content/${ev.image}` : undefined,
+    "offers": {
+      "@type": "Offer",
+      "price": ev.price === "Free" ? "0" : ev.price.replace(/[^\d.]/g, ''),
+      "priceCurrency": "INR"
+    }
+  }));
+  if (eventSchemas.length > 0) {
+    injectJsonLdScript('schema-events', {
+      "@context": "https://schema.org",
+      "@graph": eventSchemas
+    });
+  }
+}
+
+// Inject BlogPosting schema list for blog page
+function injectBlogListSchema(posts) {
+  const blogSchemas = posts.map((p, i) => ({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": p.title,
+    "description": p.excerpt,
+    "datePublished": p.date || new Date().toISOString().split('T')[0],
+    "author": {
+      "@type": "Organization",
+      "name": "Inspire Workplace"
+    },
+    "image": p.image ? `https://raw.githubusercontent.com/AyushGupta97/InspireWorkplace/main/content/${p.image}` : undefined
+  }));
+  if (blogSchemas.length > 0) {
+    injectJsonLdScript('schema-blogs', {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": blogSchemas.map((s, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": s
+      }))
+    });
+  }
+}
 
 // Close modal on background click
 document.addEventListener("DOMContentLoaded", () => {
