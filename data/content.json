@@ -15,6 +15,10 @@
       "metricTitle": "8 AM - 8 PM",
       "metricSub": "Open Monday to Saturday with staffed support and building amenities."
     },
+    "heroImages": {
+      "img1": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg",
+      "img2": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg"
+    },
     "spacesSection": {
       "eyebrow": "Our spaces",
       "heading": "Choose the right workspace for today, then scale without moving.",
@@ -265,7 +269,8 @@
         "Flexible plans for changing team sizes",
         "Community without forced networking",
         "Transparent pricing and practical amenities"
-      ]
+      ],
+      "image": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"
     },
     "valuesSection": {
       "eyebrow": "Values",
@@ -381,7 +386,8 @@
         "Open Monday to Saturday, 8 AM to 8 PM",
         "Car parking within building premises",
         "Meeting rooms and rooftop cafeteria available"
-      ]
+      ],
+      "image": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
     }
   },
   "seo": {

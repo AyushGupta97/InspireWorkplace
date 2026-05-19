@@ -88,6 +88,15 @@
         }
       }
     });
+
+    // ── image src attributes ──────────────────────────────────
+    document.querySelectorAll('[data-cimg]').forEach(el => {
+      const v = getVal(pc, el.dataset.cimg);
+      if (v) {
+        const imgPath = base && !v.startsWith('content/') ? `${base}/${v}` : v;
+        el.src = imgPath;
+      }
+    });
   } catch (_) {
     // silent — static HTML fallback remains
   }
