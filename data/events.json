@@ -9,8 +9,15 @@
     "longDescription": "Join us for an inspiring morning session where early-stage founders gather to share experiences, challenges, and opportunities. Learn from peers navigating similar journeys.",
     "image": "../content/WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg",
     "imageAlt": "Community event at Inspire Workplace",
-    "agenda": ["10:00 AM - 10:30 AM: Registration and Welcome Coffee", "10:30 AM - 11:30 AM: Founder stories and lessons learned", "11:30 AM - 12:00 PM: Networking and Q&A"],
-    "speakers": ["Ayush Gupta, Founder of Inspire Workplace", "Local entrepreneurs and startup leaders"],
+    "agenda": [
+      "10:00 AM - 10:30 AM: Registration and Welcome Coffee",
+      "10:30 AM - 11:30 AM: Founder stories and lessons learned",
+      "11:30 AM - 12:00 PM: Networking and Q&A"
+    ],
+    "speakers": [
+      "Ayush Gupta, Founder of Inspire Workplace",
+      "Local entrepreneurs and startup leaders"
+    ],
     "registrationInfo": "Early bird tickets available. Limited to 50 participants.",
     "cta": "Register now",
     "ctaUrl": "https://forms.google.com/",
@@ -26,8 +33,14 @@
     "longDescription": "A practical workshop designed to help independent professionals establish systems that scale with their business.",
     "image": "../content/WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg",
     "imageAlt": "Training workshop",
-    "agenda": ["2:00 PM - 2:30 PM: System fundamentals", "2:30 PM - 3:30 PM: Hands-on workshop", "3:30 PM - 4:00 PM: Q&A and networking"],
-    "speakers": ["Productivity coach specializing in freelance operations"],
+    "agenda": [
+      "2:00 PM - 2:30 PM: System fundamentals",
+      "2:30 PM - 3:30 PM: Hands-on workshop",
+      "3:30 PM - 4:00 PM: Q&A and networking"
+    ],
+    "speakers": [
+      "Productivity coach specializing in freelance operations"
+    ],
     "registrationInfo": "Includes materials and refreshments. Bring your laptop.",
     "cta": "Register now",
     "ctaUrl": "https://forms.google.com/",
@@ -43,8 +56,14 @@
     "longDescription": "Book our training room and cafeteria for your team's professional development day.",
     "image": "../content/WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg",
     "imageAlt": "Training room setup",
-    "agenda": ["Full day access to training room with projector, screen, and audio setup", "Catering options available", "Parking and common areas included"],
-    "speakers": ["Your own facilitators/trainers"],
+    "agenda": [
+      "Full day access to training room with projector, screen, and audio setup",
+      "Catering options available",
+      "Parking and common areas included"
+    ],
+    "speakers": [
+      "Your own facilitators/trainers"
+    ],
     "registrationInfo": "Customizable packages. Contact us for catering options.",
     "cta": "Check availability",
     "ctaUrl": "html/contact.html",
