@@ -147,20 +147,36 @@
       "heading": "Coworking questions, answered.",
       "items": [
         {
-          "q": "What types of coworking plans do you offer?",
-          "a": "Inspire Workplace offers hot desks, dedicated desks, private cabins, managed offices, virtual office plans and training room bookings."
+          "q": "What workspace plans do you offer?",
+          "a": "We offer Hot Desks, Dedicated Desks, Private Cabins, Managed Offices, Virtual Office solutions, and Meeting Room bookings based on your business needs."
         },
         {
-          "q": "Can I book a tour before signing up?",
-          "a": "Yes. You can book a free tour to see the workspace, rooftop cafeteria, cabins and available seating before choosing a plan."
+          "q": "Is Inspire Workplace suitable for startups and small teams?",
+          "a": "Yes. Our flexible workspace solutions are designed for startups, freelancers, consultants, remote professionals, and growing businesses."
         },
         {
-          "q": "Do you provide a GST registration address?",
-          "a": "Yes. The virtual office plan includes an ORR business address for GST registration, mail handling and meeting room hours."
+          "q": "Do you provide GST registration support?",
+          "a": "Yes. Our Virtual Office plans include a professional business address for GST registration along with mail handling services."
         },
         {
-          "q": "Is Inspire Workplace suitable for teams?",
-          "a": "Yes. Private cabins support 4 to 10 seats, while managed office plans can be customised for larger teams of around 15 to 50 seats."
+          "q": "Can I schedule a workspace tour before joining?",
+          "a": "Absolutely. You can book a free workspace tour to explore the office spaces, amenities, and available plans before making a decision."
+        },
+        {
+          "q": "Is parking available at Inspire Workplace?",
+          "a": "Yes. Parking facilities are available for members, office teams, and visitors."
+        },
+        {
+          "q": "Do you provide meeting and conference room access?",
+          "a": "Yes. Fully equipped meeting and conference rooms are available for presentations, client meetings, interviews, and team discussions."
+        },
+        {
+          "q": "Where is the Inspire Workplace located?",
+          "a": "Inspire Workplace is conveniently located near ORR Bangalore with easy connectivity to Marathahalli, Whitefield, ITPL, and nearby business hubs."
+        },
+        {
+          "q": "Can office spaces be customized for teams?",
+          "a": "Yes. Private cabins and managed office spaces can be customized based on your branding, seating, and operational requirements."
         }
       ]
     },
