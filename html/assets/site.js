@@ -210,9 +210,11 @@ const renderEvents = (container, events) => {
   window._pageEvents = events;
 };
 
+const getDataPath = () => window.location.pathname.includes('/html/') ? '../data' : './data';
+
 const blogList = document.querySelector("[data-blog-list]");
 if (blogList) {
-  const blogSource = blogList.getAttribute("data-source");
+  const blogSource = `${getDataPath()}/blogs.json`;
   if (blogSource) {
     loadJson(blogSource, "blogs")
       .then((posts) => {
@@ -238,7 +240,7 @@ if (blogList) {
 
 const eventList = document.querySelector("[data-event-list]");
 if (eventList) {
-  const eventSource = eventList.getAttribute("data-source");
+  const eventSource = `${getDataPath()}/events.json`;
   if (eventSource) {
     loadJson(eventSource, "events")
       .then((events) => {
