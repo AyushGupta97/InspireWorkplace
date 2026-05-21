@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Path Resolution</title>
+  <style>
+    body { font-family: monospace; margin: 20px; line-height: 1.6; }
+    .test { margin: 15px 0; padding: 10px; border: 1px solid #ddd; }
+    .pass { background: #d4edda; }
+    .fail { background: #f8d7da; }
+  </style>
+</head>
+<body>
+  <h1>Path Resolution Test</h1>
+  <div id="results"></div>
+  
+  <script>
+    async function testPath(pagePath, expectedPath) {
+      // Simulate being on a specific page
+      const testUrl = `http://localhost:8000${pagePath}`;
+      const pathname = pagePath;
+      
+      // Use the same logic as content-loader.js
+      const dataPath = pathname.includes('/html/') ? '../data' : './data';
+      
+      // Construct the actual URL that would be fetched
+      const baseUrl = pagePath.substring(0, pagePath.lastIndexOf('/') + 1);
+      const url = new URL(dataPath + '/content.json', 'http://localhost:8000' + baseUrl).pathname;
+      
+      const pass = url === expectedPath;
+      const color = pass ? 'pass' : 'fail';
+      
+      return {
+        page: pagePath,
+        dataPath,
+        resolvedUrl: url,
+        expectedUrl: expectedPath,
+        pass,
+        color
+      };
+    }
+    
+    (async () => {
+      const tests = [
+        { path: '/index.html', expected: '/data/content.json' },
+        { path: '/html/blog.html', expected: '/data/content.json' },
+        { path: '/html/spaces.html', expected: '/data/content.json' }
+      ];
+      
+      const results = document.getElementById('results');
+      
+      for (const test of tests) {
+        const result = await testPath(test.path, test.expected);
+        const div = document.createElement('div');
+        div.className = `test ${result.color}`;
+        div.innerHTML = `
+          <strong>Page:</strong> ${result.page}<br>
+          <strong>Data Path:</strong> ${result.dataPath}<br>
+          <strong>Resolved URL:</strong> ${result.resolvedUrl}<br>
+          <strong>Expected URL:</strong> ${result.expectedUrl}<br>
+          <strong>Status:</strong> ${result.pass ? '✓ PASS' : '✗ FAIL'}
+        `;
+        results.appendChild(div);
+      }
+      
+      // Also test actual fetch
+      console.log('Testing actual fetch...');
+      const actualPath = window.location.pathname.includes('/html/') ? '../data' : './data';
+      const actualUrl = `${actualPath}/content.json`;
+      console.log('Current pathname:', window.location.pathname);
+      console.log('Will fetch from:', actualUrl);
+      
+      try {
+        const res = await fetch(actualUrl);
+        if (res.ok) {
+          const data = await res.json();
+          const div = document.createElement('div');
+          div.className = 'test pass';
+          div.innerHTML = `
+            <strong>✓ Successfully fetched content.json</strong><br>
+            Data loaded: ${Object.keys(data).length} root keys
+          `;
+          results.appendChild(div);
+        }
+      } catch (e) {
+        const div = document.createElement('div');
+        div.className = 'test fail';
+        div.innerHTML = `<strong>✗ Fetch failed:</strong> ${e.message}`;
+        results.appendChild(div);
+      }
+    })();
+  </script>
+</body>
+</html>
