@@ -5,9 +5,9 @@
   if (!pageMeta) return;
 
   const pageId = pageMeta.content;
-  const baseMeta = document.querySelector('meta[name="content-base"]');
-  const base = baseMeta ? baseMeta.content : '..';
-  const dataPath = base ? `${base}/data` : 'data';
+  // Determine correct data path based on current page location
+  // If on a page in /html/ subdirectory, go up one level; otherwise stay in current level
+  const dataPath = window.location.pathname.includes('/html/') ? '../data' : './data';
 
   try {
     // Check if admin panel signaled a reload is needed
