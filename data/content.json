@@ -9,15 +9,15 @@
       "cta1Url": "html/contact.html",
       "cta2Text": "View spaces and pricing",
       "cta2Url": "html/spaces.html",
-      "point1": "Plans starting from 6,000/month",
-      "point2": "Virtual Office Contracts",
+      "point1": "Coworking starting from 5,000/month",
+      "point2": "Virtual Office",
       "point3": "Private cabins and Managed Offices",
       "metricTitle": "",
       "metricSub": ""
     },
     "heroImages": {
-      "img1": "2.jpg",
-      "img2": "Inspire Side View.jpg"
+      "img1": "Inspire Building.png",
+      "img2": "WhatsApp Image 2026-05-15 at 12.58.58.jpeg"
     },
     "spacesSection": {
       "eyebrow": "Our spaces",
@@ -594,5 +594,5 @@
       ]
     }
   },
-  "revision": 1779609200
+  "revision": 1779609275
 }
