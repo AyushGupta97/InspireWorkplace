@@ -93,7 +93,7 @@ if (form) {
       if (result.success) {
         if (status) {
           status.style.color = "var(--olive)";
-          status.textContent = "Thank you! We will be in touch shortly.";
+          status.textContent = "Thank you! Your message has been received. Our team will contact you shortly.";
         }
         form.reset();
       } else {
@@ -170,7 +170,7 @@ const renderBlogs = (container, posts) => {
     return `
       <article class="article-card" data-reveal ${delay ? `data-delay="${delay}"` : ""}>
         <a href="${escapeHtml(href)}" aria-label="${escapeHtml(post.title)}">
-          <img src="${escapeHtml(image)}" alt="${escapeHtml(post.imageAlt || post.title)}">
+          <img src="${escapeHtml(image)}" alt="${escapeHtml(post.imageAlt || post.title)}" loading="lazy">
         </a>
         <div class="card-body">
           <span class="meta">${escapeHtml(meta)}</span>
@@ -192,7 +192,7 @@ const renderEvents = (container, events) => {
     const delay = Math.min(index, 4);
     return `
       <article class="event-card" data-reveal data-delay="${delay}" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;padding:2rem;background:#f9f9f9;border-radius:8px;align-items:center;cursor:pointer;transition:all 0.3s ease" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'" onclick="window.openEventDetail(${index})">
-        <img src="${escapeHtml(image)}" alt="${escapeHtml(eventItem.imageAlt || eventItem.title)}" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px">
+        <img src="${escapeHtml(image)}" alt="${escapeHtml(eventItem.imageAlt || eventItem.title)}" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px">
         <div>
           <h3 style="margin:0 0 0.5rem 0">${escapeHtml(eventItem.title)}</h3>
           <div style="color:var(--muted);margin-bottom:1rem;font-size:0.9rem">${escapeHtml(dateLine)}</div>

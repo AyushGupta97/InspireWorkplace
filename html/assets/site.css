@@ -1,17 +1,34 @@
 :root {
+  /* Brand colours */
   --ink: #10100f;
   --body: #3b3a36;
   --muted: #74716a;
   --line: #e7e1d7;
   --paper: #f6f1e8;
   --cream: #fbf8f1;
+  --white: #fff;
   --olive: #405e42;
   --olive-2: #6f8f5f;
+  --olive-hover: #3a5038;
+  --olive-active: #2a4028;
   --orange: #ef5a24;
   --blue: #1f6d8f;
-  --white: #fff;
+  /* Shadows & radius */
   --shadow: 0 20px 60px rgba(32, 28, 20, .10);
+  --shadow-sm: 0 4px 16px rgba(64, 94, 66, 0.12);
   --r: 8px;
+  /* Spacing scale (8px grid) */
+  --sp-1: 0.5rem;   /* 8px  */
+  --sp-2: 1rem;     /* 16px */
+  --sp-3: 1.5rem;   /* 24px */
+  --sp-4: 2rem;     /* 32px */
+  --sp-6: 3rem;     /* 48px */
+  --sp-8: 4rem;     /* 64px */
+  --sp-12: 6rem;    /* 96px */
+  /* Font sizes */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-base: 1rem;    /* 16px */
+  --text-lg: 1.125rem;  /* 18px */
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -36,11 +53,11 @@ h1, h2, h3 {
   font-family: "Instrument Serif", Georgia, serif;
   font-weight: 400;
   letter-spacing: -.02em;
-  line-height: 1.04;
+  line-height: 1.15;
 }
-h1 { font-size: clamp(3.1rem, 7vw, 7rem); }
-h2 { font-size: clamp(2.1rem, 4.6vw, 4.6rem); }
-h3 { font-size: clamp(1.35rem, 2.2vw, 2rem); }
+h1 { font-size: clamp(2rem, 3.5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 2.5vw, 2.5rem); }
+h3 { font-size: clamp(1.125rem, 1.75vw, 1.75rem); }
 p { margin: 0; font-weight: 300; }
 
 .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
@@ -610,8 +627,9 @@ input:focus, select:focus, textarea:focus {
 
 @media (max-width: 768px) {
   body { font-size: 15px; }
-  h1 { font-size: clamp(1.5rem, 5vw, 2rem); }
-  h2 { font-size: clamp(1.2rem, 4vw, 1.7rem); }
+  h1 { font-size: clamp(2rem, 5vw, 2.25rem); }
+  h2 { font-size: clamp(1.5rem, 4vw, 1.75rem); }
+  h3 { font-size: clamp(1.125rem, 3vw, 1.375rem); }
   .lead { font-size: clamp(0.95rem, 2.5vw, 1.05rem); }
 }
 
@@ -670,8 +688,9 @@ input:focus, select:focus, textarea:focus {
 
   .section { padding: 2rem 0.75rem; }
   .section-head { margin-bottom: 1rem; }
-  h1 { font-size: 1.4rem; }
-  h2 { font-size: 1.1rem; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.125rem; }
 
   .metric-card { font-size: 0.9rem; padding: 0.75rem; }
   .space-row .num { font-size: 1.2rem; }
@@ -708,8 +727,8 @@ input:focus, select:focus, textarea:focus {
   .mobile-toggle { font-size: 1.2rem; }
 
   .section { padding: 1.5rem 0.5rem; }
-  h1 { font-size: 1.2rem; }
-  h2 { font-size: 1rem; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
 
   .form { padding: 1rem; gap: 0.7rem; }
   input, select, textarea, button { padding: 0.7rem 0.8rem; font-size: 16px; }

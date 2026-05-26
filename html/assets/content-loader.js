@@ -202,7 +202,7 @@ function render(type, data, base) {
 
     testimonialsGrid: items => items.map((it, i) => `
       <blockquote class="quote${it.featured ? ' featured' : ''}" data-reveal ${i > 0 ? `data-delay="${Math.min(i,4)}"` : ''}>
-        ${it.image ? `<img src="${cp}${esc(it.image)}" alt="${esc(it.cite)}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;margin-bottom:1rem;">` : ''}
+        ${it.image ? `<img src="${cp}${esc(it.image)}" alt="${esc(it.cite)}" loading="lazy" style="width:60px;height:60px;border-radius:50%;object-fit:cover;margin-bottom:1rem;">` : ''}
         <p>"${esc(it.text)}"</p>
         <cite><strong>${esc(it.cite)}</strong>${it.title ? `<br>${esc(it.title)}` : ''}</cite>
       </blockquote>`).join(''),
@@ -215,7 +215,7 @@ function render(type, data, base) {
 
     spaceCards: items => items.map((it, i) => `
       <article class="card" id="${esc(it.id)}" data-reveal ${i > 0 && i % 3 !== 0 ? `data-delay="${i % 3}"` : ''}>
-        ${it.image ? `<img src="${cp}${esc(it.image)}" alt="${esc(it.title)}">` : ''}
+        ${it.image ? `<img src="${cp}${esc(it.image)}" alt="${esc(it.title)}" loading="lazy">` : ''}
         <div class="card-body">
           <h3>${esc(it.title)}</h3>
           ${it.subtitle ? `<p style="color:var(--muted);font-size:0.9rem;margin:0.5rem 0 1rem">${esc(it.subtitle)}</p>` : ''}
@@ -233,7 +233,7 @@ function render(type, data, base) {
 
     eventVenueCards: items => items.map((it, i) => `
       <article class="card" data-reveal ${i > 0 ? `data-delay="${Math.min(i,4)}"` : ''}>
-        ${it.image ? `<img src="${cp}${esc(it.image)}" alt="${esc(it.title)}">` : ''}
+        ${it.image ? `<img src="${cp}${esc(it.image)}" alt="${esc(it.title)}" loading="lazy">` : ''}
         <div class="card-body">
           <h3>${esc(it.title)}</h3>
           <p>${esc(it.desc)}</p>

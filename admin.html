@@ -496,7 +496,7 @@
       <div class="field"><label>Long Description</label><textarea id="event-long-description" placeholder="Detailed description (shown in popup)" style="min-height:80px"></textarea></div>
       <div class="field"><label>Image</label>
         <div style="display:flex;gap:0.5rem;align-items:center">
-          <img id="event-img-preview" style="width:80px;height:80px;object-fit:cover;border-radius:4px;display:none">
+          <img id="event-img-preview" class="img-preview-box" style="width:80px;height:80px;object-fit:cover;border-radius:4px" alt="">
           <button class="btn btn-outline btn-sm" id="event-pick-btn" style="cursor:pointer">📁 Pick image</button>
           <button class="btn btn-outline btn-sm" id="event-upload-img-label" style="cursor:pointer">⬆ Upload</button>
           <input type="file" id="event-upload-img" accept="image/*" style="display:none">
@@ -590,6 +590,13 @@ const ghGet = async (filePath) => {
   if (!r.ok) throw new Error(`Cannot load ${filePath} (${r.status})`);
   const d = await r.json();
   return { content: JSON.parse(atob(d.content.replace(/\n/g, ""))), sha: d.sha };
+};
+
+const ghGetRaw = async (filePath) => {
+  const r = await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}?ref=${BRANCH}`);
+  if (!r.ok) throw new Error(`Cannot load ${filePath} (${r.status})`);
+  const d = await r.json();
+  return { content: atob(d.content.replace(/\n/g, "")), sha: d.sha };
 };
 
 const ghPut = async (filePath, content, sha, message) => {
@@ -860,26 +867,19 @@ document.getElementById("event-upload-img-label").addEventListener("click", () =
 
 // Event image picker
 document.getElementById("event-pick-btn").addEventListener("click", async () => {
-  const panel = document.getElementById("event-img-picker");
-  if (!panel) {
-    const picker = document.createElement("div");
-    picker.id = "event-img-picker";
-    picker.style.display = "block";
-    picker.style.marginTop = "0.5rem";
-    picker.style.padding = "0.5rem";
-    picker.style.border = "1px solid var(--line)";
-    picker.style.borderRadius = "4px";
-    picker.style.maxHeight = "200px";
-    picker.style.overflowY = "auto";
-    document.getElementById("event-pick-btn").parentElement.appendChild(picker);
-    if (!repoImages.length) {
-      try {
-        const res = await ghGet("contents/content");
-        repoImages = res.data || [];
-      } catch (e) { toast(e.message, "error"); }
-    }
-    renderEventImageGrid(picker);
+  let panel = document.getElementById("event-img-picker");
+  if (panel) { panel.style.display = panel.style.display === "none" ? "block" : "none"; return; }
+  panel = document.createElement("div");
+  panel.id = "event-img-picker";
+  panel.style.cssText = "display:block;margin-top:.5rem;padding:.5rem;border:1px solid var(--line);border-radius:4px;max-height:200px;overflow-y:auto";
+  document.getElementById("event-pick-btn").parentElement.appendChild(panel);
+  if (!repoImages.length) {
+    try {
+      const files = await ghListDir(CONTENT_DIR);
+      repoImages = files.filter(f => /\.(jpe?g|png|gif|webp)$/i.test(f.name));
+    } catch (e) { toast(e.message, "error"); return; }
   }
+  renderEventImageGrid(panel);
 });
 
 const renderEventImageGrid = (container) => {
@@ -1548,8 +1548,8 @@ const buildSeoEditor = () => {
             <textarea id="seo-og-description" placeholder="Social sharing description" style="min-height:60px">${esc(pageData.ogDescription || "")}</textarea>
           </div>
           <div class="field">
-            <label>OG Image path</label>
-            <input type="text" id="seo-og-image" placeholder="../content/image.jpg" value="${esc(pageData.ogImagePath || "")}">
+            <label>OG Image URL <span style="color:var(--muted);font-weight:400">(must be absolute for social sharing)</span></label>
+            <input type="text" id="seo-og-image" placeholder="https://inspireworkplace.com/content/image.jpg" value="${esc(pageData.ogImagePath || "")}">
           </div>
         </div>
         <div style="border-top:1px solid var(--line);padding-top:1rem;margin-top:1rem">
@@ -1640,12 +1640,7 @@ document.getElementById("upload-input").addEventListener("change", async e => {
 // ═══════════════════════════════════════════════════════════════════
 // SETTINGS
 // ═══════════════════════════════════════════════════════════════════
-const fillSettings = () => {
-  const s = contentData.settings || {};
-  document.getElementById("s-w3f-key").value = s.web3formsKey || "";
-  document.getElementById("s-contact-email").value = s.contactEmail || "ayushgupta79@gmail.com";
-  document.getElementById("s-form-subject").value = s.formSubject || "New Tour Booking — Inspire Workplace";
-};
+const fillSettings = () => loadSettingsFields();
 
 document.getElementById("save-settings-btn").addEventListener("click", async () => {
   setBusy(null, "save-settings-sp", true);
@@ -1770,8 +1765,8 @@ let robotsSha = null;
 document.getElementById("load-robots-btn")?.addEventListener("click", async () => {
   setBusy(null, "load-robots-sp", true);
   try {
-    const res = await ghGet("robots.txt");
-    const content = atob(res.content);
+    const res = await ghGetRaw("robots.txt");
+    const content = res.content;
     document.getElementById("robots-content").value = content;
     robotsSha = res.sha;
     toast("robots.txt loaded successfully.");
