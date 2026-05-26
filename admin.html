@@ -1774,19 +1774,24 @@ let robotsSha = null;
 let robotsLoaded = false;
 
 const loadRobotsTxt = async (silent = false) => {
+  const ta = document.getElementById("robots-content");
+  ta.value = ""; ta.placeholder = "Loading…";
   setBusy(null, "load-robots-sp", true);
   try {
     const res = await ghGetRaw("robots.txt");
-    document.getElementById("robots-content").value = res.content;
+    ta.value = res.content;
+    ta.placeholder = "";
     robotsSha = res.sha;
     robotsLoaded = true;
     if (!silent) toast("robots.txt loaded.");
   } catch (e) {
     if (e.message.includes("404")) {
-      document.getElementById("robots-content").value = "User-agent: *\nDisallow: /admin.html\nSitemap: https://inspireworkplace.com/sitemap.xml\n";
+      ta.value = "User-agent: *\nDisallow: /admin.html\nSitemap: https://inspireworkplace.com/sitemap.xml\n";
+      ta.placeholder = "";
       robotsLoaded = true;
       if (!silent) toast("robots.txt not found — showing default template.");
     } else {
+      ta.placeholder = "Failed to load — click Load / Refresh to retry.";
       if (!silent) toast(e.message, "error");
     }
   } finally { setBusy(null, "load-robots-sp", false); }
