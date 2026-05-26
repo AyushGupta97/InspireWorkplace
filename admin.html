@@ -364,7 +364,7 @@
           <div><h2>Sitemap</h2><p>Manage URLs, priority and update frequency for search engine indexing.</p></div>
           <button class="btn btn-dark" id="save-sitemap-btn"><span>Generate & Save Sitemap</span><span class="spinner" id="save-sitemap-sp"></span></button>
         </div>
-        <div class="section-card">
+        <div class="section-card open" id="sc-sitemap">
           <div class="section-card-header" onclick="toggleSection('sc-sitemap')"><div class="section-card-title"><span class="icon">⚙️</span>Sitemap Settings</div><span class="section-card-chevron">▼</span></div>
           <div class="section-card-body">
             <div class="field"><label>Base URL</label><input type="text" id="sitemap-base-url" placeholder="https://inspireworkplace.com"></div>
@@ -686,6 +686,11 @@ document.querySelectorAll(".nav-item[data-page]").forEach(item => {
     if (pg) pg.classList.add("active");
     if (item.dataset.page === "images") loadImages();
     if (item.dataset.page === "settings") fillSettings();
+    if (item.dataset.page === "page-robots") autoLoadRobots();
+    if (item.dataset.page === "page-sitemap") {
+      const sc = document.getElementById("sc-sitemap");
+      if (sc && !sc.classList.contains("open")) sc.classList.add("open");
+    }
   });
 });
 
@@ -1761,25 +1766,30 @@ document.getElementById("save-sitemap-btn")?.addEventListener("click", async () 
 
 // ── Robots.txt Management ──────────────────────────────────────────
 let robotsSha = null;
+let robotsLoaded = false;
 
-document.getElementById("load-robots-btn")?.addEventListener("click", async () => {
+const loadRobotsTxt = async (silent = false) => {
   setBusy(null, "load-robots-sp", true);
   try {
     const res = await ghGetRaw("robots.txt");
-    const content = res.content;
-    document.getElementById("robots-content").value = content;
+    document.getElementById("robots-content").value = res.content;
     robotsSha = res.sha;
-    toast("robots.txt loaded successfully.");
+    robotsLoaded = true;
+    if (!silent) toast("robots.txt loaded.");
   } catch (e) {
     if (e.message.includes("404")) {
-      document.getElementById("robots-content").value = "User-agent: *\nDisallow: /admin\nSitemap: https://inspireworkplace.com/sitemap.xml\n";
-      toast("robots.txt not found — showing default template.");
+      document.getElementById("robots-content").value = "User-agent: *\nDisallow: /admin.html\nSitemap: https://inspireworkplace.com/sitemap.xml\n";
+      robotsLoaded = true;
+      if (!silent) toast("robots.txt not found — showing default template.");
     } else {
-      toast(e.message, "error");
+      if (!silent) toast(e.message, "error");
     }
-  }
-  finally { setBusy(null, "load-robots-sp", false); }
-});
+  } finally { setBusy(null, "load-robots-sp", false); }
+};
+
+const autoLoadRobots = () => { if (!robotsLoaded) loadRobotsTxt(true); };
+
+document.getElementById("load-robots-btn")?.addEventListener("click", () => loadRobotsTxt(false));
 
 document.getElementById("save-robots-btn")?.addEventListener("click", async () => {
   setBusy(null, "save-robots-sp", true);

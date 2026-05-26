@@ -540,7 +540,7 @@
   "settings": {
     "web3formsKey": "d28fdc1b-8b2a-448c-9e53-9f6a1135caac",
     "contactEmail": "ayushgupta79@gmail.com",
-    "formSubject": "New Tour Booking  Inspire Workplace",
+    "formSubject": "New Tour Booking — Inspire Workplace",
     "googleVerification": "",
     "schema": {
       "localBusiness": {
@@ -590,6 +590,16 @@
           "path": "/html/contact.html",
           "priority": "0.8",
           "changefreq": "monthly"
+        },
+        {
+          "path": "/html/privacy-policy.html",
+          "priority": "0.3",
+          "changefreq": "yearly"
+        },
+        {
+          "path": "/html/terms-of-use.html",
+          "priority": "0.3",
+          "changefreq": "yearly"
         }
       ]
     }
