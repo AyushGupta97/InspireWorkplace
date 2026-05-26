@@ -552,7 +552,7 @@
         "addressLocality": "Bengaluru",
         "addressRegion": "Karnataka",
         "postalCode": "560037",
-        "priceRange": "Ã¢ÂÂ¹Ã¢ÂÂ¹",
+        "priceRange": "",
         "url": "https://inspireworkplace.com/",
         "image": "content/WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg",
         "openingHours": "Mo-Sa 08:00-20:00"
@@ -604,5 +604,5 @@
       ]
     }
   },
-  "revision": 1779609278
+  "revision": 1779821310
 }
