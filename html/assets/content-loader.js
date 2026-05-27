@@ -5,6 +5,8 @@
   if (!pageMeta) return;
 
   const pageId = pageMeta.content;
+  const baseMeta = document.querySelector('meta[name="content-base"]');
+  const base = baseMeta ? baseMeta.content : '';
   // Determine correct data path based on current page location
   // If on a page in /html/ subdirectory, go up one level; otherwise stay in current level
   const dataPath = window.location.pathname.includes('/html/') ? '../data' : './data';
@@ -157,7 +159,12 @@
     document.querySelectorAll('[data-cimg]').forEach(el => {
       const v = getVal(pc, el.dataset.cimg);
       if (v) {
-        const imgPath = base && !v.startsWith('content/') ? `${base}/${v}` : v;
+        let imgPath;
+        if (v.startsWith('http') || v.startsWith('content/')) {
+          imgPath = base ? `${base}/${v}` : v;
+        } else {
+          imgPath = base ? `${base}/content/${v}` : `content/${v}`;
+        }
         el.src = imgPath;
       }
     });

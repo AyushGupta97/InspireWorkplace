@@ -1348,7 +1348,7 @@ window.openImagePickerModal = async (pageKey, secId, fieldKey) => {
 
     grid.querySelectorAll(".img-pick-item").forEach(it => it.addEventListener("click", () => {
       const inputEl = document.getElementById(it.dataset.inputId);
-      if (inputEl) inputEl.value = it.dataset.name;
+      if (inputEl) inputEl.value = `content/${it.dataset.name}`;
       grid.querySelectorAll(".img-pick-item").forEach(x => x.classList.remove("selected"));
       it.classList.add("selected");
       const previewEl = document.querySelector(`#sc-${pageKey}-${secId} .img-preview-box`);
