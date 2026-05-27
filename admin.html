@@ -1445,7 +1445,7 @@ const spacesSchema = () => [
   { id: "spaceCards", title: "Space Cards", icon: "🃏", fields: [],
     list: { key: "cards", title: "Space cards", addLabel: "Add space card", withImage: true,
       itemLabel: i => i.title || "Card",
-      fields: [{ key: "id", label: "Anchor ID", placeholder: "hot-desk" }, { key: "title", label: "Title" }, { key: "subtitle", label: "Subtitle" }, { key: "desc", label: "Description", type: "textarea" }, { key: "cta", label: "CTA Button Text" }] }},
+      fields: [{ key: "id", label: "Anchor ID", placeholder: "hot-desk" }, { key: "title", label: "Title" }, { key: "subtitle", label: "Subtitle" }, { key: "desc", label: "Description", type: "textarea" }, { key: "price", label: "Price (e.g. ₹6,000)" }, { key: "pricePer", label: "Price per (e.g. / month)" }, { key: "cta", label: "CTA Button Text" }] }},
   { id: "amenitiesSection", title: "Amenities (split)", icon: "✅",
     fields: [{ key: "heading", label: "Heading" }],
     list: { key: "checks", title: "Check list", addLabel: "Add item",

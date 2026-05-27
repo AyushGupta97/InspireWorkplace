@@ -220,18 +220,21 @@ function render(type, data, base) {
         <p>${esc(it.a)}</p>
       </details>`).join(''),
 
-    spaceCards: items => items.map((it, i) => `
+    spaceCards: items => items.map((it, i) => {
+      const price = it.price || (it.pricing && it.pricing[0]?.price) || '';
+      const pricePer = it.pricePer || (it.pricing && it.pricing[0]?.label) || '';
+      return `
       <article class="card" id="${esc(it.id)}" data-reveal ${i > 0 && i % 3 !== 0 ? `data-delay="${i % 3}"` : ''}>
         ${it.image ? `<img src="${cp}${esc(it.image)}" alt="${esc(it.title)}" loading="lazy">` : ''}
         <div class="card-body">
           <h3>${esc(it.title)}</h3>
           ${it.subtitle ? `<p style="color:var(--muted);font-size:0.9rem;margin:0.5rem 0 1rem">${esc(it.subtitle)}</p>` : ''}
           <p>${esc(it.desc)}</p>
-          ${it.features && Array.isArray(it.features) && it.features.length ? `<ul style="margin:1rem 0;padding-left:1.5rem"><li style="margin:0.5rem 0">${it.features.map(f => esc(f)).join('</li><li style="margin:0.5rem 0">')}</li></ul>` : ''}
-          ${it.pricing && Array.isArray(it.pricing) && it.pricing.length ? `<div style="margin:1rem 0">${it.pricing.map(p => `<div style="display:flex;justify-content:space-between"><span>${esc(p.label)}</span><strong>${esc(p.price)}</strong></div>`).join('')}</div>` : ''}
-          ${it.cta ? `<a href="#" style="display:inline-block;margin-top:1rem;padding:0.75rem 1.5rem;background:#333;color:#fff;text-decoration:none;border-radius:4px">${esc(it.cta)}</a>` : ''}
+          ${price ? `<div class="price">${esc(price)} <small>${esc(pricePer)}</small></div>` : ''}
+          ${it.cta ? `<a href="contact.html" style="display:inline-block;margin-top:1rem;padding:0.75rem 1.5rem;background:#333;color:#fff;text-decoration:none;border-radius:4px">${esc(it.cta)}</a>` : ''}
         </div>
-      </article>`).join(''),
+      </article>`;
+    }).join(''),
 
     valueCards: items => items.map((it, i) => `
       <article class="card" data-reveal ${i > 0 ? `data-delay="${Math.min(i,4)}"` : ''}>

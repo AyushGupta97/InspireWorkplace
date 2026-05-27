@@ -243,7 +243,9 @@
             }
           ],
           "cta": "Enquire Now",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg"
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg",
+          "price": "₹6,000",
+          "pricePer": "/ month"
         },
         {
           "id": "dedicated-desk",
@@ -263,7 +265,9 @@
             }
           ],
           "cta": "Enquire Now",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg",
+          "price": "₹8,000",
+          "pricePer": "/ month"
         },
         {
           "id": "private-cabin",
@@ -283,7 +287,9 @@
             }
           ],
           "cta": "Enquire Now",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg"
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg",
+          "price": "₹40,000+",
+          "pricePer": "/ month"
         },
         {
           "id": "managed-office",
@@ -303,7 +309,9 @@
             }
           ],
           "cta": "Discuss Requirements",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg",
+          "price": "₹6,000+",
+          "pricePer": "/ seat / month"
         },
         {
           "id": "virtual-office",
@@ -322,7 +330,9 @@
             }
           ],
           "cta": "Enquire Now",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg",
+          "price": "₹21,000",
+          "pricePer": "/ year"
         },
         {
           "id": "training-room",
@@ -342,7 +352,9 @@
             }
           ],
           "cta": "Check Availability",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg",
+          "price": "₹3,500+",
+          "pricePer": "/ hour"
         }
       ]
     }
