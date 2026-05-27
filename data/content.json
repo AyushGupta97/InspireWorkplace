@@ -202,130 +202,6 @@
       "heading": "From teams of 3 to 30, we have spaces that fit the way you work.",
       "lead": "All plans include high-speed internet, power backup, air conditioning, and access to common areas. No hidden charges."
     },
-    "cards": [
-      {
-        "id": "hot-desk",
-        "title": "Hot Desk",
-        "subtitle": "For freelancers & individuals",
-        "desc": "Work from any available desk on our open floormaximum flexibility, no long-term commitment.",
-        "features": [
-          "Access to any available seat",
-          "High-speed leased line internet",
-          "Cafeteria & common areas"
-        ],
-        "pricing": [
-          {
-            "label": "Day Pass",
-            "price": "Ã¢ÂÂ¹350/day"
-          },
-          {
-            "label": "Monthly",
-            "price": "Ã¢ÂÂ¹5,000"
-          }
-        ],
-        "cta": "Enquire Now",
-        "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg"
-      },
-      {
-        "id": "dedicated-desk",
-        "title": "Dedicated Desk",
-        "subtitle": "For professionals",
-        "desc": "Your own fixed desk in a shared workspace. Set it up once, and come back to it every day.",
-        "features": [
-          "Fixed desk, exclusively yours",
-          "Personal storage locker",
-          "Priority meeting room access",
-          "Mail & courier handling"
-        ],
-        "pricing": [
-          {
-            "label": "Monthly",
-            "price": "Ã¢ÂÂ¹6,000"
-          }
-        ],
-        "cta": "Enquire Now",
-        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"
-      },
-      {
-        "id": "private-cabin",
-        "title": "Private Cabin",
-        "subtitle": "For teams of 410",
-        "desc": "A fully enclosed, secure workspace for your team. Designed for privacy, focus, and collaboration.",
-        "features": [
-          "Glass-partition, enclosed cabin",
-          "Custom layout & branding (6+ months)",
-          "Dedicated meeting room hours",
-          "Available for 410 seats"
-        ],
-        "pricing": [
-          {
-            "label": "Starting at",
-            "price": "Ã¢ÂÂ¹40,000/month"
-          }
-        ],
-        "cta": "Enquire Now",
-        "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg"
-      },
-      {
-        "id": "managed-office",
-        "title": "Managed Office",
-        "subtitle": "For teams of 1550",
-        "desc": "A fully customised office space built to your requirementsready to move in from day one.",
-        "features": [
-          "Private zone or full-floor options",
-          "Custom interiors, furniture & branding",
-          "Dedicated server room option",
-          "1224 month contracts"
-        ],
-        "pricing": [
-          {
-            "label": "Starting at",
-            "price": "Ã¢ÂÂ¹6,000/seat/month"
-          }
-        ],
-        "cta": "Discuss Requirements",
-        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
-      },
-      {
-        "id": "virtual-office",
-        "title": "Virtual Office",
-        "subtitle": "For businesses & freelancers",
-        "desc": "Get a professional business address without a physical workspace.",
-        "features": [
-          "GST-registered ORR address",
-          "Mail & courier handling",
-          "4 meeting room hours per month"
-        ],
-        "pricing": [
-          {
-            "label": "Starting at",
-            "price": "Ã¢ÂÂ¹21,000/yearly"
-          }
-        ],
-        "cta": "Enquire Now",
-        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"
-      },
-      {
-        "id": "training-room",
-        "title": "Training Room",
-        "subtitle": "For events & workshops",
-        "desc": "A fully equipped space for team sessions, workshops, and training programs.",
-        "features": [
-          "Seating for up to 25-30 people",
-          "Projector, screen & whiteboard",
-          "Catering support available",
-          "Discounts on weekly bookings"
-        ],
-        "pricing": [
-          {
-            "label": "Starting at",
-            "price": "Ã¢ÂÂ¹3,500/per hour"
-          }
-        ],
-        "cta": "Check Availability",
-        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"
-      }
-    ],
     "amenitiesSection": {
       "heading": "Amenities that make the workday smoother.",
       "checks": [
@@ -343,6 +219,132 @@
       "cta1Url": "contact.html",
       "cta2Text": "Call sales",
       "cta2Url": "tel:+917899830610"
+    },
+    "spaceCards": {
+      "cards": [
+        {
+          "id": "hot-desk",
+          "title": "Hot Desk",
+          "subtitle": "For freelancers & individuals",
+          "desc": "Work from any available desk on our open floormaximum flexibility, no long-term commitment.",
+          "features": [
+            "Access to any available seat",
+            "High-speed leased line internet",
+            "Cafeteria & common areas"
+          ],
+          "pricing": [
+            {
+              "label": "Day Pass",
+              "price": "Ã¢ÂÂ¹350/day"
+            },
+            {
+              "label": "Monthly",
+              "price": "Ã¢ÂÂ¹5,000"
+            }
+          ],
+          "cta": "Enquire Now",
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg"
+        },
+        {
+          "id": "dedicated-desk",
+          "title": "Dedicated Desk",
+          "subtitle": "For professionals",
+          "desc": "Your own fixed desk in a shared workspace. Set it up once, and come back to it every day.",
+          "features": [
+            "Fixed desk, exclusively yours",
+            "Personal storage locker",
+            "Priority meeting room access",
+            "Mail & courier handling"
+          ],
+          "pricing": [
+            {
+              "label": "Monthly",
+              "price": "Ã¢ÂÂ¹6,000"
+            }
+          ],
+          "cta": "Enquire Now",
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"
+        },
+        {
+          "id": "private-cabin",
+          "title": "Private Cabin",
+          "subtitle": "For teams of 410",
+          "desc": "A fully enclosed, secure workspace for your team. Designed for privacy, focus, and collaboration.",
+          "features": [
+            "Glass-partition, enclosed cabin",
+            "Custom layout & branding (6+ months)",
+            "Dedicated meeting room hours",
+            "Available for 410 seats"
+          ],
+          "pricing": [
+            {
+              "label": "Starting at",
+              "price": "Ã¢ÂÂ¹40,000/month"
+            }
+          ],
+          "cta": "Enquire Now",
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg"
+        },
+        {
+          "id": "managed-office",
+          "title": "Managed Office",
+          "subtitle": "For teams of 1550",
+          "desc": "A fully customised office space built to your requirementsready to move in from day one.",
+          "features": [
+            "Private zone or full-floor options",
+            "Custom interiors, furniture & branding",
+            "Dedicated server room option",
+            "1224 month contracts"
+          ],
+          "pricing": [
+            {
+              "label": "Starting at",
+              "price": "Ã¢ÂÂ¹6,000/seat/month"
+            }
+          ],
+          "cta": "Discuss Requirements",
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
+        },
+        {
+          "id": "virtual-office",
+          "title": "Virtual Office",
+          "subtitle": "For businesses & freelancers",
+          "desc": "Get a professional business address without a physical workspace.",
+          "features": [
+            "GST-registered ORR address",
+            "Mail & courier handling",
+            "4 meeting room hours per month"
+          ],
+          "pricing": [
+            {
+              "label": "Starting at",
+              "price": "Ã¢ÂÂ¹21,000/yearly"
+            }
+          ],
+          "cta": "Enquire Now",
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"
+        },
+        {
+          "id": "training-room",
+          "title": "Training Room",
+          "subtitle": "For events & workshops",
+          "desc": "A fully equipped space for team sessions, workshops, and training programs.",
+          "features": [
+            "Seating for up to 25-30 people",
+            "Projector, screen & whiteboard",
+            "Catering support available",
+            "Discounts on weekly bookings"
+          ],
+          "pricing": [
+            {
+              "label": "Starting at",
+              "price": "Ã¢ÂÂ¹3,500/per hour"
+            }
+          ],
+          "cta": "Check Availability",
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"
+        }
+      ]
     }
   },
   "about": {
@@ -395,29 +397,6 @@
       "heading": "Community events and training room rentals in Bangalore.",
       "lead": "Use Inspire Workplace for focused workshops, founder meetups, team training, demo nights and professional sessions near Marathahalli ORR."
     },
-    "venues": [
-      {
-        "title": "Training Room",
-        "desc": "Seats up to 40 people with projector, screen, whiteboard and catering options.",
-        "price": "Ã¢ÂÂ¹8,000",
-        "per": "/ day",
-        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"
-      },
-      {
-        "title": "Rooftop Sessions",
-        "desc": "Open-air setting for member mixers, wellness mornings and informal community events.",
-        "price": "Custom",
-        "per": "quote",
-        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg"
-      },
-      {
-        "title": "Founder Meetups",
-        "desc": "Professional venue for talks, product demos, networking breakfasts and small-group sessions.",
-        "price": "From Ã¢ÂÂ¹299",
-        "per": "/ attendee",
-        "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
-      }
-    ],
     "upcomingSection": {
       "eyebrow": "Upcoming events",
       "heading": "Events that support builders and teams.",
@@ -430,6 +409,31 @@
       "cta1Url": "contact.html",
       "cta2Text": "Call the team",
       "cta2Url": "tel:+917899830610"
+    },
+    "venuesSection": {
+      "venues": [
+        {
+          "title": "Training Room",
+          "desc": "Seats up to 40 people with projector, screen, whiteboard and catering options.",
+          "price": "Ã¢ÂÂ¹8,000",
+          "per": "/ day",
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg"
+        },
+        {
+          "title": "Rooftop Sessions",
+          "desc": "Open-air setting for member mixers, wellness mornings and informal community events.",
+          "price": "Custom",
+          "per": "quote",
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg"
+        },
+        {
+          "title": "Founder Meetups",
+          "desc": "Professional venue for talks, product demos, networking breakfasts and small-group sessions.",
+          "price": "From Ã¢ÂÂ¹299",
+          "per": "/ attendee",
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
+        }
+      ]
     }
   },
   "blog": {

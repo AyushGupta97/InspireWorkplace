@@ -1442,7 +1442,7 @@ const homeSchema = () => [
 const spacesSchema = () => [
   { id: "header", title: "Page Header", icon: "📌",
     fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "H1 Heading" }, { key: "lead", label: "Lead", type: "textarea" }] },
-  { id: "cards", title: "Space Cards", icon: "🃏", fields: [],
+  { id: "spaceCards", title: "Space Cards", icon: "🃏", fields: [],
     list: { key: "cards", title: "Space cards", addLabel: "Add space card", withImage: true,
       itemLabel: i => i.title || "Card",
       fields: [{ key: "id", label: "Anchor ID", placeholder: "hot-desk" }, { key: "title", label: "Title" }, { key: "subtitle", label: "Subtitle" }, { key: "desc", label: "Description", type: "textarea" }, { key: "cta", label: "CTA Button Text" }] }},
@@ -1474,7 +1474,7 @@ const aboutSchema = () => [
 const eventsPageSchema = () => [
   { id: "header", title: "Page Header", icon: "📌",
     fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "H1 Heading" }, { key: "lead", label: "Lead", type: "textarea" }] },
-  { id: "venues", title: "Venue Cards", icon: "🎪", fields: [],
+  { id: "venuesSection", title: "Venue Cards", icon: "🎪", fields: [],
     list: { key: "venues", title: "Venue cards", addLabel: "Add venue", withImage: true,
       itemLabel: i => i.title || "Venue",
       fields: [{ key: "title", label: "Title" }, { key: "desc", label: "Description", type: "textarea" }, { key: "price", label: "Price" }, { key: "per", label: "Per" }] }},
