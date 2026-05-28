@@ -1,5 +1,5 @@
 // ── Scroll-reveal ──────────────────────────────────────────
-const revealObserver = new IntersectionObserver(
+const revealObserver = window._revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -25,7 +25,7 @@ const countUp = (el, target, suffix) => {
   requestAnimationFrame(update);
 };
 
-const statObserver = new IntersectionObserver(
+const statObserver = window._statObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
