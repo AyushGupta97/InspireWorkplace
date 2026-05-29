@@ -227,25 +227,10 @@
           "title": "Hot Desk",
           "subtitle": "For freelancers & individuals",
           "desc": "Work from any available desk on our open floormaximum flexibility, no long-term commitment.",
-          "features": [
-            "Access to any available seat",
-            "High-speed leased line internet",
-            "Cafeteria & common areas"
-          ],
-          "pricing": [
-            {
-              "label": "Day Pass",
-              "price": "Ã¢ÂÂ¹350/day"
-            },
-            {
-              "label": "Monthly",
-              "price": "Ã¢ÂÂ¹5,000"
-            }
-          ],
+          "price": "Rs. 5,000",
+          "pricePer": "/ month",
           "cta": "Enquire Now",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg",
-          "price": "₹6,000",
-          "pricePer": "/ month"
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg"
         },
         {
           "id": "dedicated-desk",
@@ -608,5 +593,5 @@
       ]
     }
   },
-  "revision": 1780049561
+  "revision": 1780049728
 }
