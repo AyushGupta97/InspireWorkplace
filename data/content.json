@@ -312,22 +312,10 @@
           "title": "Training Room",
           "subtitle": "For events & workshops",
           "desc": "A fully equipped space for team sessions, workshops, and training programs.",
-          "features": [
-            "Seating for up to 25-30 people",
-            "Projector, screen & whiteboard",
-            "Catering support available",
-            "Discounts on weekly bookings"
-          ],
-          "pricing": [
-            {
-              "label": "Starting at",
-              "price": "Ã¢ÂÂ¹3,500/per hour"
-            }
-          ],
-          "cta": "Check Availability",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05.jpeg",
           "price": "₹3,500+",
-          "pricePer": "/ hour"
+          "pricePer": "/ hour",
+          "cta": "Check Availability",
+          "image": "Conference Room.png"
         }
       ]
     }
@@ -593,5 +581,5 @@
       ]
     }
   },
-  "revision": 1780049833
+  "revision": 1780049901
 }
