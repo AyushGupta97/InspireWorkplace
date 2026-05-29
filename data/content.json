@@ -252,22 +252,10 @@
           "title": "Dedicated Desk",
           "subtitle": "For professionals",
           "desc": "Your own fixed desk in a shared workspace. Set it up once, and come back to it every day.",
-          "features": [
-            "Fixed desk, exclusively yours",
-            "Personal storage locker",
-            "Priority meeting room access",
-            "Mail & courier handling"
-          ],
-          "pricing": [
-            {
-              "label": "Monthly",
-              "price": "Ã¢ÂÂ¹6,000"
-            }
-          ],
-          "cta": "Enquire Now",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg",
           "price": "₹8,000",
-          "pricePer": "/ month"
+          "pricePer": "/ month",
+          "cta": "Enquire Now",
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"
         },
         {
           "id": "private-cabin",
@@ -620,5 +608,5 @@
       ]
     }
   },
-  "revision": 1780048770
+  "revision": 1780049561
 }
