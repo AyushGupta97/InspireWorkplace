@@ -2,8 +2,8 @@
   "home": {
     "hero": {
       "eyebrow": "Marathahalli ORR, Bengaluru",
-      "headingPrefix": "Coworking spaces designed for focus and growth",
-      "headingEmphasis": "",
+      "headingPrefix": "Coworking spaces designed for",
+      "headingEmphasis": "focus and growth",
       "lead": "Whether youre a freelancer, a startup, or a growing team, Inspire Workplace gives you a professional environment designed to help you do your best work.",
       "cta1Text": "Book a free tour",
       "cta1Url": "html/contact.html",
@@ -581,5 +581,5 @@
       ]
     }
   },
-  "revision": 1780050011
+  "revision": 1780050523
 }
