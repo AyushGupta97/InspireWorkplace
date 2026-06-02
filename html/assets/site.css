@@ -35,7 +35,7 @@
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--body);
   background: var(--cream);
   line-height: 1.65;
@@ -102,7 +102,7 @@ p { margin: 0; font-weight: 300; }
 .brand img { width: 56px; height: 56px; object-fit: contain; background: none; }
 .brand span { color: var(--ink); font-family: "Instrument Serif", Georgia, serif; font-size: 1.5rem; }
 .menu { display: flex; align-items: center; gap: clamp(.8rem, 2vw, 1.8rem); }
-.menu a { color: var(--muted); font-size: .86rem; font-weight: 500; transition: color .2s ease; }
+.menu a { color: var(--muted); font-size: .86rem; font-weight: 500; letter-spacing: .01em; transition: color .2s ease; }
 .menu a:hover { color: var(--ink); }
 .menu a[aria-current="page"] { color: var(--ink); font-weight: 700; }
 .nav-actions { display: flex; align-items: center; gap: .8rem; }
@@ -215,7 +215,7 @@ p { margin: 0; font-weight: 300; }
 .card h3 { margin-bottom: .55rem; }
 .card p { color: var(--muted); font-size: .92rem; }
 .price { margin-top: 1rem; color: var(--ink); font-family: "Instrument Serif", Georgia, serif; font-size: 2rem; line-height: 1; }
-.price small { color: var(--muted); font-family: Inter, sans-serif; font-size: .78rem; }
+.price small { color: var(--muted); font-family: 'Poppins', sans-serif; font-size: .78rem; }
 
 .space-list { border-top: 1px solid var(--line); }
 .space-row {
@@ -347,7 +347,7 @@ input:focus, select:focus, textarea:focus {
 
 .site-footer { background: var(--ink); color: rgba(255,255,255,.5); padding: 4rem 0 2rem; border-top: 1px solid rgba(255,255,255,.1); }
 .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 3rem; }
-.footer-grid h2, .footer-grid h3 { color: var(--white); font-family: Inter, sans-serif; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1rem; font-weight: 600; }
+.footer-grid h2, .footer-grid h3 { color: var(--white); font-family: 'Poppins', sans-serif; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1rem; font-weight: 600; }
 .footer-grid a { display: block; margin-top: .65rem; color: rgba(255,255,255,.6); font-size: .92rem; transition: color .2s ease, transform .2s ease; }
 .footer-grid a:hover { color: var(--white); transform: translateX(4px); }
 .footer-grid p { margin-bottom: 1rem; line-height: 1.6; font-size: .95rem; color: rgba(255,255,255,.55); }
@@ -355,6 +355,36 @@ input:focus, select:focus, textarea:focus {
 .footer-brand img { width: 40px; height: 40px; object-fit: contain; }
 .footer-brand strong { color: var(--white); font-family: "Instrument Serif", Georgia, serif; font-size: 1.4rem; font-weight: 400; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 1.5rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.1); font-size: .82rem; color: rgba(255,255,255,.45); }
+
+/* ── Event cards ──────────────────────────────────────────── */
+.event-list { display: grid; gap: 1.5rem; margin-top: 2rem; }
+.event-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  align-items: center;
+  cursor: pointer;
+  transition: box-shadow .3s ease, transform .3s cubic-bezier(.22,1,.36,1), border-color .2s ease;
+}
+.event-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,.10);
+  transform: translateY(-3px);
+  border-color: var(--olive);
+}
+.event-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.event-card-meta { color: var(--muted); font-size: .9rem; margin: .4rem 0 .9rem; }
+.event-card-price { font-weight: 700; color: var(--ink); }
+.event-card-price small { color: var(--muted); font-weight: 400; margin-left: .3rem; }
+.event-card-actions { display: flex; gap: 1rem; align-items: center; margin-top: 1.25rem; flex-wrap: wrap; }
 
 /* ── Scroll reveal ────────────────────────────────────────── */
 [data-reveal] {
@@ -620,6 +650,7 @@ input:focus, select:focus, textarea:focus {
   .hero { min-height: auto; }
   .hero-media { grid-template-columns: 1fr 1fr; }
   .cards, .blog-grid, .testimonial-grid, .footer-grid { grid-template-columns: 1fr; }
+  .event-card { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.5rem; }
   .amenities { grid-template-columns: repeat(2, 1fr); }
   .gallery .wide, .gallery .mid, .gallery .third { grid-column: span 12; }
   .stats { grid-template-columns: 1fr; }
@@ -644,8 +675,8 @@ input:focus, select:focus, textarea:focus {
 
   .hero { min-height: 50vh; padding: 2rem 1rem; }
   .hero-points, .form-row, .amenities { grid-template-columns: 1fr; gap: 1rem; }
-  .hero-media { grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
-  .hero-media img { max-height: 200px; }
+  .hero-media { grid-template-columns: 1fr; gap: 0; margin-top: 1.5rem; }
+  .hero-media img:first-child { aspect-ratio: 16/9; max-height: none; width: 100%; }
   .hero-media img:last-child { display: none; }
   .metric-card { position: static; width: 100%; margin-top: 0.5rem; padding: 1rem; }
 
@@ -658,6 +689,9 @@ input:focus, select:focus, textarea:focus {
   .space-row .num { font-size: 1.5rem; }
 
   .cards, .blog-grid, .testimonial-grid, .event-list { grid-template-columns: 1fr; gap: 1rem; }
+  .event-card { grid-template-columns: 1fr; gap: 1rem; padding: 1.25rem; }
+  .event-card-actions { flex-direction: column; align-items: flex-start; gap: .75rem; }
+  .event-card-actions .btn { width: 100%; justify-content: center; }
   .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .footer-grid h3 { margin-bottom: 0.8rem; }
   .footer-grid a { margin-top: 0.5rem; min-height: 44px; display: block; padding: 0.5rem 0; }

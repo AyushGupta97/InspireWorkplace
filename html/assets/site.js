@@ -191,15 +191,15 @@ const renderEvents = (container, events) => {
     const image = eventItem.image || "../content/WhatsApp%20Image%202026-05-15%20at%2012.59.04%20(2).jpeg";
     const delay = Math.min(index, 4);
     return `
-      <article class="event-card" data-reveal data-delay="${delay}" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;padding:2rem;background:#f9f9f9;border-radius:8px;align-items:center;cursor:pointer;transition:all 0.3s ease" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'" onclick="window.openEventDetail(${index})">
-        <img src="${escapeHtml(image)}" alt="${escapeHtml(eventItem.imageAlt || eventItem.title)}" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px">
+      <article class="event-card" data-reveal data-delay="${delay}" onclick="window.openEventDetail(${index})">
+        <img src="${escapeHtml(image)}" alt="${escapeHtml(eventItem.imageAlt || eventItem.title)}" loading="lazy">
         <div>
-          <h3 style="margin:0 0 0.5rem 0">${escapeHtml(eventItem.title)}</h3>
-          <div style="color:var(--muted);margin-bottom:1rem;font-size:0.9rem">${escapeHtml(dateLine)}</div>
-          <p style="margin:0 0 1.5rem 0">${escapeHtml(eventItem.description)}</p>
-          <div style="display:flex;gap:1rem;align-items:center">
-            <div style="font-weight:700">${escapeHtml(price)} ${eventItem.priceNote ? `<small>${escapeHtml(eventItem.priceNote)}</small>` : ""}</div>
-            <button class="btn btn-dark" style="cursor:pointer">View details →</button>
+          <h3>${escapeHtml(eventItem.title)}</h3>
+          <div class="event-card-meta">${escapeHtml(dateLine)}</div>
+          <p>${escapeHtml(eventItem.description)}</p>
+          <div class="event-card-actions">
+            <span class="event-card-price">${escapeHtml(price)}${eventItem.priceNote ? ` <small>${escapeHtml(eventItem.priceNote)}</small>` : ""}</span>
+            <button class="btn btn-dark">View details →</button>
           </div>
         </div>
       </article>
