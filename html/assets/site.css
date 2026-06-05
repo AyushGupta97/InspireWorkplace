@@ -50,8 +50,8 @@ input, select, textarea, button { font-family: inherit; font-size: 16px; border-
 h1, h2, h3 {
   margin: 0;
   color: var(--ink);
-  font-family: "Instrument Serif", Georgia, serif;
-  font-weight: 400;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 700;
   letter-spacing: -.02em;
   line-height: 1.15;
 }
@@ -100,7 +100,7 @@ p { margin: 0; font-weight: 300; }
 }
 .brand { display: inline-flex; align-items: center; gap: .72rem; min-width: max-content; }
 .brand img { width: 56px; height: 56px; object-fit: contain; background: none; }
-.brand span { color: var(--ink); font-family: "Instrument Serif", Georgia, serif; font-size: 1.5rem; }
+.brand span { color: var(--ink); font-family: 'Poppins', system-ui, sans-serif; font-size: 1.5rem; }
 .menu { display: flex; align-items: center; gap: clamp(.8rem, 2vw, 1.8rem); }
 .menu a { color: var(--muted); font-size: .86rem; font-weight: 500; letter-spacing: .01em; transition: color .2s ease; }
 .menu a:hover { color: var(--ink); }
@@ -156,7 +156,7 @@ p { margin: 0; font-weight: 300; }
   right: -5vw;
   bottom: -4vw;
   color: rgba(16,16,15,.045);
-  font-family: "Instrument Serif", Georgia, serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-size: clamp(7rem, 18vw, 18rem);
   letter-spacing: -.05em;
   pointer-events: none;
@@ -185,7 +185,7 @@ p { margin: 0; font-weight: 300; }
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
 }
-.metric-card strong { display: block; color: var(--ink); font-family: "Instrument Serif", Georgia, serif; font-size: 2rem; line-height: 1; }
+.metric-card strong { display: block; color: var(--ink); font-family: 'Poppins', system-ui, sans-serif; font-size: 2rem; line-height: 1; }
 .metric-card span { color: var(--muted); font-size: .78rem; }
 
 .ticker { overflow: hidden; border-block: 1px solid var(--line); background: var(--white); }
@@ -214,7 +214,7 @@ p { margin: 0; font-weight: 300; }
 .card:hover img { transform: scale(1.04); }
 .card h3 { margin-bottom: .55rem; }
 .card p { color: var(--muted); font-size: .92rem; }
-.price { margin-top: 1rem; color: var(--ink); font-family: "Instrument Serif", Georgia, serif; font-size: 2rem; line-height: 1; }
+.price { margin-top: 1rem; color: var(--ink); font-family: 'Poppins', system-ui, sans-serif; font-size: 2rem; line-height: 1; }
 .price small { color: var(--muted); font-family: 'Poppins', sans-serif; font-size: .78rem; }
 
 .space-list { border-top: 1px solid var(--line); }
@@ -233,7 +233,7 @@ p { margin: 0; font-weight: 300; }
 .space-row:active {
   background: transparent;
 }
-.space-row .num { color: var(--orange); font-family: "Instrument Serif", Georgia, serif; font-size: 1.1rem; }
+.space-row .num { color: var(--orange); font-family: 'Poppins', system-ui, sans-serif; font-size: 1.1rem; }
 .space-row h3 { font-size: 1.7rem; }
 .space-row p { max-width: 660px; color: var(--muted); font-size: .94rem; }
 .space-row .price { margin: 0; text-align: right; }
@@ -259,13 +259,13 @@ p { margin: 0; font-weight: 300; }
 
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.1); border-radius: var(--r); overflow: hidden; margin-top: 2rem; }
 .stat { padding: 1.5rem; background: rgba(255,255,255,.055); }
-.stat strong { display: block; color: var(--white); font-family: "Instrument Serif", Georgia, serif; font-size: 3rem; line-height: 1; }
+.stat strong { display: block; color: var(--white); font-family: 'Poppins', system-ui, sans-serif; font-size: 3rem; line-height: 1; }
 .stat span { color: rgba(255,255,255,.5); font-size: .86rem; }
 
 .testimonial-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 1rem; }
 .quote { padding: 1.45rem; border: 1px solid var(--line); border-radius: var(--r); background: var(--white); }
 .quote.featured { background: var(--ink); border-color: var(--ink); color: rgba(255,255,255,.72); }
-.quote p { font-family: "Instrument Serif", Georgia, serif; font-size: 1.35rem; line-height: 1.35; color: inherit; }
+.quote p { font-family: 'Poppins', system-ui, sans-serif; font-size: 1.35rem; line-height: 1.35; color: inherit; }
 .quote cite { display: block; margin-top: 1rem; color: var(--muted); font-style: normal; font-size: .84rem; }
 .quote.featured cite { color: rgba(255,255,255,.45); }
 
@@ -336,7 +336,7 @@ input:focus, select:focus, textarea:focus {
   position: absolute;
   inset: auto 0 -5vw 0;
   color: rgba(255,255,255,.05);
-  font-family: "Instrument Serif", Georgia, serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-size: clamp(4rem, 13vw, 13rem);
   letter-spacing: -.05em;
 }
@@ -353,7 +353,7 @@ input:focus, select:focus, textarea:focus {
 .footer-grid p { margin-bottom: 1rem; line-height: 1.6; font-size: .95rem; color: rgba(255,255,255,.55); }
 .footer-brand { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.2rem; }
 .footer-brand img { width: 40px; height: 40px; object-fit: contain; }
-.footer-brand strong { color: var(--white); font-family: "Instrument Serif", Georgia, serif; font-size: 1.4rem; font-weight: 400; }
+.footer-brand strong { color: var(--white); font-family: 'Poppins', system-ui, sans-serif; font-size: 1.4rem; font-weight: 600; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 1.5rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.1); font-size: .82rem; color: rgba(255,255,255,.45); }
 
 /* ── Event cards ──────────────────────────────────────────── */
