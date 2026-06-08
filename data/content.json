@@ -423,12 +423,12 @@
     "details": {
       "addressLine1": "Outer Ring Road, Marathahalli",
       "addressLine2": "Bengaluru, Karnataka 560037",
-      "phone1": "+917899830610",
+      "phone1": "",
       "phone1Display": "+91 78998 30610",
       "phone2": "+919916130610",
       "phone2Display": "+91 99161 30610",
       "email": "admin@inspireworkplace.com",
-      "hours": "Monday to Saturday, 8 AM to 8 PM"
+      "hours": "Monday to Saturday, 8 AM to 9 PM"
     },
     "locationSection": {
       "eyebrow": "Location",
@@ -571,5 +571,5 @@
       ]
     }
   },
-  "revision": 1780900406
+  "revision": 1780900518
 }
