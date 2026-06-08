@@ -56,8 +56,8 @@
           "num": "05",
           "title": "Virtual Office",
           "desc": "Establish a professional business presence with a premium business address, GST registration support, mail handling, and meeting room access.",
-          "price": "2,000",
-          "per": "/ month"
+          "price": "18000",
+          "per": "/ year"
         }
       ]
     },
@@ -571,5 +571,5 @@
       ]
     }
   },
-  "revision": 1780900523
+  "revision": 1780903818
 }
