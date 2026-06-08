@@ -286,7 +286,7 @@
           "title": "Virtual Office",
           "subtitle": "For startups & business registration",
           "desc": "Establish a professional business presence with a premium business address, GST registration support, and mail handling services.",
-          "price": "₹21,000",
+          "price": "₹18,000",
           "pricePer": "/ year",
           "cta": "Enquire Now",
           "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"
@@ -571,5 +571,5 @@
       ]
     }
   },
-  "revision": 1780906688
+  "revision": 1780906819
 }
