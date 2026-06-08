@@ -310,9 +310,15 @@
       "heading": "A workspace built around how people actually work.",
       "lead": "Inspire Workplace started from a simple observation: many offices in Bangalore are either too expensive, too rigid or too lifeless. We built a flexible workspace with reliable amenities, warm interiors and pricing that makes sense for modern teams.",
       "checks": [
-        "Flexible plans for changing team sizes",
-        "Community without forced networking",
-        "Transparent pricing and practical amenities"
+        {
+          "_text": "Flexible workspace solutions for evolving teams"
+        },
+        {
+          "_text": "Professional environments designed for productivity"
+        },
+        {
+          "_text": "Transparent pricing with business-ready amenities"
+        }
       ],
       "image": "Inspire Side View.png"
     },
@@ -321,16 +327,16 @@
       "heading": "Three things we never compromise on.",
       "items": [
         {
-          "title": "Flexibility first",
-          "desc": "Contracts and workspace options designed around growth, not lock-ins."
+          "title": "Flexible Plans",
+          "desc": "Workspace solutions that adapt to your team size, business needs, and future growth."
         },
         {
-          "title": "Useful community",
-          "desc": "Members share ideas, referrals and collaborators in a calm professional environment."
+          "title": "Thoughtful Design",
+          "desc": "Well-designed workspaces that support focus, collaboration, and everyday productivity."
         },
         {
-          "title": "Honest operations",
-          "desc": "Internet, power, cafeteria, parking and meeting support handled clearly from day one."
+          "title": "Reliable Services",
+          "desc": "Transparent pricing, essential amenities, and responsive support you can count on."
         }
       ]
     },
@@ -565,5 +571,5 @@
       ]
     }
   },
-  "revision": 1780900154
+  "revision": 1780900406
 }
