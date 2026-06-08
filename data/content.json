@@ -2,8 +2,8 @@
   "home": {
     "hero": {
       "eyebrow": "Work. Grow. Scale.",
-      "headingPrefix": "Flexible Coworking and Managed Office Spaces in Marathahalli, Bengaluru",
-      "headingEmphasis": "",
+      "headingPrefix": "Flexible Coworking and Managed Office Spaces for Focus and Growth",
+      "headingEmphasis": "in Marathahalli, Bengaluru",
       "lead": "Looking for a coworking space in Marathahalli or a fully managed office in Bengaluru? Inspire Workplace offers flexible workspaces, private cabins, meeting rooms, and virtual office solutions designed for startups, professionals, and growing teams.",
       "cta1Text": "Book a Free Tour",
       "cta1Url": "html/contact.html",
@@ -571,5 +571,5 @@
       ]
     }
   },
-  "revision": 1780907020
+  "revision": 1780907362
 }
