@@ -1,18 +1,18 @@
 {
   "home": {
     "hero": {
-      "eyebrow": "Marathahalli ORR, Bengaluru",
-      "headingPrefix": "Coworking spaces designed for",
-      "headingEmphasis": "focus and growth",
-      "lead": "Whether youre a freelancer, a startup, or a growing team, Inspire Workplace gives you a professional environment designed to help you do your best work.",
-      "cta1Text": "Book a free tour",
+      "eyebrow": "Work. Grow. Scale.",
+      "headingPrefix": "Flexible Coworking and Managed Office Spaces in Marathahalli, Bengaluru",
+      "headingEmphasis": "",
+      "lead": "Looking for a coworking space in Marathahalli or a fully managed office in Bengaluru? Inspire Workplace offers flexible workspaces, private cabins, meeting rooms, and virtual office solutions designed for startups, professionals, and growing teams.",
+      "cta1Text": "Book a Free Tour",
       "cta1Url": "html/contact.html",
-      "cta2Text": "View spaces and pricing",
+      "cta2Text": "View Spaces & Pricing",
       "cta2Url": "html/spaces.html",
-      "point1": "Coworking starting from 5,000/month",
-      "point2": "Virtual Office",
+      "point1": "Coworking Space starting at Rs. 5,000/month.",
+      "point2": "Virtual Office Address",
       "point3": "Private cabins and Managed Offices",
-      "metricTitle": "",
+      "metricTitle": "8 AM - 9 PM",
       "metricSub": ""
     },
     "heroImages": {
@@ -20,42 +20,42 @@
       "img2": "WhatsApp Image 2026-05-15 at 12.59.03 (1).jpeg"
     },
     "spacesSection": {
-      "eyebrow": "Our spaces",
-      "heading": "From teams of 3 to 30, we have spaces that fit the way you work.",
-      "lead": "",
+      "eyebrow": "OUR SPACES",
+      "heading": "Workspace Solutions for Startups, Teams, and Enterprises",
+      "lead": "Discover workspace solutions designed for every stage of your business journey. From flexible coworking desks to fully managed office spaces, we provide the infrastructure, flexibility, and support your team needs to thrive.",
       "items": [
         {
           "num": "01",
           "title": "Hot Desk",
-          "desc": "Walk in, plug in, and work with high-speed internet, common areas, and cafeteria access.",
+          "desc": "Ideal for freelancers, remote professionals, and entrepreneurs looking for a flexible coworking space with high-speed internet, comfortable seating, and access to shared amenities.",
           "price": "5,000",
           "per": "/ month"
         },
         {
           "num": "02",
           "title": "Dedicated Desk",
-          "desc": "Your fixed desk, personal locker, priority meeting room access and mail handling for everyday professionals.",
+          "desc": "A reserved workstation with personal storage, mail handling, and meeting room access for professionals who need consistency and convenience.",
           "price": "6,000",
           "per": "/ month"
         },
         {
           "num": "03",
           "title": "Private Cabin",
-          "desc": "Enclosed glass cabins for 4 to 10 seats, customised for longer contracts with branding and layout support.",
-          "price": "40,000",
+          "desc": "Fully furnished private office cabins for teams of 4–10 members, offering privacy, security, and a productive work environment.",
+          "price": "25,000",
           "per": "/ month"
         },
         {
           "num": "04",
           "title": "Managed Office",
-          "desc": "A complete zone or floor built to spec for 15 to 50 person teams with furniture, cabling and branding ready before move-in.",
+          "desc": "Custom-built office spaces for growing teams and enterprises. Move into a fully managed office with furniture, internet, maintenance, and branding support included.",
           "price": "6,000",
           "per": "/ seat"
         },
         {
           "num": "05",
           "title": "Virtual Office",
-          "desc": "ORR business address for GST registration, mail handling and meeting room hours without a full-time desk.",
+          "desc": "Establish a professional business presence with a premium business address, GST registration support, mail handling, and meeting room access.",
           "price": "2,000",
           "per": "/ month"
         }
@@ -63,51 +63,57 @@
     },
     "amenitiesSection": {
       "eyebrow": "Amenities",
-      "heading": "Everything you need to work, built in.",
-      "lead": "Fast internet, power backup, air conditioning, and well-maintained common areas, so your team can stay focused throughout the day.",
+      "heading": "Everything You Need in a Modern Workspace",
+      "lead": "Our coworking spaces and managed offices are fully equipped with business-ready amenities designed to keep your team productive, connected, and comfortable throughout the workday.",
       "items": [
         {
-          "title": "High-speed internet",
-          "desc": "Reliable leased-line connectivity for daily work."
+          "title": "High-Speed Internet",
+          "desc": "Reliable high-speed internet with dedicated leased-line connectivity for uninterrupted work and seamless collaboration."
         },
         {
-          "title": "Power backup",
-          "desc": "Work through local interruptions with less downtime."
+          "title": "Power Backup",
+          "desc": "100% power backup to ensure your business stays operational without interruptions."
         },
         {
-          "title": "Meeting rooms",
-          "desc": "Professional rooms for client calls, interviews and reviews."
+          "title": "Meeting Rooms",
+          "desc": "Fully equipped meeting rooms for client meetings, team discussions, presentations, and interviews."
         },
         {
-          "title": "Rooftop cafeteria",
-          "desc": "Meals, breaks and informal catchups without leaving the building."
+          "title": "Rooftop Cafeteria",
+          "desc": "A comfortable space to enjoy meals, coffee breaks, and informal team interactions."
         },
         {
-          "title": "Car parking",
-          "desc": "Dedicated premises parking for members and teams."
+          "title": "Car Parking",
+          "desc": "Dedicated parking facilities for members, employees, and visiting clients."
         },
         {
-          "title": "Recreation room",
-          "desc": "TT, foosball, carrom and chess for genuine pauses."
+          "title": "Recreation Room",
+          "desc": "Refresh and recharge with indoor games and breakout spaces designed for work-life balance."
         },
         {
-          "title": "GST address",
-          "desc": "Virtual office support for business registration."
+          "title": "GST Registration Address",
+          "desc": "Professional business address with GST registration support for startups and growing businesses."
         },
         {
-          "title": "Custom interiors",
-          "desc": "Branding and layout support for cabins and managed offices."
+          "title": "Custom Managed Offices",
+          "desc": "Fully branded and customized office spaces tailored to your team's size, workflow, and business requirements."
         }
       ]
     },
     "whySection": {
-      "eyebrow": "Why Inspire Workplace",
-      "heading": "A co-working space built for real workdays.",
-      "lead": "Thoughtfully designed workspaces in a prime ORR location, with natural light, warm interiors, and the flexibility to choose what works best for your team.",
+      "eyebrow": "WHY INSPIRE WORKPLACE",
+      "heading": "Built for the Way Modern Teams Work",
+      "lead": "Located on Marathahalli ORR, Inspire Workplace combines flexible office options, business-ready amenities, and a professional environment designed to help teams stay productive, connected, and focused on growth.",
       "checks": [
-        "Well-connected location near Marathahalli, ITPL, Bagmane & Prestige Tech Park",
-        "Multiple workspace options in one placefrom hot desks to managed offices",
-        "Transparent pricing with essential amenities included"
+        {
+          "_text": "Prime location near Marathahalli, ITPL, Bagmane Tech Park, and major business hubs"
+        },
+        {
+          "_text": "Flexible workspace options from hot desks and dedicated desks to private cabins and managed offices"
+        },
+        {
+          "_text": "Transparent pricing with essential amenities and business support included."
+        }
       ]
     },
     "reviewsSection": {
@@ -150,42 +156,42 @@
       "items": [
         {
           "q": "What workspace plans do you offer?",
-          "a": "We offer Hot Desks, Dedicated Desks, Private Cabins, Managed Offices, Virtual Office solutions, and Meeting Room bookings based on your business needs."
+          "a": "We offer Hot Desks, Dedicated Desks, Private Cabins, Managed Offices, Virtual Office plans, and Meeting Room bookings for freelancers, startups, and businesses of all sizes."
         },
         {
           "q": "Is Inspire Workplace suitable for startups and small teams?",
-          "a": "Yes. Our flexible workspace solutions are designed for startups, freelancers, consultants, remote professionals, and growing businesses."
+          "a": "Yes. Our flexible workspace solutions are designed for startups, freelancers, consultants, remote professionals, and growing businesses looking for a professional workspace in Bengaluru."
         },
         {
           "q": "Do you provide GST registration support?",
-          "a": "Yes. Our Virtual Office plans include a professional business address for GST registration along with mail handling services."
+          "a": "Yes. Our Virtual Office plans include a professional business address for GST registration, along with mail handling and business correspondence services."
         },
         {
           "q": "Can I schedule a workspace tour before joining?",
-          "a": "Absolutely. You can book a free workspace tour to explore the office spaces, amenities, and available plans before making a decision."
+          "a": "Absolutely. You can book a free tour to explore our coworking spaces, private offices, amenities, and available plans before making a decision."
         },
         {
           "q": "Is parking available at Inspire Workplace?",
-          "a": "Yes. Parking facilities are available for members, office teams, and visitors."
+          "a": "Yes. Dedicated parking facilities are available for members, office teams, and visitors."
         },
         {
           "q": "Do you provide meeting and conference room access?",
-          "a": "Yes. Fully equipped meeting and conference rooms are available for presentations, client meetings, interviews, and team discussions."
+          "a": "Yes. Fully equipped meeting rooms and conference spaces are available for client meetings, interviews, presentations, workshops, and team discussions."
         },
         {
           "q": "Where is the Inspire Workplace located?",
-          "a": "Inspire Workplace is conveniently located near ORR Bangalore with easy connectivity to Marathahalli, Whitefield, ITPL, and nearby business hubs."
+          "a": "Inspire Workplace is conveniently located on Marathahalli ORR, Bengaluru, with easy access to Whitefield, ITPL, Bagmane Tech Park, and major business hubs."
         },
         {
           "q": "Can office spaces be customized for teams?",
-          "a": "Yes. Private cabins and managed office spaces can be customized based on your branding, seating, and operational requirements."
+          "a": "Yes. Our private cabins and managed office spaces can be customized based on your team size, branding, seating layout, and operational requirements."
         }
       ]
     },
     "ctaSection": {
       "heading": "Ready to see Inspire Workplace?",
       "body": "Visit the space, compare plans and choose the coworking setup that fits your workday.",
-      "cta1Text": "Book a free tour",
+      "cta1Text": "Book a Free Tour",
       "cta1Url": "html/contact.html",
       "cta2Text": "Call +91 78998 30610",
       "cta2Url": "tel:+917899830610"
@@ -581,5 +587,5 @@
       ]
     }
   },
-  "revision": 1780050523
+  "revision": 1780899782
 }
