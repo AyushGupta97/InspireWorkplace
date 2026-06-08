@@ -68,7 +68,7 @@
       "items": [
         {
           "title": "High-Speed Internet",
-          "desc": "Reliable high-speed internet with dedicated leased-line connectivity for uninterrupted work and seamless collaboration."
+          "desc": "Stay connected and productive with lightning-fast broadband and Wi-Fi. Seamless connectivity ensures you never miss a beat in your work or collaboration efforts."
         },
         {
           "title": "Power Backup",
@@ -571,5 +571,5 @@
       ]
     }
   },
-  "revision": 1780903818
+  "revision": 1780903931
 }
