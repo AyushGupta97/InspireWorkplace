@@ -205,17 +205,30 @@
   "spaces": {
     "header": {
       "eyebrow": "Spaces & Pricing",
-      "heading": "From teams of 3 to 30, we have spaces that fit the way you work.",
-      "lead": "All plans include high-speed internet, power backup, air conditioning, and access to common areas. No hidden charges."
+      "heading": "Find the Right Workspace for Your Business",
+      "lead": "From flexible coworking desks to fully managed offices, find workspace solutions designed for freelancers, startups, and growing teams. Every plan includes high-speed internet, power backup, air conditioning, and access to essential business amenities."
     },
     "amenitiesSection": {
-      "heading": "Amenities that make the workday smoother.",
+      "heading": "Premium Amenities Included with Every Workspace",
       "checks": [
-        "High-speed internet and power backup",
-        "Meeting rooms, reception area and mail handling",
-        "Rooftop cafeteria and recreation room",
-        "Car parking in building premises",
-        "Custom interiors for managed office requirements"
+        {
+          "_text": "High-speed internet and power backup"
+        },
+        {
+          "_text": "Meeting rooms and conference facilities"
+        },
+        {
+          "_text": "Reception, mail handling, and business support"
+        },
+        {
+          "_text": "Rooftop cafeteria and recreation room"
+        },
+        {
+          "_text": "Dedicated car parking"
+        },
+        {
+          "_text": "Custom interiors for managed office spaces"
+        }
       ]
     },
     "ctaSection": {
@@ -231,8 +244,8 @@
         {
           "id": "hot-desk",
           "title": "Hot Desk",
-          "subtitle": "For freelancers & individuals",
-          "desc": "Work from any available desk on our open floormaximum flexibility, no long-term commitment.",
+          "subtitle": "For Freelancers & Individuals",
+          "desc": "Flexible coworking access for freelancers, remote professionals, and entrepreneurs. Work from any available desk with no long-term commitment.",
           "price": "Rs. 5,000",
           "pricePer": "/ month",
           "cta": "Enquire Now",
@@ -241,9 +254,9 @@
         {
           "id": "dedicated-desk",
           "title": "Dedicated Desk",
-          "subtitle": "For professionals",
-          "desc": "Your own fixed desk in a shared workspace. Set it up once, and come back to it every day.",
-          "price": "₹8,000",
+          "subtitle": "For professionals & consultants",
+          "desc": "A reserved workstation in a shared office environment with personal storage and consistency for your daily work routine.",
+          "price": "Rs. 6,000",
           "pricePer": "/ month",
           "cta": "Enquire Now",
           "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"
@@ -251,74 +264,39 @@
         {
           "id": "private-cabin",
           "title": "Private Cabin",
-          "subtitle": "For teams of 410",
-          "desc": "A fully enclosed, secure workspace for your team. Designed for privacy, focus, and collaboration.",
-          "features": [
-            "Glass-partition, enclosed cabin",
-            "Custom layout & branding (6+ months)",
-            "Dedicated meeting room hours",
-            "Available for 410 seats"
-          ],
-          "pricing": [
-            {
-              "label": "Starting at",
-              "price": "Ã¢ÂÂ¹40,000/month"
-            }
-          ],
+          "subtitle": "For small & growing teams",
+          "desc": "Secure, fully furnished private office cabins designed for teams that need privacy, focus, and collaboration.",
+          "price": "Starting from Rs. 25,000",
+          "pricePer": "/ month",
           "cta": "Enquire Now",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg",
-          "price": "₹40,000+",
-          "pricePer": "/ month"
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg"
         },
         {
           "id": "managed-office",
           "title": "Managed Office",
-          "subtitle": "For teams of 1550",
-          "desc": "A fully customised office space built to your requirementsready to move in from day one.",
-          "features": [
-            "Private zone or full-floor options",
-            "Custom interiors, furniture & branding",
-            "Dedicated server room option",
-            "1224 month contracts"
-          ],
-          "pricing": [
-            {
-              "label": "Starting at",
-              "price": "Ã¢ÂÂ¹6,000/seat/month"
-            }
-          ],
+          "subtitle": "For growing businesses & enterprises",
+          "desc": "Custom-built office spaces with dedicated infrastructure, branding options, and complete facility management for growing businesses.",
+          "price": "Rs. 6,000",
+          "pricePer": "/ seat / month",
           "cta": "Discuss Requirements",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg",
-          "price": "₹6,000+",
-          "pricePer": "/ seat / month"
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
         },
         {
           "id": "virtual-office",
           "title": "Virtual Office",
-          "subtitle": "For businesses & freelancers",
-          "desc": "Get a professional business address without a physical workspace.",
-          "features": [
-            "GST-registered ORR address",
-            "Mail & courier handling",
-            "4 meeting room hours per month"
-          ],
-          "pricing": [
-            {
-              "label": "Starting at",
-              "price": "Ã¢ÂÂ¹21,000/yearly"
-            }
-          ],
-          "cta": "Enquire Now",
-          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg",
+          "subtitle": "For startups & business registration",
+          "desc": "Establish a professional business presence with a premium business address, GST registration support, and mail handling services.",
           "price": "₹21,000",
-          "pricePer": "/ year"
+          "pricePer": "/ year",
+          "cta": "Enquire Now",
+          "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"
         },
         {
           "id": "training-room",
-          "title": "Training Room",
-          "subtitle": "For events & workshops",
-          "desc": "A fully equipped space for team sessions, workshops, and training programs.",
-          "price": "₹3,500+",
+          "title": "Training & Meeting Room",
+          "subtitle": "For training, workshops & team sessions",
+          "desc": "Fully equipped training and meeting space for workshops, team sessions, presentations, and corporate events.",
+          "price": "600",
           "pricePer": "/ hour",
           "cta": "Check Availability",
           "image": "Conference Room.png"
@@ -587,5 +565,5 @@
       ]
     }
   },
-  "revision": 1780899782
+  "revision": 1780900154
 }
