@@ -96,7 +96,7 @@
         },
         "priceRange": lb.priceRange,
         "url": lb.url,
-        "image": lb.image
+        "image": lb.image ? (lb.image.startsWith('http') ? lb.image : `https://inspireworkplace.com/${lb.image.replace(/^content\//, 'content/')}`) : undefined
       };
       if (lb.openingHours) lbSchema.openingHoursSpecification = parseOpeningHours(lb.openingHours);
       injectJsonLd('schema-localbusiness', lbSchema);
@@ -199,7 +199,7 @@ function render(type, data, base) {
       `<div class="amenity"><b>${esc(it.title)}</b><span>${esc(it.desc)}</span></div>`
     ).join(''),
 
-    checkList: items => items.map(it => `<li>${esc(it)}</li>`).join(''),
+    checkList: items => items.map(it => `<li>${esc(typeof it === 'string' ? it : it._text || '')}</li>`).join(''),
 
     statsGrid: items => items.map(it => `
       <div class="stat">

@@ -1428,11 +1428,6 @@ const homeSchema = () => [
     list: { key: "checks", title: "Check list items", addLabel: "Add check item",
       itemLabel: i => (typeof i === "string" ? i : i.text || "Item"),
       fields: [{ key: "_text", label: "Text" }] }},
-  { id: "rooftopSection", title: "Rooftop & Stats", icon: "🏔️",
-    fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "body", label: "Body text", type: "textarea" }],
-    list: { key: "stats", title: "Stats", addLabel: "Add stat",
-      itemLabel: i => `${i.value}${i.suffix} — ${i.label}`,
-      fields: [{ key: "value", label: "Number", placeholder: "6" }, { key: "suffix", label: "Suffix", placeholder: "+" }, { key: "label", label: "Label", placeholder: "workspace formats" }] }},
   { id: "reviewsSection", title: "Reviews", icon: "⭐",
     fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }],
     list: { key: "quotes", title: "Testimonials", addLabel: "Add quote", withImage: true,
@@ -1523,9 +1518,6 @@ const contactSchema = () => [
       fields: [{ key: "_text", label: "Text" }] } },
 ];
 
-// Handle the "checks" lists where items are plain strings
-// We store them as strings in JSON, but edit them via a _text field
-const normalizeCheckItem = item => typeof item === "string" ? item : item._text || "";
 
 // SEO editor — manage meta tags for all pages
 let seoActivePage = "home";
