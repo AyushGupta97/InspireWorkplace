@@ -250,6 +250,17 @@ function render(type, data, base) {
           <div class="price">${esc(it.price)} <small>${esc(it.per)}</small></div>
         </div>
       </article>`).join(''),
+
+    tickerItems: items => {
+      const spans = items.map(it => `<span>${esc(it.text || it)}</span>`).join('');
+      return spans + spans; // duplicate for seamless loop
+    },
+
+    galleryImages: items => items.map(it => `
+      <figure class="${esc(it.size || 'third')}">
+        <img src="${cp}${esc(it.image)}" alt="${esc(it.alt || '')}" loading="lazy">
+        ${it.caption ? `<figcaption>${esc(it.caption)}</figcaption>` : ''}
+      </figure>`).join(''),
   };
 
   return r[type] ? r[type](Array.isArray(data) ? data : [data]) : null;

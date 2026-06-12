@@ -200,6 +200,66 @@
       "eyebrow": "",
       "heading": "",
       "body": ""
+    },
+    "tickerSection": {
+      "items": [
+        {
+          "text": "Hot Desks ₹6,000"
+        },
+        {
+          "text": "Dedicated Desks ₹8,000"
+        },
+        {
+          "text": "Private Cabins"
+        },
+        {
+          "text": "Managed Offices"
+        },
+        {
+          "text": "Virtual Office ₹2,000"
+        },
+        {
+          "text": "Training Room"
+        },
+        {
+          "text": "Rooftop Cafeteria"
+        }
+      ]
+    },
+    "gallerySection": {
+      "eyebrow": "Gallery",
+      "images": [
+        {
+          "image": "WhatsApp Image 2026-05-15 at 12.59.00.jpeg",
+          "alt": "Open coworking desks with natural light at Inspire Workplace",
+          "caption": "Open floor",
+          "size": "wide"
+        },
+        {
+          "image": "WhatsApp Image 2026-05-15 at 12.59.05 (1).jpeg",
+          "alt": "Reception seating at Inspire Workplace Bangalore",
+          "caption": "Reception",
+          "size": "mid"
+        },
+        {
+          "image": "WhatsApp Image 2026-05-15 at 12.59.03.jpeg",
+          "alt": "Dedicated desk row in coworking space",
+          "caption": "Dedicated desks",
+          "size": "third"
+        },
+        {
+          "image": "WhatsApp Image 2026-05-15 at 12.59.05.jpeg",
+          "alt": "Training room at Inspire Workplace",
+          "caption": "Training room",
+          "size": "third"
+        },
+        {
+          "image": "WhatsApp Image 2026-05-15 at 12.59.04 (2).jpeg",
+          "alt": "Rooftop cafeteria at Inspire Workplace",
+          "caption": "Rooftop",
+          "size": "third"
+        }
+      ]
     }
   },
   "spaces": {

@@ -1402,6 +1402,18 @@ const homeSchema = () => [
       { key: "img1", label: "Hero Image 1 (main floor)", type: "image" },
       { key: "img2", label: "Hero Image 2 (rooftop)", type: "image" }
     ] },
+  { id: "tickerSection", title: "Scrolling Ticker Strip", icon: "📣", fields: [],
+    list: { key: "items", title: "Ticker items", addLabel: "Add item",
+      itemLabel: i => i.text || "Item",
+      fields: [{ key: "text", label: "Text (e.g. Hot Desks ₹6,000)" }] }},
+  { id: "gallerySection", title: "Gallery Images", icon: "🖼️", fields: [{ key: "eyebrow", label: "Eyebrow" }],
+    list: { key: "images", title: "Gallery photos", addLabel: "Add photo", withImage: true,
+      itemLabel: i => i.caption || i.alt || "Photo",
+      fields: [
+        { key: "alt", label: "Alt text (describe the photo)" },
+        { key: "caption", label: "Caption label (e.g. Open floor)" },
+        { key: "size", label: "Size: wide (7 cols) / mid (5 cols) / third (4 cols)", placeholder: "third" }
+      ] }},
   { id: "spacesSection", title: "Spaces List", icon: "📋",
     fields: [{ key: "eyebrow", label: "Eyebrow" }, { key: "heading", label: "Heading" }, { key: "lead", label: "Lead", type: "textarea" }],
     list: { key: "items", title: "Space types", addLabel: "Add space type",
