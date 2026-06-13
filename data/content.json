@@ -4,10 +4,10 @@
       "eyebrow": "Work. Grow. Scale.",
       "headingPrefix": "Flexible Coworking and Managed Office Spaces for Focus and Growth",
       "headingEmphasis": "in Marathahalli, Bengaluru",
-      "lead": "Looking for a coworking space in Marathahalli or a fully managed office in Bengaluru? Inspire Workplace offers flexible workspaces, private cabins, meeting rooms, and virtual office solutions designed for startups, professionals, and growing teams.",
-      "cta1Text": "Book a Free Tour",
+      "lead": "Whether you’re studying, building your next big idea, launching a side hustle, starting up, or scaling your team or community—Inspire Workplace offers flexible workspaces, private cabins, meeting rooms, and virtual office solutions designed to give you the space to focus, create, and grow.",
+      "cta1Text": "Book a Tour",
       "cta1Url": "html/contact.html",
-      "cta2Text": "View Spaces & Pricing",
+      "cta2Text": "Explore Plans",
       "cta2Url": "html/spaces.html",
       "point1": "Coworking Space starting at Rs. 5,000/month.",
       "point2": "Virtual Office Address",
@@ -631,5 +631,5 @@
       ]
     }
   },
-  "revision": 1780908942
+  "revision": 1781335735
 }
