@@ -9,9 +9,9 @@
       "cta1Url": "html/contact.html",
       "cta2Text": "Explore Plans",
       "cta2Url": "html/spaces.html",
-      "point1": "Coworking Space starting at Rs. 5,000/month.",
+      "point1": "Coworking Space starting @ ₹5,000/month",
       "point2": "Virtual Office Address",
-      "point3": "Private cabins and Managed Offices",
+      "point3": "Private Cabins & Managed Offices",
       "metricTitle": "8 AM - 9 PM",
       "metricSub": ""
     },
@@ -204,7 +204,7 @@
     "tickerSection": {
       "items": [
         {
-          "text": "Hot Desks ₹6,000"
+          "text": "Hot Desks ₹5,000"
         },
         {
           "text": "Dedicated Desks ₹8,000"
@@ -631,5 +631,5 @@
       ]
     }
   },
-  "revision": 1781337209
+  "revision": 1781337586
 }
