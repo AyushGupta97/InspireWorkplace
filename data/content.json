@@ -22,7 +22,7 @@
     "spacesSection": {
       "eyebrow": "OUR SPACES",
       "heading": "Workspace Solutions for Startups, Teams, and Enterprises",
-      "lead": "Discover workspace solutions designed for every stage of your business journey. From flexible coworking desks to fully managed office spaces, we provide the infrastructure, flexibility, and support your team needs to thrive.",
+      "lead": "From Solo Hustles to Full-Scale Teams - No matter where you are in your journey, there’s a space built for you here. Flexible enough to start small. Scalable enough to grow big.",
       "items": [
         {
           "num": "01",
@@ -631,5 +631,5 @@
       ]
     }
   },
-  "revision": 1781335735
+  "revision": 1781337209
 }
