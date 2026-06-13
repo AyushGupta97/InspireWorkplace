@@ -22,7 +22,7 @@
     "spacesSection": {
       "eyebrow": "OUR SPACES",
       "heading": "Workspace Solutions for Startups, Teams, and Enterprises",
-      "lead": "From Solo Hustles to Full-Scale Teams - No matter where you are in your journey, there’s a space built for you here. Flexible enough to start small. Scalable enough to grow big.",
+      "lead": "From Solo Hustles to Full-Scale Teams - \nNo matter where you are in your journey, there’s a space built for you here.\nFlexible enough to start small. Scalable enough to grow big.",
       "items": [
         {
           "num": "01",
@@ -631,5 +631,5 @@
       ]
     }
   },
-  "revision": 1781337731
+  "revision": 1781337784
 }
