@@ -306,7 +306,7 @@
           "title": "Hot Desk",
           "subtitle": "For Freelancers & Individuals",
           "desc": "Flexible coworking access for freelancers, remote professionals, and entrepreneurs. Work from any available desk with no long-term commitment.",
-          "price": "Rs. 5,000",
+          "price": "₹5,000",
           "pricePer": "/ month",
           "cta": "Enquire Now",
           "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.58.jpeg"
@@ -316,7 +316,7 @@
           "title": "Dedicated Desk",
           "subtitle": "For professionals & consultants",
           "desc": "A reserved workstation in a shared office environment with personal storage and consistency for your daily work routine.",
-          "price": "Rs. 6,000",
+          "price": "₹6,000",
           "pricePer": "/ month",
           "cta": "Enquire Now",
           "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.03%20(1).jpeg"
@@ -326,7 +326,7 @@
           "title": "Private Cabin",
           "subtitle": "For small & growing teams",
           "desc": "Secure, fully furnished private office cabins designed for teams that need privacy, focus, and collaboration.",
-          "price": "Starting from Rs. 25,000",
+          "price": "Starting from ₹25,000",
           "pricePer": "/ month",
           "cta": "Enquire Now",
           "image": "WhatsApp%20Image%202026-05-15%20at%2012.58.59%20(1).jpeg"
@@ -336,7 +336,7 @@
           "title": "Managed Office",
           "subtitle": "For growing businesses & enterprises",
           "desc": "Custom-built office spaces with dedicated infrastructure, branding options, and complete facility management for growing businesses.",
-          "price": "Rs. 6,000",
+          "price": "₹6,000",
           "pricePer": "/ seat / month",
           "cta": "Discuss Requirements",
           "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.00.jpeg"
@@ -346,7 +346,7 @@
           "title": "Virtual Office",
           "subtitle": "For startups & business registration",
           "desc": "Establish a professional business presence with a premium business address, GST registration support, and mail handling services.",
-          "price": "Rs. 18,000",
+          "price": "₹18,000",
           "pricePer": "/ year",
           "cta": "Enquire Now",
           "image": "WhatsApp%20Image%202026-05-15%20at%2012.59.05%20(1).jpeg"
@@ -356,7 +356,7 @@
           "title": "Training & Meeting Room",
           "subtitle": "For training, workshops & team sessions",
           "desc": "Fully equipped training and meeting space for workshops, team sessions, presentations, and corporate events.",
-          "price": "Rs. 600",
+          "price": "₹600",
           "pricePer": "/ hour",
           "cta": "Check Availability",
           "image": "Conference Room.png"
@@ -488,7 +488,7 @@
       "phone2": "+919916130610",
       "phone2Display": "+91 99161 30610",
       "email": "admin@inspireworkplace.com",
-      "hours": "Monday to Saturday, 8 AM to 9 PM"
+      "hours": "Monday to Saturday, 8 AM to 8 PM"
     },
     "locationSection": {
       "eyebrow": "Location",
@@ -631,5 +631,5 @@
       ]
     }
   },
-  "revision": 1781340229
+  "revision": 1781340893
 }
