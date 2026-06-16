@@ -161,17 +161,17 @@ p { margin: 0; font-weight: 300; }
   letter-spacing: -.05em;
   pointer-events: none;
 }
-.hero-grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(340px, .85fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; padding: clamp(3rem, 6vw, 6rem) 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, 1.15fr); gap: clamp(2rem, 4vw, 4rem); align-items: center; padding: clamp(3rem, 6vw, 6rem) 0; }
 .hero-copy { position: relative; z-index: 2; }
 .hero-copy h1 .emphasis { color: var(--olive); font-style: italic; }
-.hero-copy .lead { margin-top: 1.25rem; max-width: 590px; color: #5f5c55; }
+.hero-copy .lead { margin-top: 1.25rem; max-width: 520px; color: #5f5c55; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
 .hero-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 2.3rem; border: 1px solid var(--line); background: var(--line); border-radius: var(--r); overflow: hidden; }
 .hero-points li { background: rgba(255,255,255,.55); padding: 1rem; color: var(--ink); font-size: .86rem; font-weight: 600; }
-.hero-media { position: relative; z-index: 2; display: grid; gap: 12px; grid-template-columns: .85fr 1fr; align-items: end; }
-.hero-media img { width: 100%; border-radius: var(--r); box-shadow: var(--shadow); }
-.hero-media img:first-child { aspect-ratio: 3/4; }
-.hero-media img:last-child { aspect-ratio: 4/3; transform: translateY(-28px); }
+.hero-media { position: relative; z-index: 2; display: grid; gap: 10px; grid-template-columns: .8fr 1fr; align-items: end; }
+.hero-media img { width: 100%; border-radius: var(--r); box-shadow: var(--shadow); object-fit: cover; }
+.hero-media img:first-child { aspect-ratio: 2/3; }
+.hero-media img:last-child { aspect-ratio: 1/1; transform: translateY(-40px); }
 .metric-card {
   position: absolute;
   left: 14%;
@@ -413,8 +413,8 @@ input:focus, select:focus, textarea:focus {
   50% { transform: translateY(-10px); }
 }
 @keyframes float-b {
-  0%, 100% { transform: translateY(-28px); }
-  50% { transform: translateY(-18px); }
+  0%, 100% { transform: translateY(-40px); }
+  50% { transform: translateY(-30px); }
 }
 @media (max-width: 560px) {
   .hero-media img:last-child { animation: none; }
