@@ -28,35 +28,35 @@
           "num": "01",
           "title": "Hot Desk",
           "desc": "Ideal for freelancers, remote professionals, and entrepreneurs looking for a flexible coworking space with high-speed internet, comfortable seating, and access to shared amenities.",
-          "price": "₹5,000",
+          "price": "Rs. 5,000",
           "per": "/ month"
         },
         {
           "num": "02",
           "title": "Dedicated Desk",
           "desc": "A reserved workstation with personal storage, mail handling, and meeting room access for professionals who need consistency and convenience.",
-          "price": "₹6,000",
+          "price": "Rs. 6,000",
           "per": "/ month"
         },
         {
           "num": "03",
           "title": "Private Cabin",
           "desc": "Fully furnished private office cabins for teams of 4–10 members, offering privacy, security, and a productive work environment.",
-          "price": "₹25,000",
+          "price": "Rs. 25,000",
           "per": "/ month"
         },
         {
           "num": "04",
           "title": "Managed Office",
           "desc": "Custom-built office spaces for growing teams and enterprises. Move into a fully managed office with furniture, internet, maintenance, and branding support included.",
-          "price": "₹6,000",
+          "price": "Rs. 6,000",
           "per": "/ seat"
         },
         {
           "num": "05",
           "title": "Virtual Office",
           "desc": "Establish a professional business presence with a premium business address, GST registration support, mail handling, and meeting room access.",
-          "price": "₹18000",
+          "price": "Rs. 18000",
           "per": "/ year"
         }
       ]
@@ -204,10 +204,10 @@
     "tickerSection": {
       "items": [
         {
-          "text": "Hot Desks ₹5,000"
+          "text": "Hot Desks Rs. 5,000"
         },
         {
-          "text": "Dedicated Desks ₹8,000"
+          "text": "Dedicated Desks Rs. 6,000"
         },
         {
           "text": "Private Cabins"
@@ -216,7 +216,7 @@
           "text": "Managed Offices"
         },
         {
-          "text": "Virtual Office ₹2,000"
+          "text": "Virtual Office Rs. 2,000"
         },
         {
           "text": "Training Room"
