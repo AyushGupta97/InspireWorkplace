@@ -586,7 +586,7 @@
       }
     },
     "sitemap": {
-      "baseUrl": "https://inspireworkplace.com",
+      "baseUrl": "https://ayushgupta97.github.io/InspireWorkplace/admin.html",
       "urls": [
         {
           "path": "/",
@@ -629,6 +629,10 @@
           "changefreq": "yearly"
         }
       ]
+    },
+    "visibility": {
+      "pages": {},
+      "sections": {}
     }
   },
   "revision": 1781341055
