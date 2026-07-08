@@ -28,6 +28,39 @@
     // Expose settings globally so site.js can read web3formsKey
     window._siteSettings = all.settings || {};
 
+    // ── Page / section visibility ─────────────────────────────
+    // Managed from the admin panel. Convention: a value of `false`
+    // means "hidden"; missing or `true` means visible (so existing
+    // content stays visible when no flags are set).
+    const visibility = all.settings?.visibility || {};
+    const hiddenPages = visibility.pages || {};
+    const hiddenSections = visibility.sections || {};
+    const PAGE_FILES = {
+      home: 'index.html', spaces: 'spaces.html', about: 'about.html',
+      events: 'events.html', blog: 'blog.html', contact: 'contact.html'
+    };
+
+    // If the current page is hidden, send visitors to the home page.
+    if (hiddenPages[pageId] === false && pageId !== 'home') {
+      location.replace(window.location.pathname.includes('/html/') ? '../index.html' : 'index.html');
+      return;
+    }
+
+    // Hide individual sections flagged off for this page.
+    document.querySelectorAll('[data-section]').forEach(el => {
+      if (hiddenSections[`${pageId}.${el.dataset.section}`] === false) el.style.display = 'none';
+    });
+
+    // Remove nav + footer links that point to hidden pages.
+    Object.keys(hiddenPages).forEach(pid => {
+      if (hiddenPages[pid] !== false || !PAGE_FILES[pid]) return;
+      const file = PAGE_FILES[pid];
+      document.querySelectorAll('.site-header a[href], .site-footer a[href]').forEach(a => {
+        const href = a.getAttribute('href') || '';
+        if (href.endsWith(file)) a.style.display = 'none';
+      });
+    });
+
     // ── Inject SEO meta tags ──────────────────────────────────
     const seoData = all.seo && all.seo[pageId];
     if (seoData) {

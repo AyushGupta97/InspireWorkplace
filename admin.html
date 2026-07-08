@@ -105,6 +105,14 @@
     .section-card-title .icon{font-size:1.05rem}
     .section-card-chevron{color:var(--muted);font-size:.8rem;transition:transform .25s}
     .section-card.open .section-card-chevron{transform:rotate(180deg)}
+    .vis-toggle{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:700;
+      color:var(--muted);cursor:pointer;user-select:none}
+    .vis-toggle input{cursor:pointer;accent-color:var(--olive)}
+    .vis-row{display:flex;align-items:center;justify-content:space-between;padding:.7rem .2rem;
+      border-bottom:1px solid var(--line)}
+    .vis-row:last-child{border-bottom:none}
+    .vis-row .vis-row-label{font-weight:600;color:var(--ink)}
+    .vis-row .vis-row-label small{display:block;font-weight:400;color:var(--muted);font-size:.78rem;margin-top:.15rem}
     .section-card-body{display:none;padding:1.1rem;border-top:1px solid var(--line)}
     .section-card.open .section-card-body{display:block}
 
@@ -278,6 +286,7 @@
       <div class="nav-item" data-page="page-seo"><span class="icon">🔍</span> SEO</div>
       <div class="nav-item" data-page="page-sitemap"><span class="icon">🗺️</span> Sitemap</div>
       <div class="nav-item" data-page="page-robots"><span class="icon">🤖</span> Robots.txt</div>
+      <div class="nav-item" data-page="visibility"><span class="icon">👁️</span> Visibility</div>
       <div class="nav-item" data-page="settings"><span class="icon">⚙️</span> Settings</div>
     </nav>
 
@@ -384,6 +393,18 @@
           <div class="section-card-body">
             <div class="field"><label>robots.txt content</label><textarea id="robots-content" style="min-height:300px;font-family:monospace;font-size:.85rem" placeholder="User-agent: *&#10;Disallow: /admin&#10;Sitemap: https://inspireworkplace.com/sitemap.xml"></textarea></div>
           </div>
+        </div>
+      </section>
+
+      <!-- VISIBILITY -->
+      <section class="page" id="page-visibility">
+        <div class="page-header">
+          <div><h2>Visibility</h2><p>Show or hide entire pages from the website. Hidden pages are removed from the menu and footer, and visitors who open them directly are sent to the home page. To hide individual <em>sections</em> within a page, use the toggle in each section's header on that page's editor.</p></div>
+          <button class="btn btn-dark" id="save-visibility-btn"><span>Save Visibility</span><span class="spinner" id="save-visibility-sp"></span></button>
+        </div>
+        <div class="section-card open">
+          <div class="section-card-header"><div class="section-card-title"><span class="icon">👁️</span>Pages</div></div>
+          <div class="section-card-body"><div id="visibility-editor"></div></div>
         </div>
       </section>
 
@@ -691,6 +712,7 @@ document.querySelectorAll(".nav-item[data-page]").forEach(item => {
     if (pg) pg.classList.add("active");
     if (item.dataset.page === "images") loadImages();
     if (item.dataset.page === "settings") fillSettings();
+    if (item.dataset.page === "visibility") renderVisibilityEditor();
     if (item.dataset.page === "page-robots") autoLoadRobots();
     if (item.dataset.page === "page-sitemap") {
       const sc = document.getElementById("sc-sitemap");
@@ -1067,6 +1089,7 @@ const buildAllEditors = () => {
   buildSeoEditor();
   loadSettingsFields();
   renderSitemapEditor();
+  renderVisibilityEditor();
 };
 
 const loadSettingsFields = () => {
@@ -1119,17 +1142,38 @@ const buildSection = (pageKey, sec, pc) => {
     return buildField(`${pageKey}.${sec.id}.${f.key}`, f, data[f.key]);
   }).join("");
   const listHtml = sec.list ? buildListDisplay(pageKey, sec, (data[sec.list.key] || [])) : "";
+  const sectionVisible = contentData.settings?.visibility?.sections?.[`${pageKey}.${sec.id}`] !== false;
   return `
     <div class="section-card" id="sc-${pageKey}-${sec.id}">
       <div class="section-card-header" onclick="toggleSection('sc-${pageKey}-${sec.id}')">
         <div class="section-card-title"><span class="icon">${sec.icon || "📄"}</span>${esc(sec.title)}</div>
-        <span class="section-card-chevron">▼</span>
+        <div style="display:flex;align-items:center;gap:.75rem">
+          <label class="vis-toggle" onclick="event.stopPropagation()" title="Show or hide this section on the website">
+            <input type="checkbox" ${sectionVisible ? "checked" : ""} onchange="setSectionVisibility('${pageKey}','${sec.id}',this.checked)">
+            <span>${sectionVisible ? "Visible" : "Hidden"}</span>
+          </label>
+          <span class="section-card-chevron">▼</span>
+        </div>
       </div>
       <div class="section-card-body">
         ${fieldsHtml}
         ${listHtml}
       </div>
     </div>`;
+};
+
+// Toggle a single section's visibility. Stored in contentData and
+// published when the page's Save button is clicked.
+window.setSectionVisibility = (pageKey, secId, visible) => {
+  if (!contentData.settings) contentData.settings = {};
+  if (!contentData.settings.visibility) contentData.settings.visibility = { pages: {}, sections: {} };
+  if (!contentData.settings.visibility.sections) contentData.settings.visibility.sections = {};
+  const key = `${pageKey}.${secId}`;
+  if (visible) delete contentData.settings.visibility.sections[key];
+  else contentData.settings.visibility.sections[key] = false;
+  const lbl = document.querySelector(`#sc-${pageKey}-${secId} .vis-toggle span`);
+  if (lbl) lbl.textContent = visible ? "Visible" : "Hidden";
+  toast(`Section ${visible ? "shown" : "hidden"} — click Save on this page to publish.`);
 };
 
 window.toggleSection = id => {
@@ -1693,6 +1737,52 @@ document.getElementById("save-settings-btn").addEventListener("click", async () 
   finally { setBusy(null, "save-settings-sp", false); }
 });
 
+// ── Page Visibility ───────────────────────────────────────────────
+// Home is intentionally omitted — it can't be hidden.
+const visPages = [
+  { id: "spaces", label: "Spaces", desc: "Plans & pricing page" },
+  { id: "about", label: "About", desc: "Company story page" },
+  { id: "events", label: "Events", desc: "Events & training room page" },
+  { id: "blog", label: "Journal / Blog", desc: "Blog listing page" },
+  { id: "contact", label: "Contact", desc: "Contact & enquiry page" },
+];
+
+const renderVisibilityEditor = () => {
+  const el = document.getElementById("visibility-editor");
+  if (!el) return;
+  const hidden = contentData.settings?.visibility?.pages || {};
+  el.innerHTML = visPages.map(p => {
+    const visible = hidden[p.id] !== false;
+    return `<div class="vis-row">
+      <span class="vis-row-label">${esc(p.label)}<small>${esc(p.desc)}</small></span>
+      <label class="vis-toggle">
+        <input type="checkbox" ${visible ? "checked" : ""} onchange="setPageVisibility('${p.id}',this.checked)">
+        <span>${visible ? "Visible" : "Hidden"}</span>
+      </label>
+    </div>`;
+  }).join("");
+};
+
+window.setPageVisibility = (pageId, visible) => {
+  if (!contentData.settings) contentData.settings = {};
+  if (!contentData.settings.visibility) contentData.settings.visibility = { pages: {}, sections: {} };
+  if (!contentData.settings.visibility.pages) contentData.settings.visibility.pages = {};
+  if (visible) delete contentData.settings.visibility.pages[pageId];
+  else contentData.settings.visibility.pages[pageId] = false;
+  renderVisibilityEditor();
+};
+
+document.getElementById("save-visibility-btn")?.addEventListener("click", async () => {
+  setBusy(null, "save-visibility-sp", true);
+  try {
+    contentData.revision = Math.floor(Date.now() / 1000);
+    contentSha = await ghPut(CONTENT_PATH, contentData, contentSha, "Update page/section visibility");
+    localStorage.setItem('_adminSaved', 'true');
+    toast("Visibility saved. Pages will update on next visit.");
+  } catch (e) { toast(e.message, "error"); }
+  finally { setBusy(null, "save-visibility-sp", false); }
+});
+
 // ── Sitemap Management ────────────────────────────────────────────
 let sitemapSha = null;
 const renderSitemapEditor = () => {
@@ -1759,6 +1849,12 @@ document.getElementById("save-sitemap-btn")?.addEventListener("click", async () 
     contentData.settings.sitemap.baseUrl = document.getElementById("sitemap-base-url").value || "https://inspireworkplace.com";
     // Generate XML
     const sitemapXml = buildSitemapXml(contentData.settings.sitemap);
+    // Fetch the current sitemap.xml SHA — GitHub requires it to update an existing file.
+    // Without this the PUT fails (422) and the sitemap never gets written.
+    if (!sitemapSha) {
+      try { sitemapSha = (await ghGetRaw("sitemap.xml")).sha; }
+      catch (_) { /* file doesn't exist yet — a create (no sha) is correct */ }
+    }
     // Save both sitemap.xml and updated content.json
     const [newSitemapSha, newContentSha] = await Promise.all([
       ghPutRaw("sitemap.xml", sitemapXml, sitemapSha, "Update sitemap"),
