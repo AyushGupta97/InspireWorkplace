@@ -586,7 +586,7 @@
       }
     },
     "sitemap": {
-      "baseUrl": "https://ayushgupta97.github.io/InspireWorkplace/admin.html",
+      "baseUrl": "https://ayushgupta97.github.io/InspireWorkplace",
       "urls": [
         {
           "path": "/",

@@ -625,25 +625,36 @@ const ghGetRaw = async (filePath) => {
   return { content: b64ToUtf8(d.content), sha: d.sha };
 };
 
-const ghPut = async (filePath, content, sha, message) => {
-  const r = await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}`, {
+// Look up a file's current blob SHA on the target branch. Returns null if it
+// doesn't exist yet (so the caller performs a create instead of an update).
+const ghCurrentSha = async (filePath) => {
+  const r = await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}?ref=${BRANCH}`);
+  if (!r.ok) return null;
+  return (await r.json()).sha;
+};
+
+// PUT a file's base64 content. If GitHub rejects the write because our SHA is
+// stale (409/422 — the file changed since we last loaded it), refetch the
+// current SHA and retry once. This self-heals the common "does not match" error
+// without forcing the user to sign out and back in.
+const ghPutB64 = async (filePath, b64content, sha, message) => {
+  const doPut = (useSha) => gh(`/repos/${OWNER}/${REPO}/contents/${filePath}`, {
     method: "PUT", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message, branch: BRANCH, sha,
-      content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))) })
+    body: JSON.stringify({ message, branch: BRANCH, sha: useSha, content: b64content })
   });
+  let r = await doPut(sha);
+  if (!r.ok && (r.status === 409 || r.status === 422)) {
+    r = await doPut(await ghCurrentSha(filePath));
+  }
   if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.message || `Save failed (${r.status})`); }
   return (await r.json()).content.sha;
 };
 
-const ghPutRaw = async (filePath, textContent, sha, message) => {
-  const r = await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}`, {
-    method: "PUT", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message, branch: BRANCH, sha,
-      content: btoa(unescape(encodeURIComponent(textContent))) })
-  });
-  if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.message || `Save failed (${r.status})`); }
-  return (await r.json()).content.sha;
-};
+const ghPut = (filePath, content, sha, message) =>
+  ghPutB64(filePath, btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))), sha, message);
+
+const ghPutRaw = (filePath, textContent, sha, message) =>
+  ghPutB64(filePath, btoa(unescape(encodeURIComponent(textContent))), sha, message);
 
 const ghUpload = async (filePath, b64, message) => {
   let sha;
