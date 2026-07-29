@@ -97,6 +97,22 @@
       setMeta('google-site-verification', all.settings.googleVerification);
     }
 
+    // ── Google Analytics (GA4) ──────────────────────────────────
+    // Loads gtag.js when a Measurement ID is configured in settings.
+    // gtag is exposed on window so custom events can be fired later.
+    const gaId = all.settings?.googleAnalyticsId;
+    if (gaId && !window.__gaInit) {
+      window.__gaInit = true;
+      const ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(gaId);
+      document.head.appendChild(ga);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', gaId);
+    }
+
     // ── noindex meta tag ───────────────────────────────────────
     if (seoData?.noindex) {
       setMeta('robots', 'noindex, nofollow');

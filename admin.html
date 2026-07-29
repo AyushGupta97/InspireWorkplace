@@ -440,6 +440,12 @@
         </div>
 
         <div class="settings-card">
+          <h3>Google Analytics</h3>
+          <p>Paste your GA4 Measurement ID to track visitors. Find it in Google Analytics under Admin → Data streams → your web stream. Leave blank to disable tracking.</p>
+          <div class="field"><label>GA4 Measurement ID</label><input type="text" id="s-google-analytics" placeholder="G-XXXXXXXXXX"></div>
+        </div>
+
+        <div class="settings-card">
           <h3>LocalBusiness Schema Markup</h3>
           <p>Configure your business information for search engine rich snippets.</p>
           <div class="field"><label>Business Name</label><input type="text" id="s-schema-name" placeholder="Inspire Workplace"></div>
@@ -1109,6 +1115,7 @@ const loadSettingsFields = () => {
   document.getElementById("s-contact-email").value = s.contactEmail || "";
   document.getElementById("s-form-subject").value = s.formSubject || "";
   document.getElementById("s-google-verification").value = s.googleVerification || "";
+  document.getElementById("s-google-analytics").value = s.googleAnalyticsId || "";
   const lb = s.schema?.localBusiness || {};
   document.getElementById("s-schema-name").value = lb.name || "";
   document.getElementById("s-schema-desc").value = lb.description || "";
@@ -1721,6 +1728,8 @@ document.getElementById("save-settings-btn").addEventListener("click", async () 
     contentData.settings.formSubject = document.getElementById("s-form-subject").value.trim();
     // Google Search Console
     contentData.settings.googleVerification = document.getElementById("s-google-verification").value.trim() || "";
+    // Google Analytics
+    contentData.settings.googleAnalyticsId = document.getElementById("s-google-analytics").value.trim() || "";
     // LocalBusiness Schema
     if (!contentData.settings.schema) contentData.settings.schema = {};
     contentData.settings.schema.localBusiness = {
